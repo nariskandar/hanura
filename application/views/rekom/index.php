@@ -12,7 +12,7 @@
 <div id="flash" class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <div id="main-wrapper" class="container">
     <div class="row">
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-3 col-md-12">
             <div class="panel info-box panel-white">
                 <div class="panel-body">
                     <div class="info-box-stats">
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-3 col-md-12">
             <div class="panel info-box panel-white">
                 <div class="panel-body">
                     <div class="info-box-stats">
@@ -74,7 +74,6 @@
 
     </div><!-- Row -->
 </div><!-- Main Wrapper -->
-
       
 <div id="main-wrapper" class="container">
      
@@ -93,6 +92,7 @@
    
                     <div class="panel-body">
                     <div class="table-responsive">
+                    
                     <table id="table_id" class="display table"">
                         <thead>
                             <tr>
@@ -165,10 +165,7 @@
 <script>
 $(document).ready( function () {
     $('#table_id').DataTable();
-    select: {
-        items: 'cells',
-        info: false
-    }
+    
 } );
 </script>
 

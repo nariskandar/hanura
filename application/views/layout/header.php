@@ -47,6 +47,9 @@
         <link href="<?= base_url('assets/js/sweetalert/sweetalert2.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/js/sweetalert/sweetalert2.min.css') ?>" rel="stylesheet">
 
+        <!-- MORRIS -->
+        <link href="<?= base_url('assets/plugins/morris/morris.css') ?>" rel="stylesheet" type="text/css"/>
+
         <link href="<?= base_url('assets/plugins/bootstrap-datepicker/css/datepicker3.css'); ?>" rel="stylesheet" type="text/css"/>
         <link href="<?= base_url('assets/plugins/bootstrap-colorpicker/css/colorpicker.css'); ?>" rel="stylesheet" type="text/css"/>
         <link href="<?= base_url('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'); ?>" rel="stylesheet" type="text/css"/>

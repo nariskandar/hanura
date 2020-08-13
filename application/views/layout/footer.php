@@ -82,8 +82,12 @@
 
         <script src="<?= base_url(); ?>assets/plugins/jquery-mockjax-master/jquery.mockjax.js"></script>
         <script src="<?= base_url(); ?>assets/plugins/moment/moment.js"></script>
-       
 
+        <!-- MORRIS -->
+        <script src="<?= base_url(); ?>assets/plugins/morris/raphael.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/morris/morris.min.js"></script>
+        <script src="<?= base_url(); ?>assets/js/pages/charts-morris.js"></script>
+        
         <script src="<?= base_url(); ?>assets/plugins/metrojs/MetroJs.min.js"></script>
         <script src="<?= base_url(); ?>assets/plugins/jquery-counterup/jquery.counterup.min.js"></script>
 
