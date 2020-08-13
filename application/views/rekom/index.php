@@ -12,7 +12,7 @@
 <div id="flash" class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <div id="main-wrapper" class="container">
     <div class="row">
-        <div class="col-lg-3 col-md-12">
+        <div class="col-lg-4 col-md-12">
             <div class="panel info-box panel-white">
                 <div class="panel-body">
                     <div class="info-box-stats">
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-12">
+        <div class="col-lg-4 col-md-12">
             <div class="panel info-box panel-white">
                 <div class="panel-body">
                     <div class="info-box-stats">
