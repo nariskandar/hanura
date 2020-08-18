@@ -14,8 +14,15 @@ foreach ( $id_partai as $idx => $val ) {
     $combine[] = [ $val, $nama_partai[$idx], $count[$idx] ];
 }
 
+$result = array_column($combine, '2');
+
+array_multisort($result, SORT_DESC, $combine);
 
 
+
+// usort($combine, function($a, $b) {
+//     return $a['2'] <=> $b['2'];
+// });
 
 // $id_partai = array_keys($hitung[0]['id_partai']);
 // $nama_partai = array_keys($hitung[0]['nama_partai']);
