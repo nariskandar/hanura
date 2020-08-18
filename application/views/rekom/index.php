@@ -20,8 +20,10 @@
             <div class="panel info-box panel-white">
                 <div class="panel-body">
                     <div class="info-box-stats">
-                        <p class="counter">160</p>
+                        <p class="counter">60</p>
+                    <a href="<?= base_url('rekom/seluruhcalon'); ?>">
                         <span class="info-box-title">Jumlah Calon Pasangan</span>
+                    </a>
                     </div>
                     <div class="info-box-icon">
                         <i class="icon-users"></i>

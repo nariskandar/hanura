@@ -33,6 +33,19 @@ class Rekom_model extends CI_model {
             return $this->db->get()->result_array();
     }
 
+    public function getAllDataCalon()
+    {
+        $this->db->select(
+            "calon.nama AS nama_calon,
+            pasangan.nama AS nama_pasangan");
+            
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        return $this->db->get()->result_array();
+
+    }
+
     public function getAllDataHanura()
     {
         $this->db->select(

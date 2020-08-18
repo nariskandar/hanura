@@ -35,6 +35,19 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/footer', $data);
     }
 
+    public function seluruhcalon()
+    {
+        $data['judul'] = 'Jumlah Calon';
+        $data['alldatacalon'] = $this->Rekom_model->getAllDataCalon();
+        // $data['jmlh_hanura'] = $this->Rekom_model->getJumlahHanura();
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/navbar', $data);
+        $this->load->view('layout/menubar', $data);
+        $this->load->view('rekom/seluruhcalon', $data);
+        $this->load->view('layout/footer', $data);
+    }
+
     public function detail($id_rekom, $geo_prov_id, $geo_kab_id)
     {
         $data['judul'] = 'Datail Data Rekom';

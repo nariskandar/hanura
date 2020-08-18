@@ -1,13 +1,8 @@
 <?php
 
-
 $id_partai      = array_keys($hitung[0]['id_partai']);
 $nama_partai    = array_keys($hitung[0]['nama_partai']);
 $count          = ($hitung[0]['count']);
-// $result         = array_combine($id_partai, $nama_partai);
-// $result2        = array_combine($count, $result);
-
-// var_dump($result2);
 
 $combine = [];
 foreach ( $id_partai as $idx => $val ) {
@@ -15,29 +10,31 @@ foreach ( $id_partai as $idx => $val ) {
 }
 
 $result = array_column($combine, '2');
-
 array_multisort($result, SORT_DESC, $combine);
 
+// var_dump($json = json_encode($combine)) ;
 
+// echo "<div id='combine';>" . $json . "</div>";
 
-// usort($combine, function($a, $b) {
-//     return $a['2'] <=> $b['2'];
-// });
+foreach ($combine as $key => $value) {
+    $json[] = [
+        'label'  => $value[1],
+        'value'  => $value[2]
+    ];
+}
 
-// $id_partai = array_keys($hitung[0]['id_partai']);
-// $nama_partai = array_keys($hitung[0]['nama_partai']);
-// $count = ($hitun g[0]['count']);
+$hasil = json_encode($json) ;
+
 
 ?>
-
 
 
 <div class="page-inner">
 
 <div class="page-title">
     <div class="container">
-        <div class="col-md-3">
-            <h3>Chart Calon</h3>
+        <div class="col-md-12">
+            <h3>Chart Usungan Partai Hanura dengan Partai Lain</h3>
         </div>
     </div>
 </div>
@@ -104,19 +101,41 @@ array_multisort($result, SORT_DESC, $combine);
 
 <script>
 
+// var combines = JSON.parse(document.getElementById('combine').innerHTML);
+// console.log(combine);
+// combines.forEach(function(combine){
+//   console.log(combine.1);
+// });
+
+
+
+
+
 $( document ).ready(function() {
     Morris.Donut({
-        element: 'morris4',
-        data: [
-            {label: 'PBB', value: 35 },
-            {label: 'PKS', value: 45 },
-            {label: 'GERINDRA', value: 30 },
-            {label: 'PDIP', value: 20 }
-        ],
+        element: 'morris4',            
+        data: <?= $hasil ?>,
+        
+        // [
+        //     {label: 'PDIP', value: 4 },
+        //     {label: 'GERINDRA', value: 2 },
+        //     {label: 'NASDEM', value: 2 },
+        //     {label: 'PKS', value: 1 },
+        //     {label: 'PSI', value: 1 },
+        //     {label: 'PAN', value: 1 },
+        //     {label: 'DEMOKRAT', value: 1 },
+        //     {label: 'PBB', value: 1 }
+        // ],
         resize: true,
-        colors: ['#74e4d1', '#44cbb4', '#119d85','#22BAA0'],
+        colors: ['#fcba03', '#fc6f03', '#fc3d03','#fc0f03',
+        '#fcfc03', '#90fc03', '#03fc52','#03f8fc',
+        '#0398fc', '#034efc', '#2403fc','#6b03fc',
+        '#fc038c', '#fc0331', '#fc0303','#f55151' ],
     });
 });
+
+
+
 </script>
 
 
