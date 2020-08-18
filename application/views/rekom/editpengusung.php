@@ -1,128 +1,138 @@
+
+
+
 <style>
    #tengah {
-      width: 500px;
-      margin: 100px auto;
+   	width: 500px;
+   	margin: 100px auto;
    }
+
    .remove {
-      width: 30px;
-      height: 30px;
-      font-size: 20px;
-      background-color: tomato;
-      color: white;
-      border: none;
-      border-radius: 15px;
+   	width: 30px;
+   	height: 30px;
+   	font-size: 20px;
+   	background-color: tomato;
+   	color: white;
+   	border: none;
+   	border-radius: 15px;
    }
+
    tr:hover {
-      cursor: move;
+   	cursor: move;
    }
 </style>
 
 <div class="page-inner">
-   <div class="page-title">
-      <div class="container">
-         <h3>Edit Data Pengusung</h3>
-      </div>
-   </div>
+	<div class="page-title">
+		<div class="container">
+			<h3>Edit Data Pengusung</h3>
+		</div>
+	</div>
 
-   <!-- KOLOM PERTAMA -->
-   <div id="main-wrapper" class="container">
-      <div class="row">
-         <div class="col-md-12">
-            <div class="panel panel-white">
-               <div class="panel-body">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <h4 class="no-m m-b-sm">Provinsi</h4>
-                           <p class="form-control-static"><?= $datarekom->geo_prov_nama; ?></p>
-                        </div>
-                        <div class="col-md-6">
-                           <h4 class="no-m m-b-sm">Kota / Kabupaten</h4>
-                           <p class="form-control-static"><?= $datarekom->geo_kab_nama; ?></p>
-                        </div>
-                     </div>
-                     <br>
-                     <div class="row">
-                        <div class="col-md-6">
-                           <h4 class="no-m m-b-sm">Nama Calon</h4>
-                           <p class="form-control-static"><?= $datarekom->nama_calon; ?></p>
-                        </div>
-                        <div class="col-md-6">
-                           <h4 class="no-m m-b-sm">Nama Pasangan</h4>
-                           <p class="form-control-static"><?= $datarekom->nama_pasangan; ?></p>
-                        </div>
-                     </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+	<!-- KOLOM PERTAMA -->
+	<div id="main-wrapper" class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-white">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6">
+								<h4 class="no-m m-b-sm">Provinsi</h4>
+								<p class="form-control-static"><?= $datarekom->geo_prov_nama; ?></p>
+							</div>
+							<div class="col-md-6">
+								<h4 class="no-m m-b-sm">Kota / Kabupaten</h4>
+								<p class="form-control-static"><?= $datarekom->geo_kab_nama; ?></p>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-6">
+								<h4 class="no-m m-b-sm">Nama Calon</h4>
+								<p class="form-control-static"><?= $datarekom->nama_calon; ?></p>
+							</div>
+							<div class="col-md-6">
+								<h4 class="no-m m-b-sm">Nama Pasangan</h4>
+								<p class="form-control-static"><?= $datarekom->nama_pasangan; ?></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-   <!-- KOLOM EDIT PENGUSUNG -->
-   <div id="main-wrapper" class="container">
-      <div class="row">
-         <div class="col-md-12">
-            <div class="panel panel-white">
-               <div class="panel-body">
-                  <div class="table-responsive project-stats col-md-12">  
-                     <form action="" method="POST" enctype="multipart/form-data">
+	<!-- KOLOM EDIT PENGUSUNG -->
+	<div id="main-wrapper" class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-white">
+					<div class="panel-body">
+						<div class="table-responsive project-stats col-md-12">
+							<form action="" method="POST" enctype="multipart/form-data">
+								<?php foreach ($selected as $s) : ?>
+								<input type="hidden" name="id_pengusung[]" id="id_pengusung" value="<?= $s['id_pengusung']; ?>">
+								<?php endforeach; ?>
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="col-md-5">Nama Partai</th>
+											<th class="col-md-5">Kursi</th>
+											<th class="col-md-2"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php $clone = 0;  ?>
+										<?php foreach ($selected as $s) : ?>
+										<?php $clone++;  ?>
+										<tr>
+											<td>
+												<select name="partai[]" id="partai<?= $clone; ?>" class="js-states form-control"
+													tabindex="-1">
+													<?php foreach ($listpartai as $lp) : ?>
+													<?php if ($lp['id_partai'] == $s['id_partai'])  : ?>
+													<option selected value="<?= $lp['id_partai']; ?>"><?= $lp['partai']; ?></option>
+													<?php else :  ?>
+													<option value="<?= $lp['id_partai']; ?>"><?= $lp['partai']; ?></option>
+													<?php endif; ?>
+													<?php endforeach; ?>
+												</select>
+											</td>
+											<td>
+												<div id="total_kursi<?= $clone; ?>">
+													<input type="text" name="total_kursi[]" class="form-control"
+														value="<?= $s['total_kursi']; ?>" readonly>
+												</div>
+											</td>
+											<td>
 
-<?php foreach ($selected as $s) : ?>
-<input type="hidden" name="id_pengusung[]" id="id_pengusung" value="<?= $s['id_pengusung']; ?>">      
-<?php endforeach; ?>
-<table class="table">
-<thead>
-<tr>
-<th class="col-md-5">Nama Partai</th>
-<th class="col-md-5">Kursi</th>
-<th class="col-md-2"></th>
-</tr>
-</thead>
-<tbody>
-<?php $clone = 0;  ?>
-<?php foreach ($selected as $s) : ?>
-<?php $clone++;  ?>
-<tr>
-<td>
-<select name="partai[]" id="partai<?= $clone; ?>" class="js-states form-control" tabindex="-1" >
-<?php foreach ($listpartai as $lp) : ?>
-<?php if ($lp['id_partai'] == $s['id_partai'])  : ?>
-<option selected value="<?= $lp['id_partai']; ?>"><?= $lp['partai']; ?></option>
-<?php else :  ?>
-<option value="<?= $lp['id_partai']; ?>"><?= $lp['partai']; ?></option>
-<?php endif; ?>
-<?php endforeach; ?>
-</select>
-</td>
-<td>
-<div id="total_kursi<?= $clone; ?>">
-<input type="text" name="total_kursi[]" class="form-control" value="<?= $s['total_kursi']; ?>" readonly>
-</div>
-</td>
-<td>
-
-<button type="button" name="remove"  id="remove" data-id="<?= $s['id_pengusung']; ?>" class="remove">-</button>
-</td>
-<?php endforeach; ?>
-</tr>
-</tbody>
-</table>
-<!-- <button name="button" id="addRow">+ Add</button> -->
-<div class="col-md-6">
-<button type="button" id="addRow" name="addRow" class="btn btn-warning btn-addon m-b-sm btn-md"><i class="glyphicon glyphicon-plus"></i>Tambah Pengusung</button>
-<button type="submit" id="submit" name="submit" class="btn btn-success btn-addon m-b-sm btn-md"><i class="glyphicon glyphicon-check"></i>Update</button>
-</div>
-
-                  </form>
-            <!-- <button name="button" id="getValues">Get Values</button> -->
-         </div>
-      <!-- Row -->
-   </div>
-   <!-- Main Wrapper -->
-</div>
-</div>
-</div>
-</div>
+												<button type="button" name="remove" id="remove" data-id="<?= $s['id_pengusung']; ?>"
+													class="remove">-</button>
+											</td>
+											<?php endforeach; ?>
+										</tr>
+									</tbody>
+								</table>
+								<!-- <button name="button" id="addRow">+ Add</button> -->
+								<div class="col-md-6">
+									<button type="button" id="addRow" name="addRow"
+										class="btn btn-warning btn-addon m-b-sm btn-md"><i
+											class="glyphicon glyphicon-plus"></i>Tambah Pengusung</button>
+									<button type="submit" id="submit" name="submit"
+										class="btn btn-success btn-addon m-b-sm btn-md"><i
+											class="glyphicon glyphicon-check"></i>Update</button>
+								</div>
+							</form>
+							<!-- <button name="button" id="getValues">Get Values</button> -->
+						</div>
+						<!-- Row -->
+					</div>
+					<!-- Main Wrapper -->
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script>
