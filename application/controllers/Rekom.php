@@ -95,10 +95,9 @@ class Rekom extends CI_Controller {
     
         $this->form_validation->set_rules('calon', 'Calon', 'required|is_unique[tb_calon_rekomendasi.id_calon]');
         $this->form_validation->set_rules('ket', 'Jenis Surat', 'required');
-        $this->form_validation->set_rules('no_ket', 'Nomer Surat Jalan', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('layout/header', $data);
-            $this->load->view('layout/navbar', $data);
+            $this->load->view('layout/navbar', $data);  
             $this->load->view('layout/menubar', $data);
             $this->load->view('rekom/tambah', $data);
             $this->load->view('layout/footer', $data);
@@ -397,6 +396,12 @@ class Rekom extends CI_Controller {
     public function cetakpdf($id_rekom = null, $geo_prov_id = null, $geo_kab_id = null)
     {
         $mpdf = new \Mpdf\Mpdf([]);
+
+        // $stylesheet = file_get_contents(base_url('assets/bootstrap-3.4.1/dist\css'));
+        // $pdf->WriteHTML($stylesheet, 1); // CSS Script goes here.
+        // $pdf->WriteHTML($html, 2); //HTML Content goes here.
+        // $pdf->Output();
+
 
         
         // $data = $this->load->view('layout/header');

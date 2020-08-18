@@ -1,25 +1,23 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-    <div class="navbar">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="navbar">
 
-
-        <div class="row">
-            <div class="col-md-12">
-            <h4 style="text-align:center; font-weight: bold;">BAKAL CALON KEPALA DAERAH YANG MENYERAHKAN SURAT TUGAS/REKOMENDASI PARTAI LAIN KE TIM PILKADA PUSAT DPP PARTAI HANURA</h4>
-            <h4 style="text-align:center;">__________________________________________________________________________________</h4>
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+        <h4 style="text-align:center; font-weight: bold;">BAKAL CALON KEPALA DAERAH YANG MENYERAHKAN SURAT TUGAS/REKOMENDASI PARTAI LAIN KE TIM PILKADA PUSAT DPP PARTAI HANURA</h4>
+        <h4 style="text-align:center;">__________________________________________________________________________________</h4>
         </div>
-
+    </div>
 
 <div id="main-wrapper" class="container">
-<div class="row">
-<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
 
 <form>
         <div class="row">
