@@ -65,49 +65,60 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <h4 class="no-m m-b-sm m-t-lg">Partai Pengusung</h4>
-                        <table class="table">
+<table class="table">
 <thead>
 <tr>
-<th class="col-md-5">Nama Partai</th>
-<th class="col-md-5">Kursi</th>
-<th class="col-md-2"></th>
+<td class="col-md-2">Nama Partai</td>
+<td class="col-md-1">Kursi</td>
+<td class="col-md-2">Jenis Surat</td>
+<td class="col-md-2">Nomer Surat</td>
+<td class="col-md-1"> </td>
 </tr>
 </thead>
-<tbody>
-<?php $clone = 0;  ?>
-<?php foreach ($selected as $s) : ?>
-<?php $clone++;  ?>
-<tr>
-<td>
-<select name="partai[]" id="partai<?= $clone; ?>" class="js-states form-control" tabindex="-1" >
-<?php foreach ($listpartai as $lp) : ?>
-<?php if ($lp['id_partai'] == $s['id_partai'])  : ?>
-<option selected value="<?= $lp['id_partai']; ?>"><?= $lp['partai']; ?></option>
-<?php else :  ?>
-<option value="<?= $lp['id_partai']; ?>"><?= $lp['partai']; ?></option>
-<?php endif; ?>
-<?php endforeach; ?>
-</select>
-</td>
-<td>
-<div id="total_kursi<?= $clone; ?>">
-<input type="text" name="total_kursi[]" class="form-control" value="<?= $s['total_kursi']; ?>" readonly>
-</div>
-</td>
-<td>
 
-<button type="button" name="remove"  id="remove" data-id="<?= $s['id_pengusung']; ?>" class="remove">-</button>
-</td>
-<?php endforeach; ?>
+<tbody>
+<tr>
+    <td>
+    <select name="partai[]" id="partai" class="js-states form-control" tabindex="-1" >
+    </select>
+    </td>
+    
+    <td>
+    <div id="total_kursi">
+    <input type="text" name="total_kursi[]" class="form-control" value="" readonly>
+    </div>
+    </td>
+
+    <td>
+    <select name="ket" id="ket" class="form-control m-b-sm">
+        <option value="">-- Pilih Jenis Surat --</option>
+        <option id="sk" value="SK">SK</option>
+        <option id="st" value="ST">ST</option>
+        <option id="usulan_dpc" value="Usulan DPC">Usulan DPC</option>
+        <option id="usulan_dpd" value="Usulan DPD">Usulan DPD</option>
+        <option id="usulan_dpd" value="Usulan DPD">Usulan DPD</option>
+        <option id="usulan_dpw" value="Usulan DPW">Usulan DPW</option>
+    </select>
+    </td>
+
+    <td>
+    <input type="text" class="form-control" name="no_ket" id="no_ket" value="" placeholder="Nomer Jenis Surat">
+    </td>
+    
+    <td>
+    <button type="button" name="remove"  id="remove" data-id="" class="remove">-</button>
+    </td>
+
+
 </tr>
 </tbody>
 </table>
-                        <small class="form-text text-danger"><?= form_error('partai'); ?></small>
-                    </div>
+<small class="form-text text-danger"><?= form_error('partai'); ?></small>
+</div>
 
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <h4 class="no-m m-b-sm m-t-lg">Total Kursi</h4>
                     <div id="total_kursi">
                         <input name="total_kursi" type="text" class="form-control" placeholder="" readonly>
@@ -116,7 +127,7 @@
                 </div>
                 <br>
 
-                <div class="row">
+                <!-- <div class="row">
 
                 <div class="col-md-3">
                     <h4 class="no-m m-b-sm">Jenis Surat</h4>
@@ -138,7 +149,7 @@
                     <input type="text" class="form-control" name="no_ket" id="no_ket" value="" placeholder="Nomer Jenis Surat">
                     <small class="form-text text-danger"><?= form_error('no_ket'); ?></small>
                 </div>
-                </div>            
+                </div>             -->
 
                 <div class="row">
                     <div class="col-md-12">
