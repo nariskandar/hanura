@@ -15,7 +15,7 @@
      
     <div class="row">
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <div class="col-sm-3">
             <label>Partai Pengusung</label>
             <select class="form-control m-b-sm">
@@ -32,11 +32,8 @@
             <input class="form-control m-b-sm" value="4" readonly="">
             </input>
         </div>
-    </div>
+    </div> -->
     
-    <br>
-    <br>
-    <br>
     
         <div class="col-md-12">
 

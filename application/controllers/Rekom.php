@@ -22,7 +22,7 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/footer', $data);
     }
 
-    public function hanura()
+    public function diusunghanura()
     {
         $data['judul'] = 'Halaman Hanura';
         $data['rekomendasi'] = $this->Rekom_model->getAllDataHanura();
@@ -31,7 +31,7 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);
         $this->load->view('layout/menubar', $data);
-        $this->load->view('rekom/hanura', $data);
+        $this->load->view('rekom/diusunghanura', $data);
         $this->load->view('layout/footer', $data);
     }
 

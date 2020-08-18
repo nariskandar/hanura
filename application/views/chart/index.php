@@ -1,6 +1,26 @@
 <?php
 
-var_dump ($hitung);
+
+$id_partai      = array_keys($hitung[0]['id_partai']);
+$nama_partai    = array_keys($hitung[0]['nama_partai']);
+$count          = ($hitung[0]['count']);
+// $result         = array_combine($id_partai, $nama_partai);
+// $result2        = array_combine($count, $result);
+
+// var_dump($result2);
+
+$combine = [];
+foreach ( $id_partai as $idx => $val ) {
+    $combine[] = [ $val, $nama_partai[$idx], $count[$idx] ];
+}
+
+
+
+
+// $id_partai = array_keys($hitung[0]['id_partai']);
+// $nama_partai = array_keys($hitung[0]['nama_partai']);
+// $count = ($hitun g[0]['count']);
+
 ?>
 
 
@@ -45,18 +65,21 @@ var_dump ($hitung);
                                                 <th>Jumlah</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>GERINDRA</td>
-                                                <td>30</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>PDIP</td>
-                                                <td>8</td>
-                                            </tr>
-                                        </tbody>
+
+                            
+                            <?php $no=1; ?>
+                            <?php foreach ($combine as $c) : ?>
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"><?= $no; ?></th>
+                                            <td><?=  $c['1']; ?></td>
+                                            <td><?=  $c['2']; ?></td>
+                                        </tr>
+                                    </tbody>
+
+                                    <?php $no++; ?>
+                            <?php endforeach;  ?>
                                     </table>
                     </div>
                 

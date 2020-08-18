@@ -59,7 +59,7 @@
                 <div class="panel-body">
                     <div class="info-box-stats">
                         <p class="counter"><?= $jmlh_hanura[0]['hanura']; ?></p>
-                        <a href="<?= base_url('rekom/hanura'); ?>">
+                        <a href="<?= base_url('rekom/diusunghanura'); ?>">
                             <span class="info-box-title">Jumlah Calon Yang Diusung Partai Hanura</span>
                         </a>
                     </div>
