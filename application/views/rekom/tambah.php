@@ -67,9 +67,43 @@
                 <div class="row">
                     <div class="col-md-8">
                         <h4 class="no-m m-b-sm m-t-lg">Partai Pengusung</h4>
-                        <select name="partai[]" id="partai" class="js-states form-control" multiple="multiple" tabindex="-1" style="display: none; width: 100%">
-                            <option value="">-- Pilih Partai --</option>
-                        </select>
+                        <table class="table">
+<thead>
+<tr>
+<th class="col-md-5">Nama Partai</th>
+<th class="col-md-5">Kursi</th>
+<th class="col-md-2"></th>
+</tr>
+</thead>
+<tbody>
+<?php $clone = 0;  ?>
+<?php foreach ($selected as $s) : ?>
+<?php $clone++;  ?>
+<tr>
+<td>
+<select name="partai[]" id="partai<?= $clone; ?>" class="js-states form-control" tabindex="-1" >
+<?php foreach ($listpartai as $lp) : ?>
+<?php if ($lp['id_partai'] == $s['id_partai'])  : ?>
+<option selected value="<?= $lp['id_partai']; ?>"><?= $lp['partai']; ?></option>
+<?php else :  ?>
+<option value="<?= $lp['id_partai']; ?>"><?= $lp['partai']; ?></option>
+<?php endif; ?>
+<?php endforeach; ?>
+</select>
+</td>
+<td>
+<div id="total_kursi<?= $clone; ?>">
+<input type="text" name="total_kursi[]" class="form-control" value="<?= $s['total_kursi']; ?>" readonly>
+</div>
+</td>
+<td>
+
+<button type="button" name="remove"  id="remove" data-id="<?= $s['id_pengusung']; ?>" class="remove">-</button>
+</td>
+<?php endforeach; ?>
+</tr>
+</tbody>
+</table>
                         <small class="form-text text-danger"><?= form_error('partai'); ?></small>
                     </div>
 
