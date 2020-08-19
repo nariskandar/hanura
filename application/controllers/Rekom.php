@@ -361,22 +361,33 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/menubar', $data);
         $this->load->view('rekom/editpengusung', $data);
         $this->load->view('layout/footer', $data);
-
             
         $id_pengusung             = $this->input->post('id_pengusung', true);
+        $id_jenis_surat           = $this->input->post('jenis_surat', true);
+        $no_surat                 = $this->input->post('no_surat', true);
         $partai                   = $this->input->post('partai', true);
+        // var_dump ($no_surat);
+
 
         if (isset($partai)) {
             foreach ($partai as $key => $value) {
-                // var_dump ($id_pengusung[$key]);
                 if ($id_pengusung[$key] == '0' ) {
-                    $this->db->insert('tb_pengusung', ['id_rekom' => $id_rekom, 'id_partai' => $value]);
+                    $this->db->insert('tb_pengusung', [
+                        'id_rekom'           => $id_rekom,
+                        'id_partai'          => $value,
+                        'id_jenis_surat'     => $id_jenis_surat[$key],
+                        'no_surat'           => $no_surat[$key]]);
                 }else{
                     $this->db->where('tb_pengusung.id_pengusung', $id_pengusung[$key]);
-                    $this->db->update('tb_pengusung', ['id_partai' => $value]);
+                    $this->db->update('tb_pengusung',[
+                        'id_partai'           => $value,
+                        'id_jenis_surat'      => $id_jenis_surat[$key],
+                        'no_surat'            => $no_surat[$key]]);
                 }
             }
+            
             $this->session->set_flashdata('flash', 'Diupdate');
+            // var_dump($this->input->post());
             return redirect('rekom');
         }
     }

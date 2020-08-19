@@ -105,8 +105,8 @@
                                 <th>No</th>
                                 <th class="col-md-3">Provinsi</th>
                                 <th class="col-md-3">Kab/Kota</th>
-                                <th>Bupati</th>
-                                <th>Wakil Bupati</th>
+                                <th>Calon</th>
+                                <th>Pasangan</th>
                                 <th class="col-md-3">Pengusung</th>
                                 <th>Kursi</th>
                                 <th class="col-md-3">Action</th>

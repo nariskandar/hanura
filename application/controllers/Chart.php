@@ -14,7 +14,6 @@ class Chart extends CI_Controller
     {
         $data['judul'] = 'Halaman Chart';
         // $data['rekomendasi'] = $this->Rekom_model->getAllDataRekom();
-        
         $data['hanura'] = $this->Chart_model->getAllData();
         $data['hitung'] = $this->Chart_model->getHitung();
 

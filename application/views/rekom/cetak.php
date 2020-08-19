@@ -66,15 +66,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
-                <h5 class="no-m m-b-sm">JENIS SURAT</h5>
-                <ul>
-                    <li>
-                    <?=$rekomendasi['ket']; ?>
-                    <?=$rekomendasi['no_ket']; ?>        
-                    </li>
-                </ul>
-            </div>
+
             <div class="col-md-3">
                 <h5 class="no-m m-b-sm">CATATAN</h5>
                 <ul>

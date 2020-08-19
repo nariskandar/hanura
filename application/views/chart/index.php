@@ -4,6 +4,8 @@ $id_partai      = array_keys($hitung[0]['id_partai']);
 $nama_partai    = array_keys($hitung[0]['nama_partai']);
 $count          = ($hitung[0]['count']);
 
+var_dump($id_partai);
+
 $combine = [];
 foreach ( $id_partai as $idx => $val ) {
     $combine[] = [ $val, $nama_partai[$idx], $count[$idx] ];

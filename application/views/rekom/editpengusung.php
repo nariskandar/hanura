@@ -1,9 +1,3 @@
-<?php
-// var_dump($selected);
-// var_dump($listpartai);
-?>
-
-
 <style>
    #tengah {
    	width: 500px;
@@ -144,7 +138,6 @@
 											class="glyphicon glyphicon-check"></i>Update</button>
 								</div>
                      </form>
-                     <?php var_dump($_POST); ?>
 							<!-- <button name="button" id="getValues">Get Values</button> -->
 						</div>
 						<!-- Row -->
