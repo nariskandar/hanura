@@ -16,8 +16,6 @@ class Rekom_model extends CI_model {
             tb_partai.logo_partai,
             
             tb_calon_rekomendasi.total_kursi,
-            tb_calon_rekomendasi.ket,
-            tb_calon_rekomendasi.catatan,
             GROUP_CONCAT(DISTINCT tb_partai.logo_partai SEPARATOR ' ' ) as pengusung");
     
             $this->db->from('tb_calon_rekomendasi');
@@ -61,7 +59,8 @@ class Rekom_model extends CI_model {
             tb_partai.logo_partai,
             
             tb_calon_rekomendasi.total_kursi,
-            tb_calon_rekomendasi.ket,
+
+            
             tb_calon_rekomendasi.catatan,
             GROUP_CONCAT(DISTINCT tb_partai.logo_partai SEPARATOR ' ' ) as pengusung");
     
@@ -115,8 +114,8 @@ class Rekom_model extends CI_model {
             tb_calon_rekomendasi.geo_prov_id,
             tb_calon_rekomendasi.geo_kab_id,
             tb_calon_rekomendasi.total_kursi,
-            tb_calon_rekomendasi.ket,
-            tb_calon_rekomendasi.no_ket,
+
+
             tb_calon_rekomendasi.catatan,
             GROUP_CONCAT(DISTINCT tb_partai.logo_partai SEPARATOR ' ' ) as pengusung,
             GROUP_CONCAT(DISTINCT tb_partai.partai SEPARATOR ' ' ) as nama_pengusung");
@@ -174,8 +173,8 @@ class Rekom_model extends CI_model {
             tb_calon_rekomendasi.geo_prov_id,
             tb_calon_rekomendasi.geo_kab_id,
             tb_calon_rekomendasi.total_kursi,
-            tb_calon_rekomendasi.ket,
-            tb_calon_rekomendasi.no_ket,
+
+            
             tb_calon_rekomendasi.catatan,
             GROUP_CONCAT(DISTINCT tb_partai.logo_partai SEPARATOR ' ' ) as pengusung,
             GROUP_CONCAT(DISTINCT tb_partai.partai SEPARATOR ' ' ) as nama_pengusung");
@@ -200,6 +199,8 @@ class Rekom_model extends CI_model {
                 "tb_pengusung.id_pengusung,
                 tb_pengusung.id_rekom,
                 tb_pengusung.id_partai,
+                tb_pengusung.no_surat,
+                tb_jenis_surat.nama_jenis_surat,
                 tb_partai.partai,
                 tb_kursi.total_kursi,
                 m_geo_prov_kpu.geo_prov_id,
@@ -207,6 +208,7 @@ class Rekom_model extends CI_model {
                 m_geo_kab_kpu.geo_kab_id,
                 m_geo_kab_kpu.geo_kab_nama");
             $this->db->from('tb_pengusung');
+            $this->db->join('tb_jenis_surat', 'tb_pengusung.id_jenis_surat = tb_jenis_surat.id_jenis_surat', 'INNER');
             $this->db->join('tb_partai', 'tb_pengusung.id_partai = tb_partai.id_partai', 'INNER');
             $this->db->join('tb_kursi', 'tb_pengusung.id_partai = tb_kursi.id_partai', 'INNER');
             $this->db->join('m_geo_prov_kpu', 'tb_kursi.geo_prov_id = m_geo_prov_kpu.geo_prov_id', 'INNER');
@@ -252,10 +254,13 @@ class Rekom_model extends CI_model {
         $this->db->select("tb_pengusung.id_pengusung,
         tb_pengusung.id_rekom,
         tb_pengusung.id_partai,
+        tb_pengusung.no_surat,
         tb_kursi.partai,
-        tb_kursi.total_kursi");
+        tb_kursi.total_kursi,
+        tb_jenis_surat.nama_jenis_surat");
         $this->db->from("tb_pengusung");
         $this->db->join("tb_kursi", "tb_pengusung.id_partai = tb_kursi.id_partai");
+        $this->db->join("tb_jenis_surat", "tb_pengusung.id_jenis_surat = tb_jenis_surat.id_jenis_surat");
         $this->db->where("tb_pengusung.id_rekom", $id_rekom );
         $this->db->where("tb_kursi.geo_prov_id", $geo_prov_id );
         $this->db->where("tb_kursi.geo_kab_id", $geo_kab_id );

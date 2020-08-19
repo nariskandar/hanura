@@ -77,7 +77,11 @@ $hasil = json_encode($json) ;
                                     <tbody>
                                         <tr>
                                             <th scope="row"><?= $no; ?></th>
-                                            <td><?=  $c['1']; ?></td>
+                                            <td>
+                                                <a href="<?= base_url('chart/partailain') ?>">
+                                                    <span><?=  $c['1']; ?></span> 
+                                                </a>
+                                            </td>
                                             <td><?=  $c['2']; ?></td>
                                         </tr>
                                     </tbody>

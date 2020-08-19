@@ -20,7 +20,7 @@
             <div class="panel info-box panel-white">
                 <div class="panel-body">
                     <div class="info-box-stats">
-                        <p class="counter">60</p>
+                        <p class="counter">112</p>
                     <a href="<?= base_url('rekom/seluruhcalon'); ?>">
                         <span class="info-box-title">Jumlah Calon Pasangan</span>
                     </a>
@@ -109,7 +109,6 @@
                                 <th>Wakil Bupati</th>
                                 <th class="col-md-3">Pengusung</th>
                                 <th>Kursi</th>
-                                <th>Keterangan</th>
                                 <th class="col-md-3">Action</th>
                             </tr>
                         </thead>
@@ -140,8 +139,8 @@
                                     <?php endforeach; ?>
                                     </div>
                                 </td>
+
                                 <td><?= $rek['hasil_total_kursi']; ?></td>
-                                <td><?= $rek['ket']; ?></td>
                                 <td>
 
                                 <a href="<?= base_url();?>rekom/detail/<?= $rek['id_rekom']?>/<?= $rek['geo_prov_id'] ?>/<?= $rek['geo_kab_id'] ?>" type="button" class="btn btn-warning btn-xs">

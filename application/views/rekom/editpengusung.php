@@ -1,4 +1,7 @@
-
+<?php
+// var_dump($selected);
+// var_dump($listpartai);
+?>
 
 
 <style>
@@ -17,9 +20,7 @@
    	border-radius: 15px;
    }
 
-   tr:hover {
-   	cursor: move;
-   }
+
 </style>
 
 <div class="page-inner">
@@ -77,9 +78,15 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<th class="col-md-5">Nama Partai</th>
-											<th class="col-md-5">Kursi</th>
-											<th class="col-md-2"></th>
+											<th class="col-md-3">Nama Partai</th>
+											<th class="col-md-2">Kursi</th>
+											<th class="col-md-3">Jenis Surat</th>
+											<th class="col-md-3">Nomer Jenis Surat</th>
+											<th class="col-md-1">
+                                 <button type="button" id="addRow" name="addRow"
+                                 class="btn btn-warning"><i
+											class="glyphicon glyphicon-plus"></i></button>
+                                 </th>
 										</tr>
 									</thead>
 									<tbody>
@@ -104,7 +111,22 @@
 													<input type="text" name="total_kursi[]" class="form-control"
 														value="<?= $s['total_kursi']; ?>" readonly>
 												</div>
-											</td>
+                                 </td>
+                                 <td>
+                                    <select name="jenis_surat[]" id="jenis_surat" class="form-control m-b-sm">
+                                          <option value="">-- Pilih Jenis Surat --</option>
+                                          <option id="sk" value="3">SK</option>
+                                          <option id="st" value="4">ST</option>
+                                          <option id="usulan_dpc" value="5">Usulan DPC</option>
+                                          <option id="usulan_dpd" value="6">Usulan DPD</option>
+                                          <option id="usulan_dpw" value="7">Usulan DPW</option>
+                                    </select>
+                                 </td>
+                                 
+                                 <td>
+                                    <input type="text" class="form-control" name="no_surat[]" id="no_surat" value="<?= $s['no_surat']; ?>">
+                                 </td>
+
 											<td>
 
 												<button type="button" name="remove" id="remove" data-id="<?= $s['id_pengusung']; ?>"
@@ -116,14 +138,13 @@
 								</table>
 								<!-- <button name="button" id="addRow">+ Add</button> -->
 								<div class="col-md-6">
-									<button type="button" id="addRow" name="addRow"
-										class="btn btn-warning btn-addon m-b-sm btn-md"><i
-											class="glyphicon glyphicon-plus"></i>Tambah Pengusung</button>
+
 									<button type="submit" id="submit" name="submit"
 										class="btn btn-success btn-addon m-b-sm btn-md"><i
 											class="glyphicon glyphicon-check"></i>Update</button>
 								</div>
-							</form>
+                     </form>
+                     <?php var_dump($_POST); ?>
 							<!-- <button name="button" id="getValues">Get Values</button> -->
 						</div>
 						<!-- Row -->
@@ -183,8 +204,6 @@ function makeid(length) {
 
 
 $(function() {
-   
-    $('tbody').sortable();
  
     $('#addRow').click(function(){         
 
@@ -204,6 +223,19 @@ $(function() {
          html    += '<input class="form-control" name="total_kursi[]" type="text" readonly="">';
          html    += '</div>';
          html    += '</td>';
+         html    += '<td>';
+         html    += '<select name="jenis_surat[]" id="'+id_partai+'jenis_surat" class="form-control m-b-sm">';
+         html    += '<option value="">-- Pilih Jenis Surat --</option>';
+         html    += '<option id="sk" value="3">SK</option>';
+         html    += '<option id="st" value="4">ST</option>';
+         html    += '<option id="usulan_dpc" value="5">Usulan DPC</option>';
+         html    += '<option id="usulan_dpd" value="6">Usulan DPD</option>';
+         html    += '<option id="usulan_dpw" value="7">Usulan DPW</option>';
+         html    += '</select>';
+         html    += '</td>';
+         html    += '<td>';
+         html    += '<input type="text" class="form-control" name="no_surat[]" id="'+id_partai+'no_surat" value="" placeholder="Nomer Jenis Surat">';
+         html    += '</td>;'
          html    += '<td>';
          html    += '<button class="remove">-</button>';
          html    += '</td>';

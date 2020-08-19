@@ -94,35 +94,35 @@ class Rekom extends CI_Controller {
         $data['judul'] = 'Halaman Tambah';
     
         $this->form_validation->set_rules('calon', 'Calon', 'required|is_unique[tb_calon_rekomendasi.id_calon]');
-        $this->form_validation->set_rules('ket', 'Jenis Surat', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('layout/header', $data);
             $this->load->view('layout/navbar', $data);  
             $this->load->view('layout/menubar', $data);
             $this->load->view('rekom/tambah', $data);
             $this->load->view('layout/footer', $data);
+
             
         }else{
-                
             
             $geo_prov_id            = $this->input->post('provinsi', true);
             $geo_kab_id             = $this->input->post('kab', true);
             $id_calon               = $this->input->post('calon', true);
             $id_pasangan            = $this->input->post('pasangan', true);
             $partai                 = $this->input->post('partai', true);
+            // $total_kursi            = $this->input->post('total_kursi', true);
             $total_kursi            = $this->input->post('total_kursi', true);
-            $ket                    = $this->input->post('ket', true);
-            $no_ket                 = $this->input->post('no_ket', true);
+            $jenis_surat            = $this->input->post('jenis_surat', true);
+            $no_surat               = $this->input->post('no_surat', true);
             $catatan                = $this->input->post('catatan', true);
+
+            $result_kursi           = array_sum($total_kursi);
 
             $dataRekom = [
                 "geo_prov_id"            => $geo_prov_id,
                 "geo_kab_id"             => $geo_kab_id,
                 "id_calon"               => $id_calon,
                 "id_pasangan"            => $id_pasangan,
-                "total_kursi"            => $total_kursi,
-                "ket"                    => $ket,
-                "no_ket"                 => $no_ket,
+                "total_kursi"            => $result_kursi,
                 "catatan"                => $catatan
             ];
 
@@ -131,12 +131,16 @@ class Rekom extends CI_Controller {
             $id_rekom = $this->db->insert_id();
 
             $dataPengusung = [];
-            foreach ($partai as $par) {
+            foreach ($partai as $key => $par ) {
                 $dataPengusung[] = [
                     "id_rekom"               => $id_rekom,
-                    "id_partai"              => $par
+                    "id_partai"              => $par,
+                    "id_jenis_surat"         => $jenis_surat[$key],
+                    "no_surat"               => $no_surat[$key]
                 ];
             }
+
+            // var_dump($dataPengusung);die;
             
             $this->Rekom_model->addDataPengusung($dataPengusung);
 
@@ -221,7 +225,7 @@ class Rekom extends CI_Controller {
         $this->db->where('geo_kab_id', $geo_kab_id);
         $query  = $this->db->get();
 
-    	$data = "<option value=''> - Pilih Partai - </option>";
+    	$data = "<option value=''></option>";
     	foreach ($query->result() as $value) {
         	$data .= "<option value='".$value->id_partai."'>".$value->partai."</option>";
         }
@@ -246,12 +250,12 @@ class Rekom extends CI_Controller {
 
         $data = "";
         if ($query->result() == null) {
-            $data = "<input type='text' name='total_kursi' class='form-control' readonly value='' >";
+            $data = "<input type='text' name='total_kursi[]' class='form-control' readonly value='' >";
             return;
         }
 
     	foreach ($query->result() as $value) {
-        	$data = "<input type='text' name='total_kursi' class='form-control' value='".$value->total."' readonly>";
+        	$data = "<input type='text' name='total_kursi[]' class='form-control' value='".$value->total."' readonly>";
         }
     	echo $data;
     }
@@ -307,8 +311,6 @@ class Rekom extends CI_Controller {
         $data['rekomendasi'] = $this->Rekom_model->getEditSelected($id_rekom);
         $data['judul'] = 'Halaman Ubah';
         
-        $this->form_validation->set_rules('ket', 'Jenis Surat', 'required');
-        $this->form_validation->set_rules('no_ket', 'Nomer Surat Jalan', 'required');
         $this->form_validation->set_rules('calon', 'Calon', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('layout/header', $data);
@@ -332,8 +334,6 @@ class Rekom extends CI_Controller {
                 "geo_kab_id"          => $geo_kab_id,
                 "id_calon"            => $id_calon,
                 "id_pasangan"         => $id_pasangan,
-                "ket"                 => $ket,
-                "no_ket"              => $no_ket,
                 "catatan"             => $catatan
             ];
 
@@ -356,14 +356,11 @@ class Rekom extends CI_Controller {
         $data['geo_prov_id'] = $geo_prov_id;
         $data['geo_kab_id'] = $geo_kab_id;
         
-
-        
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);
         $this->load->view('layout/menubar', $data);
         $this->load->view('rekom/editpengusung', $data);
         $this->load->view('layout/footer', $data);
-
 
             
         $id_pengusung             = $this->input->post('id_pengusung', true);

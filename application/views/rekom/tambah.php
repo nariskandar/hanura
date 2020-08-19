@@ -86,22 +86,22 @@
 
 							<div class="row">
 								<div class="col-md-12">
-                                    <h4 class="no-m m-b-sm m-t-lg">Partai Pengusung</h4>
+									<h4 class="no-m m-b-sm m-t-lg">Partai Pengusung</h4>
 									<table class="table">
 										<thead>
 											<tr>
-												<td class="col-md-4">Nama Partai</td>
+												<td class="col-md-3">Nama Partai</td>
 												<td class="col-md-2">Kursi</td>
-												<td class="col-md-2">Jenis Surat</td>
-												<td class="col-md-2">Nomer Surat</td>
+												<td class="col-md-3">Jenis Surat</td>
+												<td class="col-md-3">Nomer Jenis Surat</td>
 												<td class="col-md-1">
-
+													<button type="button" id="addRow" name="addRow"
+														class="btn btn-warning"><i
+															class="glyphicon glyphicon-plus"></i></button>
 												</td>
 											</tr>
 										</thead>
-
 										<tbody>
-                                            <!-- CLONE -->
 											<tr>
 												<td>
 													<select name="partai[]" id="partai" class="js-states form-control"
@@ -112,26 +112,26 @@
 
 												<td>
 													<div id="total_kursi">
-														<input name="total_kursi[]" type="text" class="form-control"
+														<input type="text" name="total_kursi[]" class="form-control"
 															value="" readonly>
 													</div>
 												</td>
 
 												<td>
-													<select name="ket[]" id="ket" class="form-control m-b-sm">
+													<select name="jenis_surat[]" id="jenis_surat"
+														class="form-control m-b-sm">
 														<option value="">-- Pilih Jenis Surat --</option>
-														<option id="sk" value="SK">SK</option>
-														<option id="st" value="ST">ST</option>
-														<option id="usulan_dpc" value="Usulan DPC">Usulan DPC</option>
-														<option id="usulan_dpd" value="Usulan DPD">Usulan DPD</option>
-														<option id="usulan_dpd" value="Usulan DPD">Usulan DPD</option>
-														<option id="usulan_dpw" value="Usulan DPW">Usulan DPW</option>
+														<option id="sk" value="3">SK</option>
+														<option id="st" value="4">ST</option>
+														<option id="usulan_dpc" value="5">Usulan DPC</option>
+														<option id="usulan_dpd" value="6">Usulan DPD</option>
+														<option id="usulan_dpw" value="7">Usulan DPW</option>
 													</select>
 												</td>
 
 												<td>
-													<input name="no_ket[]" type="text" class="form-control" id="no_ket"
-														value="" placeholder="Nomer Jenis Surat">
+													<input type="text" class="form-control" name="no_surat[]"
+														id="no_surat" value="" placeholder="Nomer Jenis Surat">
 												</td>
 
 												<td>
@@ -140,16 +140,21 @@
 												</td>
 											</tr>
 										</tbody>
-                                    </table>
-                                    <button type="button" id="addRow" name="addRow" class="btn btn-warning"><i class="glyphicon glyphicon-plus"></i></button>
-									<!-- <a href="" type="button" id="addRow" name="addRow">+ Tambah Pengusung</a> -->
 
+									</table>
 									<small class="form-text text-danger"><?= form_error('partai'); ?></small>
 								</div>
-                            </div>
-                            
-                            <br>
-                            
+							</div>
+
+							<!-- <div class="row">
+								<div class="col-md-12">
+									<h4 class="no-m m-b-sm m-t-lg">Jumlah Kursi</h4>
+								</div>
+								<div class="col-md-3" id="total_kursi">
+									<input type="text" name="total_kursi[]" class="form-control" value="" readonly>
+								</div>
+							</div> -->
+
 							<div class="row">
 								<div class="col-md-12">
 									<h4 class="no-m m-b-sm m-t-lg">Catatan</h4>
@@ -165,28 +170,24 @@
 							<div class="row pull-right">
 
 								<div class="col-md-6">
-
 									<a href="<?= base_url(); ?>rekom">
 										<button type="button" name="kembali"
 											class="btn btn-primary btn-addon m-b-sm btn-sm"><i
 												class="fa fa-arrow-left"></i>Kembali</button>
 									</a>
-
 								</div>
 
 								<div class="col-md-6">
 									<a href="">
-										<button type="submit" name="submit" class="btn btn-success btn-addon m-b-sm btn-sm">
-                                            <i class="glyphicon glyphicon-saved"></i>Submit
-                                        </button>
+										<button type="submit" name="submit"
+											class="btn btn-success btn-addon m-b-sm btn-sm">
+											<i class="glyphicon glyphicon-saved"></i>Submit
+										</button>
 									</a>
 								</div>
 
 							</div>
-
-						</form>
-
-
+                        </form>
 					</div>
 				</div>
 			</div>
@@ -198,138 +199,123 @@
 </div>
 </div>
 
-
 <script>
+	$(document).ready(function () {
 
-var geo_prov_id = <?= $geo_prov_id ?>;
-var geo_kab_id = <?= $geo_kab_id ?>;
+		$("#partai").change(function () {
+			$.ajax({
+				type: "GET",
+				url: "<?= site_url('rekom/add_ajax_kursi');?>/",
+				data: {
+					"geo_prov_id": $("#provinsi").val(),
+					"geo_kab_id": $("#kab").val(),
+					"id_partai": $(this).val()
+				},
+				success: function (resp) {
+					$("#total_kursi").html(resp)
+				},
+				error: function () {}
+			})
+			return false;
+		})
+	});
 
-$(document).ready(function(){
+	function makeid(length) {
+		var result = '';
+		var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		var charactersLength = characters.length;
+		for (var i = 0; i < length; i++) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));
+		}
+		return result;
+	}
 
-$('#partai').on('select2:select', function (e) {
-	   			// $("#calon").val("").trigger("change");
-            $.ajax({
-               type : "GET",
-               url : "<?= site_url('rekom/edit_ajax_kursi');?>/",
-               data : {
-                  "geo_prov_id" : geo_prov_id, 
-                  "geo_kab_id"  : geo_kab_id,
-                  "id_partai" : $(this).val()
-               }, 
-               success:function(resp){
-      
-                  $('#total_kursi').html(resp)
-               },
-               error:function(){
-               }
-            })
-            // return false;
-      // })
-   });
-});
+	$(function () {
+		$('#addRow').click(function () {
 
-// generate
-function makeid(length) {
-   var result           = '';
-   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-   var charactersLength = characters.length;
-   for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
-}
+			var generate = makeid(4);
+			var id_partai = 'partai' + generate;
+			var id_kursi = 'kursi' + generate;
+			var id_jenis_surat = 'jenis_surat' + generate;
+			var id_no_surat = 'no_surat' + generate;
 
-$(function() {
- 
-    $('#addRow').click(function(){         
-
-      var generate = makeid(4);
-      var id_partai = 'partai'+generate;
-
-         var html =
-         `<tr>
+			var html =
+				`<tr>
             <td>
                 <select name="partai[]" id="${id_partai}" class="js-states form-control" tabindex="-1" style="display: none; width: 100%">
-                    <option value="">-- Pilih Partai --</option>
+                        <option value="">-- Pilih Partai --</option>
                 </select>
             </td>
 
             <td>
-                <div id="${id_partai} ${total} ">
-                    <input type="text" name="total_kursi[]" class="form-control" value="" readonly>
+                <div id="${id_kursi}">
+                    <input type="text" name="total_kursi[]" class="js-states form-control" value="" readonly>
                 </div>
             </td>
-
+            
             <td>
-                <select name="ket[]" id="ket" class="form-control m-b-sm">
+                <select name="jenis_surat[]" id="${id_jenis_surat}" class="js-states form-control">
                     <option value="">-- Pilih Jenis Surat --</option>
-                    <option id="sk" value="SK">SK</option>
-                    <option id="st" value="ST">ST</option>
-                    <option id="usulan_dpc" value="Usulan DPC">Usulan DPC</option>
-                    <option id="usulan_dpd" value="Usulan DPD">Usulan DPD</option>
-                    <option id="usulan_dpd" value="Usulan DPD">Usulan DPD</option>
-                    <option id="usulan_dpw" value="Usulan DPW">Usulan DPW</option>
+                    <option id="sk" value="3">SK</option>
+                    <option id="st" value="4">ST</option>
+                    <option id="usulan_dpc" value="5">Usulan DPC</option>
+                    <option id="usulan_dpd" value="6">Usulan DPD</option>
+                    <option id="usulan_dpw" value="7">Usulan DPW</option>
                 </select>
             </td>
 
             <td>
-                <input type="text" class="form-control" name="no_ket[]" id="no_ket"
-                    value="" placeholder="Nomer Jenis Surat">
+                <input type="text" class="form-control" name="no_surat[]" id="${id_no_surat}" value="" placeholder="Nomer Jenis Surat">
             </td>
-
+            
             <td>
-                <button type="button" name="remove" id="remove" data-id="" class="remove">-</button>
+                <button type="button" name="remove" id="remove" data-id=""
+                    class="remove">-</button>
             </td>
         </tr>`;
 
-        $('tbody').append(html);
-         $('#partai1 option').clone().appendTo('#'+id_partai);
+			$('tbody').append(html);
+			$('#partai option').clone().appendTo('#' + id_partai);
 
-         $('#'+id_partai).select2('');
-         
-         $('#'+id_partai).change(function (){
-	   			// $("#calon").val("").trigger("change");
-                     $.ajax({
-                        type : "GET",
-                        url : "<?= site_url('rekom/edit_ajax_kursi');?>/",
-                        data : {
-                           "geo_prov_id" : geo_prov_id, 
-                           "geo_kab_id"  : geo_kab_id,
-                           "id_partai" : $(this).val()
-                        },
-                        success:function(resp){
-                           $('#'+id_partai+'total').html(resp)
-                        },
-                        error:function(){
-                        }
-                     })
-                  return false;
-            })
-         });
- 
-    //      $(document).on('click', '.remove', function(){  
-    //         var id_pengusung = $(this).data('id');  
-    //         var element = $(this);
-    //        if(confirm("Yakin akan di hapus?"))  
-    //        {  
-    //             $.ajax({  
-    //                  type : "POST",
-    //                  url  : "<?= site_url('rekom/remove_ajax_pengusung');?>/"+id_pengusung,
-    //                  data :{
-    //                     "id_pengusung": id_pengusung
-    //                  },  
-    //                  success:function(resp)  
-    //                  {  
-    //                     element.parents('tr').remove() 
-    //                  }  
-    //             });  
-    //        }  
-    //        else  
-    //        {  
-    //             return false;       
-    //        }  
-    //   });  
+			$('#' + id_partai).select2('');
 
-});
+			$('#' + id_partai).change(function () {
+				// $("#calon").val("").trigger("change");
+				$.ajax({
+					type: "GET",
+					url: "<?= site_url('rekom/add_ajax_kursi');?>/",
+					data: {
+						"geo_prov_id": $("#provinsi").val(),
+						"geo_kab_id": $("#kab").val(),
+						"id_partai": $(this).val()
+					},
+					success: function (resp) {
+						$('#' + id_kursi).html(resp)
+					},
+					error: function () {}
+				})
+				return false;
+			})
+        });
+
+		$(document).on('click', '.remove', function () {
+			var id_pengusung = $(this).data('id');
+			var element = $(this);
+			if (confirm("Yakin akan di hapus?")) {
+				$.ajax({
+					type: "POST",
+					url: "<?= site_url('rekom/remove_ajax_pengusung');?>/" + id_pengusung,
+					data: {
+						"id_pengusung": id_pengusung
+					},
+					success: function (resp) {
+						element.parents('tr').remove()
+					}
+				});
+			} else {
+				return false;
+			}
+		});
+	});
 
 </script>
