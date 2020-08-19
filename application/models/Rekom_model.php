@@ -208,7 +208,7 @@ class Rekom_model extends CI_model {
                 m_geo_kab_kpu.geo_kab_id,
                 m_geo_kab_kpu.geo_kab_nama");
             $this->db->from('tb_pengusung');
-            $this->db->join('tb_jenis_surat', 'tb_pengusung.id_jenis_surat = tb_jenis_surat.id_jenis_surat', 'INNER');
+            $this->db->join('tb_jenis_surat', 'tb_pengusung.id_jenis_surat = tb_partai.id_partai', 'INNER');
             $this->db->join('tb_partai', 'tb_pengusung.id_partai = tb_partai.id_partai', 'INNER');
             $this->db->join('tb_kursi', 'tb_pengusung.id_partai = tb_kursi.id_partai', 'INNER');
             $this->db->join('m_geo_prov_kpu', 'tb_kursi.geo_prov_id = m_geo_prov_kpu.geo_prov_id', 'INNER');

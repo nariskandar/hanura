@@ -68,15 +68,6 @@
                             <ul class="nav navbar-nav navbar-right">
                                 
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge badge-success pull-right">4</span></a>
-                                    <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
-                                       
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-success pull-right">3</span></a>
-                                </li>
-                                <li class="dropdown">
                                     <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
                                         <span class="user-name">Admin</span>
                                         <img class="img-circle avatar" src="<?= base_url('assets/images/admin.jpg'); ?>" width="40" height="40" alt="">
