@@ -9,15 +9,12 @@
                         </a>
                     </div>
                     <div class="logo-box">
-                        <a href="index.html" class="logo-text"><img src="<?= base_url('assets/images/han.png'); ?>" width="100" alt=""></a>
+                        <a href="index.html" class="logo-text"><img src="<?= base_url('assets/images/han.png'); ?>" width="100" alt="<?= base_url('rekom'); ?>"></a>
                     </div><!-- Logo Box -->
                     
                     <div class="topmenu-outer">
                         <div class="top-menu">
                             <ul class="nav navbar-nav navbar-left">
-                                <li>		
-                                    <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
-                                </li>
                                 <li>
                                     <a href="#cd-nav" class="waves-effect waves-button waves-classic cd-nav-trigger"><i class="fa fa-diamond"></i></a>
                                 </li>

@@ -84,11 +84,14 @@
 <div id="main-wrapper" class="container">
      
     <div class="row">
-
         <div class="col-md-12">
-
             <div class="panel panel-white">
                 <div class="row">
+                <div class="col-md-10">
+                <a href="<?= base_url('rekom/cetakallpdf'); ?>">
+                <button type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-file-pdf-o"></i> Cetak PDF</button>
+                </a>
+                </div>
                     <div class="pull-right">
                         <a href="<?= base_url(); ?>rekom/tambah">
                             <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</button>

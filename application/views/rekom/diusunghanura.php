@@ -38,7 +38,6 @@
         <div class="col-md-12">
 
             <div class="panel panel-white">
-   
                     <div class="panel-body">
                     <div class="table-responsive">
                     <table id="table_id" class="display table"">
@@ -47,8 +46,8 @@
                                 <th>No</th>
                                 <th class="col-md-3">Provinsi</th>
                                 <th class="col-md-3">Kab/Kota</th>
-                                <th>Bupati</th>
-                                <th>Wakil Bupati</th>
+                                <th>Nama Calon</th>
+                                <th>Nama Pasangan</th>
                                 <th class="col-md-3">Pengusung</th>
                                 <th>Kursi</th>
                                 <th class="col-md-3">Action</th>

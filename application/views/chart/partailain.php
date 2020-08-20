@@ -1,4 +1,3 @@
-
 <div class="page-inner">
 
 <div class="page-title">
@@ -36,49 +35,22 @@
                         </thead>
 
                         <tbody>
-
                         <?php $no=1; ?>
-                            <?php foreach ($rekomendasi as $rek) : ?>
-                            <?php $rek['pengusung']; 
-                                $ico = explode(' ', $rek['pengusung'] ) ; 
-                        ?>
                             <tr>
                                 <td><?= $no; ?></td>
-                                <td><?= $rek['geo_prov_nama']; ?></td>
-                                <td><?= $rek['geo_kab_nama']; ?></td>
-                                <td>
-                                    <div class="eksplisit">
-                                        <?= $rek['nama_calon']; ?></td>
-                                    </div>
-                                <td>
-                                    <div class="eksplisit">
-                                        <?= $rek['nama_pasangan']; ?></td>
-                                    </div>
-                                <td>
-                                    <div>
-                                    <?php foreach ($ico as $i) : ?>
-                                        <img src="<?= base_url('assets/images/partai_ico/'. $i ); ?>" width="25px" alt="">
-                                    <?php endforeach; ?>
-                                    </div>
-                                </td>
-                                <td><?= $rek['hasil_total_kursi']; ?></td>
-                                <td>
-
-                                <a href="<?= base_url();?>rekom/detail/<?= $rek['id_rekom']?>/<?= $rek['geo_prov_id'] ?>/<?= $rek['geo_kab_id'] ?>" type="button" class="btn btn-warning btn-xs">
-                                <i class="fa fa-search-plus"></i>
-                                </a>
-                                
-                                </td>
+                                <td>JAWA BARAT</td>
+                                <td>GARUT</td>
+                                <td>BOAS SALOSA</td>
+                                <td>SALAMPESY</td>
+                                <td>8 Kursi</td>
+                                <td>x</td>
                             </tr>
                         <?php $no++; ?>
-                        <?php endforeach; ?>
                         </tbody>
                     </table>  
                     </div>
                 </div>  
             </div>
-        
-            
         </div>
     </div><!-- Row -->
 </div><!-- Main Wrapper -->

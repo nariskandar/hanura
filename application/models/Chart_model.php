@@ -63,7 +63,6 @@ class Chart_model extends CI_model
             $count = [];
             foreach ($partai_id as $hitung) {
                 $count[] = sizeof($hitung) ;
-                // var_dump ($count);
             }
             
             // mencari nama partai
@@ -85,6 +84,7 @@ class Chart_model extends CI_model
                     'count'           => $count
                 ]
             ];
+
 
             return $result;
 

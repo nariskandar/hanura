@@ -399,8 +399,6 @@ class Rekom extends CI_Controller {
         return redirect('rekom');
     }
 
-
-
     public function cetakpdf($id_rekom = null, $geo_prov_id = null, $geo_kab_id = null)
     {
         $mpdf = new \Mpdf\Mpdf([]);
@@ -417,6 +415,20 @@ class Rekom extends CI_Controller {
         $rekom['datakursi'] = $this->Rekom_model->getDataKursi($id_rekom, $geo_prov_id, $geo_kab_id);
 
         $data = $this->load->view('rekom/cetak', $rekom , TRUE);
+        
+        
+        $mpdf->WriteHTML($data);
+        $mpdf->Output('mpdf.pdf', \Mpdf\Output\Destination::INLINE);
+    }
+
+    public function cetakallpdf()
+    {
+        $mpdf = new \Mpdf\Mpdf([]);        
+
+        // $data = $this->load->view('layout/header');
+        $rekom['rekomendasi'] = $this->Rekom_model->getAllDataRekom();
+
+        $data = $this->load->view('rekom/cetakallpdf', $rekom , TRUE);
         
         
         $mpdf->WriteHTML($data);
