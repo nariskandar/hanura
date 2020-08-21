@@ -88,7 +88,7 @@
             <div class="panel panel-white">
                 <div class="row">
                 <div class="col-md-10">
-                <a href="<?= base_url('rekom/cetakallpdf'); ?>">
+                <a href="<?= base_url('rekom/cetakallpdf'); ?>" target="_blank">
                 <button type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-file-pdf-o"></i> Cetak PDF</button>
                 </a>
                 </div>
@@ -122,7 +122,7 @@
                             <?php foreach ($rekomendasi as $rek) : ?>
                             <?php $rek['pengusung']; 
                                 $ico = explode(' ', $rek['pengusung'] ) ; 
-                        ?>
+                            ?>
                             <tr>
                                 <td><?= $no; ?></td>
                                 <td><?= $rek['geo_prov_nama']; ?></td>

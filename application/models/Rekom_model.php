@@ -16,7 +16,8 @@ class Rekom_model extends CI_model {
             tb_partai.logo_partai,
             
             tb_calon_rekomendasi.total_kursi,
-            GROUP_CONCAT(DISTINCT tb_partai.logo_partai SEPARATOR ' ' ) as pengusung");
+            GROUP_CONCAT(DISTINCT tb_partai.logo_partai SEPARATOR ' ' ) as pengusung,
+            GROUP_CONCAT(DISTINCT tb_partai.partai SEPARATOR ' , ' ) as nama_partai");
     
             $this->db->from('tb_calon_rekomendasi');
             $this->db->join('m_geo_prov_kpu', 'tb_calon_rekomendasi.geo_prov_id = m_geo_prov_kpu.geo_prov_id', 'INNER');
