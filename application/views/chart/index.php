@@ -2,17 +2,34 @@
 
 $id_partai      = array_keys($hitung[0]['id_partai']);
 $nama_partai    = array_keys($hitung[0]['nama_partai']);
+$list_id    = $hitung[0]['list_data'];
 $count          = ($hitung[0]['count']);
 
-// var_dump($id_partai);
 
 $combine = [];
 foreach ( $id_partai as $idx => $val ) {
-    $combine[] = [ $val, $nama_partai[$idx], $count[$idx] ];
+    $combine[] = [ $val, $nama_partai[$idx], $count[$idx], json_encode($list_id[$val]) ];
 }
 
 $result = array_column($combine, '2');
 array_multisort($result, SORT_DESC, $combine);
+
+foreach ($hitung as $key => $value) {
+    
+    $data = $value['list_data'];
+}
+
+
+foreach ($data as $key => $value) {
+    if ($key == $id_partai) {
+    }  
+}
+
+// if ($data == $id_partai ) {
+//     var_dump($id_partai);
+//         // echo $partai_name["$nama_partai"][] = "getName";
+// }
+
 
 // var_dump($json = json_encode($combine)) ;
 
@@ -72,23 +89,24 @@ $hasil = json_encode($json) ;
                                             </tr>
                                         </thead>
 
-                            
                             <?php $no=1; ?>
                             <?php foreach ($combine as $c) : ?>
-
+                            
                                     <tbody>
                                         <tr>
                                             <th scope="row"><?= $no; ?></th>
                                             <td>
-                                                <a href="<?= base_url('chart/partailain') ?>">
+                                            <?php $url_encode = urlencode($c['3']) ;?>
+                                                <a href="<?= base_url('chart/partailain/'.$url_encode) ?>">
                                                     <span><?=  $c['1']; ?></span> 
                                                 </a>
+
                                             </td>
                                             <td><?=  $c['2']; ?></td>
                                         </tr>
                                     </tbody>
 
-                                    <?php $no++; ?>
+                            <?php $no++; ?>
                             <?php endforeach;  ?>
                                     </table>
                     </div>

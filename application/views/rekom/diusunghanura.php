@@ -1,4 +1,3 @@
-
 <div class="page-inner">
 
 <div class="page-title">
@@ -11,8 +10,7 @@
 </div>
 <div id="flash" class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
       
-<div id="main-wrapper" class="container">
-     
+<div id="main-wrapper" class="container">     
     <div class="row">
 
     <!-- <div class="form-group">

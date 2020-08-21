@@ -24,13 +24,16 @@ class Chart extends CI_Controller
         $this->load->view('layout/footer', $data);
     }
 
-    public function partailain()
+    public function partailain($url_encode)
     {
+        $url_decode    = urldecode($url_encode);
+        $rekom    = json_decode($url_decode);
+
         $data['judul'] = 'Halaman Partai lain';
         // $data['rekomendasi'] = $this->Rekom_model->getAllDataRekom();
-        
         $data['hanura'] = $this->Chart_model->getAllData();
         $data['hitung'] = $this->Chart_model->getHitung();
+        $data['rekom'] = $this->Chart_model->getDataPartaiLain($rekom);
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);

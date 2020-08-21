@@ -22,6 +22,7 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/footer', $data);
     }
 
+
     public function diusunghanura()
     {
         $data['judul'] = 'Halaman Hanura';
@@ -91,6 +92,8 @@ class Rekom extends CI_Controller {
         $query  = $this->db->get();
 
         $data['provinsi'] = $query->result();
+        $data['jenissurat'] = $this->Rekom_model->getDataJenisSurat();
+
         $data['judul'] = 'Halaman Tambah';
     
         $this->form_validation->set_rules('calon', 'Calon', 'required|is_unique[tb_calon_rekomendasi.id_calon]');
@@ -346,7 +349,6 @@ class Rekom extends CI_Controller {
         }
     }
 
-
     public function editPengusung($id_rekom, $geo_prov_id, $geo_kab_id)
     {
         $data['datarekom'] = $this->Rekom_model->getDataRekom($id_rekom, $geo_prov_id, $geo_kab_id);
@@ -367,7 +369,6 @@ class Rekom extends CI_Controller {
         $no_surat                 = $this->input->post('no_surat', true);
         $partai                   = $this->input->post('partai', true);
         // var_dump ($no_surat);
-
 
         if (isset($partai)) {
             foreach ($partai as $key => $value) {

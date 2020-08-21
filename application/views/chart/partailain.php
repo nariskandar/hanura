@@ -24,10 +24,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th class="col-md-3">Provinsi</th>
-                                <th class="col-md-3">Kab/Kota</th>
-                                <th>Bupati</th>
-                                <th>Wakil Bupati</th>
+                                <th class="col-md-2">Provinsi</th>
+                                <th class="col-md-2">Kab/Kota</th>
+                                <th class="col-md-2">Nama Calon</th>
+                                <th class="col-md-2">Nama Pasangan</th>
                                 <th class="col-md-3">Pengusung</th>
                                 <th>Kursi</th>
                                 <th class="col-md-3">Action</th>
@@ -36,16 +36,33 @@
 
                         <tbody>
                         <?php $no=1; ?>
+                        <?php foreach ($rekom as $key => $value) : ?>
+                        <?php $value['pengusung']; 
+                              $ico = explode(' ', $value['pengusung'] ) ; 
+                        ?>
                             <tr>
                                 <td><?= $no; ?></td>
-                                <td>JAWA BARAT</td>
-                                <td>GARUT</td>
-                                <td>BOAS SALOSA</td>
-                                <td>SALAMPESY</td>
-                                <td>8 Kursi</td>
-                                <td>x</td>
+                                <td><?= $value['geo_prov_nama']; ?></td>
+                                <td><?= $value['geo_kab_nama']; ?></td>
+                                <td><?= $value['nama_calon']; ?></td>
+                                <td><?= $value['nama_pasangan']; ?></td>
+                                <td>
+                                <div>
+                                    <?php foreach ($ico as $i) : ?>
+                                        <img src="<?= base_url('assets/images/partai_ico/'. $i ); ?>" width="25px" alt="">
+                                    <?php endforeach; ?>
+                                    </div>
+                                </td>
+                                <td>
+                                <?= $value['total_kursi']; ?>
+                                </td>
+                                <td>
+                                <a href="<?= base_url();?>rekom/detail/<?= $value['id_rekom']?>/<?= $value['geo_prov_id'] ?>/<?= $value['geo_kab_id'] ?>" type="button" class="btn btn-warning btn-xs">
+                                <i class="fa fa-search-plus"></i>
+                                </a>
                             </tr>
                         <?php $no++; ?>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>  
                     </div>
