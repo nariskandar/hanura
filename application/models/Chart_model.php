@@ -161,4 +161,18 @@ class Chart_model extends CI_model
             // $exist = $this->db->get()->row();
             return $this->db->get()->result_array();
     }
+
+    public function getPartaiName($rekom, $id_par)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_partai');
+        $query  = $this->db->get();
+
+        $this->db->select('tb_pengusung.id_rekom, tb_partai.partai');
+        $this->db->from('tb_pengusung');
+        $this->db->join('tb_partai', 'tb_pengusung.id_partai = tb_partai.id_partai', 'INNER');
+        $this->db->where_in('tb_pengusung.id_rekom', $rekom);
+        $this->db->where('tb_pengusung.id_partai', $id_par);
+        return $this->db->get()->row();
+    }
 }

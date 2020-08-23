@@ -1,5 +1,5 @@
 <?php
-var_dump($jenissurat);
+
 ?>
 
 <style>
@@ -123,31 +123,21 @@ var_dump($jenissurat);
 
 												<td>
 													<select name="jenis_surat[]" id="jenis_surat"
-														class="form-control m-b-sm">
+														class="form-control m-b-sm"> -->
 														<option value="">-- Pilih Jenis Surat --</option>
 														<?php
 															foreach ($jenissurat as $js) {
 																echo '<option value="'.$js['id_jenis_surat'].'">'.$js['nama_jenis_surat'].'</option>';
 															}
 														?>
-														<option value="others">others</option>
-														<input type="text" name="jenis_surat" id="jenis_surat" style='display:none'/>
+														</select>
 
-										<script>
-										function checkvalue(val)
-										{
-										if(val==="others")
-										document.getElementById('color').style.display='block';
-										else
-										document.getElementById('color').style.display='none'; 
-										}
-										</script>
+
 														<!-- <option id="sk" value="3">SK</option>
 														<option id="st" value="4">ST</option>
 														<option id="usulan_dpc" value="5">Usulan DPC</option>
 														<option id="usulan_dpd" value="6">Usulan DPD</option>
 														<option id="usulan_dpw" value="7">Usulan DPW</option> -->
-													</select>
 												</td>
 
 												<td>

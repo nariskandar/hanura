@@ -24,7 +24,7 @@ class Chart extends CI_Controller
         $this->load->view('layout/footer', $data);
     }
 
-    public function partailain($url_encode)
+    public function partailain($url_encode, $id_par)
     {
         $url_decode    = urldecode($url_encode);
         $rekom    = json_decode($url_decode);
@@ -34,6 +34,7 @@ class Chart extends CI_Controller
         $data['hanura'] = $this->Chart_model->getAllData();
         $data['hitung'] = $this->Chart_model->getHitung();
         $data['rekom'] = $this->Chart_model->getDataPartaiLain($rekom);
+        $data['partai'] = $this->Chart_model->getPartaiName($rekom, $id_par);
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);

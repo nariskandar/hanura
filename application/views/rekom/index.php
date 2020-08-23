@@ -1,7 +1,6 @@
 <?php 
 
 
-
 ?>
 <div class="page-inner">
 
@@ -13,6 +12,7 @@
       
     </div>
 </div>
+
 <div id="flash" class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
 <div id="main-wrapper" class="container">
     <div class="row">
@@ -20,7 +20,7 @@
             <div class="panel info-box panel-white">
                 <div class="panel-body">
                     <div class="info-box-stats">
-                        <p class="counter">112</p>
+                        <p class="counter"><?= $alldatacalon[0]['seluruh_calon'] ?></p>
                     <a href="<?= base_url('rekom/seluruhcalon'); ?>">
                         <span class="info-box-title">Jumlah Calon Pasangan</span>
                     </a>
@@ -42,7 +42,9 @@
                 <div class="panel-body">
                     <div class="info-box-stats">
                         <p class="counter">515</p>
+                        <a href="<?= base_url('rekom/seluruhkab'); ?>">
                         <span class="info-box-title">Jumlah Kabupaten/Kota</span>
+                        </a>
                     </div>
                     <div class="info-box-icon">
                         <i class="icon-map"></i>
@@ -89,7 +91,7 @@
                 <div class="row">
                 <div class="col-md-10">
                 <a href="<?= base_url('rekom/cetakallpdf'); ?>" target="_blank">
-                <button type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-file-pdf-o"></i> Cetak PDF</button>
+                <button type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-file-pdf-o"></i> Cetak Selurh Data ke PDF</button>
                 </a>
                 </div>
                     <div class="pull-right">

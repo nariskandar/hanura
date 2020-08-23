@@ -45,6 +45,30 @@ class Rekom_model extends CI_model {
 
     }
 
+    public function getAllDataKab()
+    {
+        $this->db->select(
+            "m_geo_kab_kpu.geo_kab_nama");
+            
+        $this->db->from('m_geo_kab_kpu');
+        // $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        // $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        return $this->db->get()->result_array();
+
+    }
+
+    public function getCountDataCalon()
+    {
+        $this->db->select(
+            "COUNT(*) AS seluruh_calon");
+            
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        return $this->db->get()->result_array();
+
+    }
+
     public function getAllDataHanura()
     {
         $this->db->select(

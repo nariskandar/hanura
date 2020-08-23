@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="container">
         <div class="col-md-12">
-            <h3>Data Jumlah Calon Yang Diusung Partai Hanura</h3>
+            <h3>Data Calon Yang Diusung <strong>Partai HANURA</strong> dan <strong>Partai <?= $partai->partai; ?></strong></h3>
         </div>
       
     </div>

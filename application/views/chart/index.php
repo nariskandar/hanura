@@ -2,7 +2,7 @@
 
 $id_partai      = array_keys($hitung[0]['id_partai']);
 $nama_partai    = array_keys($hitung[0]['nama_partai']);
-$list_id    = $hitung[0]['list_data'];
+$list_id        = $hitung[0]['list_data'];
 $count          = ($hitung[0]['count']);
 
 
@@ -91,13 +91,14 @@ $hasil = json_encode($json) ;
 
                             <?php $no=1; ?>
                             <?php foreach ($combine as $c) : ?>
-                            
+                            <?php $id_par = $c[0]; ?>
                                     <tbody>
                                         <tr>
                                             <th scope="row"><?= $no; ?></th>
                                             <td>
                                             <?php $url_encode = urlencode($c['3']) ;?>
-                                                <a href="<?= base_url('chart/partailain/'.$url_encode) ?>">
+                                            <!-- '.$id_rekom.'/'.$geo_prov_id.'/'.$geo_kab_id -->
+                                                <a href="<?= base_url('chart/partailain/'.$url_encode.'/'.$id_par) ?>">
                                                     <span><?=  $c['1']; ?></span> 
                                                 </a>
 

@@ -11,9 +11,10 @@ class Rekom extends CI_Controller {
 
     public function index()
     {
-        $data['judul'] = 'Halaman Data';
+        $data['judul'] = 'Halaman Data Rekom';
         $data['rekomendasi'] = $this->Rekom_model->getAllDataRekom();
         $data['jmlh_hanura'] = $this->Rekom_model->getJumlahHanura();
+        $data['alldatacalon'] = $this->Rekom_model->getCountDataCalon();
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);
@@ -25,7 +26,7 @@ class Rekom extends CI_Controller {
 
     public function diusunghanura()
     {
-        $data['judul'] = 'Halaman Hanura';
+        $data['judul'] = 'Halaman Data Calon di Usung Partai Hanura';
         $data['rekomendasi'] = $this->Rekom_model->getAllDataHanura();
         $data['jmlh_hanura'] = $this->Rekom_model->getJumlahHanura();
 
@@ -38,7 +39,7 @@ class Rekom extends CI_Controller {
 
     public function seluruhcalon()
     {
-        $data['judul'] = 'Jumlah Calon';
+        $data['judul'] = 'Halaman Seluruh Calon';
         $data['alldatacalon'] = $this->Rekom_model->getAllDataCalon();
         // $data['jmlh_hanura'] = $this->Rekom_model->getJumlahHanura();
 
@@ -46,6 +47,19 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/navbar', $data);
         $this->load->view('layout/menubar', $data);
         $this->load->view('rekom/seluruhcalon', $data);
+        $this->load->view('layout/footer', $data);
+    }
+
+    public function seluruhkab()
+    {
+        $data['judul'] = 'Halaman Seluruh Kabupaten/Kota';
+        $data['alldatakab'] = $this->Rekom_model->getAllDataKab();
+        // $data['jmlh_hanura'] = $this->Rekom_model->getJumlahHanura();
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/navbar', $data);
+        $this->load->view('layout/menubar', $data);
+        $this->load->view('rekom/seluruhkab', $data);
         $this->load->view('layout/footer', $data);
     }
 
