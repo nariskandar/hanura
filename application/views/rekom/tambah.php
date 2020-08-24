@@ -131,13 +131,6 @@
 															}
 														?>
 														</select>
-
-
-														<!-- <option id="sk" value="3">SK</option>
-														<option id="st" value="4">ST</option>
-														<option id="usulan_dpc" value="5">Usulan DPC</option>
-														<option id="usulan_dpd" value="6">Usulan DPD</option>
-														<option id="usulan_dpw" value="7">Usulan DPW</option> -->
 												</td>
 
 												<td>
@@ -264,15 +257,15 @@
                 </div>
             </td>
             
-            <td>
-                <select name="jenis_surat[]" id="${id_jenis_surat}" class="js-states form-control">
-                    <option value="">-- Pilih Jenis Surat --</option>
-                    <option id="sk" value="3">SK</option>
-                    <option id="st" value="4">ST</option>
-                    <option id="usulan_dpc" value="5">Usulan DPC</option>
-                    <option id="usulan_dpd" value="6">Usulan DPD</option>
-                    <option id="usulan_dpw" value="7">Usulan DPW</option>
-                </select>
+			<td>
+			<select name="jenis_surat[]" id="${id_jenis_surat}" class="form-control m-b-sm"> -->
+				<option value="">-- Pilih Jenis Surat --</option>
+				<?php
+					foreach ($jenissurat as $js) {
+						echo '<option value="'.$js['id_jenis_surat'].'">'.$js['nama_jenis_surat'].'</option>';
+					}
+				?>
+			</select>
             </td>
 
             <td>

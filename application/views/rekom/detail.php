@@ -1,4 +1,18 @@
-<div class="page-inner">
+<select class="form-control">
+  <option selected="selected">orange</option>
+  <option>white</option>
+  <option>purple</option>
+</select>
+
+
+<script>
+$(".js-example-tags").select2({
+  tags: true
+});
+</script>
+
+
+<!-- <div class="page-inner">
 
 	<div class="page-title">
 		<div class="container">
@@ -125,4 +139,4 @@
 
 </div>
 </div>
-</div>
+</div> -->

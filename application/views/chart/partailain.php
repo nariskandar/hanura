@@ -1,15 +1,16 @@
+
 <div class="page-inner">
 
 <div class="page-title">
     <div class="container">
         <div class="col-md-12">
             <h3>Data Calon Yang Diusung <strong>Partai HANURA</strong> dan <strong>Partai <?= $partai->partai; ?></strong></h3>
-        </div>
-      
+        </div>      
     </div>
 </div>
+
 <div id="flash" class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-      
+
 <div id="main-wrapper" class="container">
      
     <div class="row">

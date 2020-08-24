@@ -5,7 +5,6 @@ $nama_partai    = array_keys($hitung[0]['nama_partai']);
 $list_id        = $hitung[0]['list_data'];
 $count          = ($hitung[0]['count']);
 
-
 $combine = [];
 foreach ( $id_partai as $idx => $val ) {
     $combine[] = [ $val, $nama_partai[$idx], $count[$idx], json_encode($list_id[$val]) ];
@@ -106,7 +105,6 @@ $hasil = json_encode($json) ;
                                             <td><?=  $c['2']; ?></td>
                                         </tr>
                                     </tbody>
-
                             <?php $no++; ?>
                             <?php endforeach;  ?>
                                     </table>

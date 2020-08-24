@@ -98,9 +98,6 @@ class Rekom extends CI_Controller {
     // TAMBAH
     public function tambah()
     {
-         
-        //  $this->form_validation->set_rules('user_name', 'User Name', 'required|trim|xss_clean'.$is_unique);
-
         $this->db->select('*');
         $this->db->from('m_geo_prov_kpu');
         $query  = $this->db->get();

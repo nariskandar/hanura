@@ -1,7 +1,3 @@
-<?php 
-
-
-?>
 <div class="page-inner">
 
 <div class="page-title">
@@ -139,9 +135,21 @@
                                     </div>
                                 <td>
                                     <div>
-                                    <?php foreach ($ico as $i) : ?>
-                                        <img src="<?= base_url('assets/images/partai_ico/'. $i ); ?>" width="25px" alt="">
-                                    <?php endforeach; ?>
+                                    <?php foreach ($ico as $key => $value) : ?>
+
+    <!-- <img id="zoom_03" src="assets/images/zoom/small/image3.jpg" data-zoom-image="assets/images/zoom/large/image3.jpg" style="width: 100%;"/> -->
+    <?php $rand = rand(1,1000000); ?>
+    <img id="zoom_<?= $rand; ?>" src="<?= base_url('assets/images/partai_ico/'. $value ); ?>" data-zoom-image="<?= base_url('assets/images/partai_ico/'. $value ); ?>" width="25px"/>
+    
+    <script>
+        $(document).ready(function() {
+            // $("#zoom_<?= $rand; ?>").elevateZoom();
+
+            // $("#zoom_<?= $rand; ?>").elevateZoom({ zoomType	: "lens", lensShape : "round", lensSize : 100 });
+            $("#zoom_<?= $rand; ?>").elevateZoom({scrollZoom : true, zoomWindowPosition: 200});
+        });
+    </script>
+        <?php endforeach; ?>
                                     </div>
                                 </td>
 
