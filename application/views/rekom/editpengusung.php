@@ -1,3 +1,4 @@
+
 <style>
    #tengah {
    	width: 500px;
@@ -13,8 +14,6 @@
    	border: none;
    	border-radius: 15px;
    }
-
-
 </style>
 
 <div class="page-inner">
@@ -107,14 +106,18 @@
 												</div>
                                  </td>
                                  <td>
-                                    <select name="jenis_surat[]" id="jenis_surat" class="form-control m-b-sm">
-                                          <option value="">-- Pilih Jenis Surat --</option>
-                                          <option id="sk" value="3">SK</option>
-                                          <option id="st" value="4">ST</option>
-                                          <option id="usulan_dpc" value="5">Usulan DPC</option>
-                                          <option id="usulan_dpd" value="6">Usulan DPD</option>
-                                          <option id="usulan_dpw" value="7">Usulan DPW</option>
-                                    </select>
+                                    
+                                 <select name="jenis_surat[]" id="jenis_surat" class="js-states form-control"
+													tabindex="-1">
+													<?php foreach ($jenissurat as $surat) : ?>
+													<?php if ($surat['id_jenis_surat'] == $s['id_jenis_surat'])  : ?>
+													<option selected value="<?= $surat['id_jenis_surat']; ?>"><?= $surat['nama_jenis_surat']; ?></option>
+													<?php else :  ?>
+													<option value="<?= $surat['id_jenis_surat']; ?>"><?= strtoupper ($surat['nama_jenis_surat']); ?></option>
+													<?php endif; ?>
+													<?php endforeach; ?>
+                                 </select>
+                                    
                                  </td>
                                  
                                  <td>
@@ -216,16 +219,20 @@ $(function() {
          html    += '<input class="form-control" name="total_kursi[]" type="text" readonly="">';
          html    += '</div>';
          html    += '</td>';
-         html    += '<td>';
-         html    += '<select name="jenis_surat[]" id="'+id_partai+'jenis_surat" class="form-control m-b-sm">';
-         html    += '<option value="">-- Pilih Jenis Surat --</option>';
-         html    += '<option id="sk" value="3">SK</option>';
-         html    += '<option id="st" value="4">ST</option>';
-         html    += '<option id="usulan_dpc" value="5">Usulan DPC</option>';
-         html    += '<option id="usulan_dpd" value="6">Usulan DPD</option>';
-         html    += '<option id="usulan_dpw" value="7">Usulan DPW</option>';
-         html    += '</select>';
-         html    += '</td>';
+
+         html    +=  '<td>';
+         html    +=  '<select name="jenis_surat[]" id="'+id_partai+'jenis_surat" class="form-control m-b-sm">';
+         html    +=  '<?php foreach ($jenissurat as $surat) : ?>';
+         html    +=  '<?php if ($surat['id_jenis_surat'] == $s['id_jenis_surat'])  : ?>';
+         html    +=  '<option selected value="<?= $surat['id_jenis_surat']; ?>"><?= $surat['nama_jenis_surat']; ?></option>';
+         html    +=  '<?php else :  ?>';
+         html    +=  '<option value="<?= $surat['id_jenis_surat']; ?>"><?= strtoupper ($surat['nama_jenis_surat']); ?></option>';
+         html    +=  '<?php endif; ?>';
+         html    +=  '<?php endforeach; ?>';
+         html    +=   '</select>';
+         html    +=   '</td>';
+
+
          html    += '<td>';
          html    += '<input type="text" class="form-control" name="no_surat[]" id="'+id_partai+'no_surat" value="" placeholder="Nomer Jenis Surat">';
          html    += '</td>;'

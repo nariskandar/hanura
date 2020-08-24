@@ -229,6 +229,7 @@ class Rekom_model extends CI_model {
                 tb_pengusung.id_rekom,
                 tb_pengusung.id_partai,
                 tb_pengusung.no_surat,
+                tb_jenis_surat.id_jenis_surat,
                 tb_jenis_surat.nama_jenis_surat,
                 tb_partai.partai,
                 tb_kursi.total_kursi,

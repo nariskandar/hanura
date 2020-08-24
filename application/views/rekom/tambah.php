@@ -127,7 +127,7 @@
 														<option value="">-- Pilih Jenis Surat --</option>
 														<?php
 															foreach ($jenissurat as $js) {
-																echo '<option value="'.$js['id_jenis_surat'].'">'.$js['nama_jenis_surat'].'</option>';
+																echo '<option value="'.$js['id_jenis_surat'].'">'.strtoupper ($js['nama_jenis_surat']).'</option>';
 															}
 														?>
 														</select>
@@ -247,7 +247,6 @@
 				`<tr>
             <td>
                 <select name="partai[]" id="${id_partai}" class="js-states form-control" tabindex="-1" style="display: none; width: 100%">
-                        <option value="">-- Pilih Partai --</option>
                 </select>
             </td>
 

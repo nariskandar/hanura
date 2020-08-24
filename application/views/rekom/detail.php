@@ -1,18 +1,4 @@
-<select class="form-control">
-  <option selected="selected">orange</option>
-  <option>white</option>
-  <option>purple</option>
-</select>
-
-
-<script>
-$(".js-example-tags").select2({
-  tags: true
-});
-</script>
-
-
-<!-- <div class="page-inner">
+<div class="page-inner">
 
 	<div class="page-title">
 		<div class="container">
@@ -85,7 +71,7 @@ $(".js-example-tags").select2({
 												<th scope="row"><?= $no; ?></th>
 												<td><?= $dk['partai']; ?></td>
 												<td><?= $dk['total_kursi']; ?> kursi </td>
-												<td><?= $dk['nama_jenis_surat']; ?></td>
+												<td><?= strtoupper ($dk['nama_jenis_surat']); ?></td>
 												<td><?= $dk['no_surat']; ?></td>
                                             </tbody>
                                         </tr>
@@ -139,4 +125,4 @@ $(".js-example-tags").select2({
 
 </div>
 </div>
-</div> -->
+</div>

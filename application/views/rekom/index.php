@@ -87,7 +87,7 @@
                 <div class="row">
                 <div class="col-md-10">
                 <a href="<?= base_url('rekom/cetakallpdf'); ?>" target="_blank">
-                <button type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-file-pdf-o"></i> Cetak Selurh Data ke PDF</button>
+                <button type="button" class="btn btn-warning" style="float: right;"><i class="fa fa-file-pdf-o"></i>  Cetak Selurh Data ke PDF</button>
                 </a>
                 </div>
                     <div class="pull-right">

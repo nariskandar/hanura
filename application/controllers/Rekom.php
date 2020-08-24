@@ -365,6 +365,8 @@ class Rekom extends CI_Controller {
         $data['datarekom'] = $this->Rekom_model->getDataRekom($id_rekom, $geo_prov_id, $geo_kab_id);
         $data['selected'] = $this->Rekom_model->getSelectedPengusung($id_rekom, $geo_prov_id, $geo_kab_id);
         $data['listpartai'] = $this->Rekom_model->getListPartai($geo_prov_id, $geo_kab_id);
+        $data['jenissurat'] = $this->Rekom_model->getDataJenisSurat();
+
         $data['judul'] = 'Halaman Edit';
         $data['geo_prov_id'] = $geo_prov_id;
         $data['geo_kab_id'] = $geo_kab_id;

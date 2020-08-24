@@ -3,7 +3,7 @@ $(document).ready(function(){
     // console.log(flashData);
     if (flashData) {
         Swal.fire({
-            title: "Data Rekom!",
+            title: "Data!",
             text: "Berhasil " + flashData,
             icon: "success",
             confirmButtonText: 'Oke'
@@ -17,7 +17,7 @@ $(document).ready(function(){
 
         Swal.fire({
             title: 'Apakah anda yakin ?',
-            text: "Data Rekom akan di hapus!",
+            text: "Data akan di hapus!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -29,5 +29,5 @@ $(document).ready(function(){
             }
           })
     })
+    
 });
-

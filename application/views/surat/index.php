@@ -9,10 +9,10 @@
 </div>
 
 
-  
 <div id="flash" class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
-      
+
 <div id="main-wrapper" class="container">
+    <small class="form-text text-danger"><?= form_error('nama_jenis_surat'); ?></small>
      
     <div class="row">
         <div class="col-md-12">
@@ -41,10 +41,12 @@
                             <?php foreach ($surat as $s) : ?>
                             <tr>
                                 <td><?= $no; ?></td>
-                                <td><?= $s['nama_jenis_surat']; ?></td>
+                                <!-- echo strtoupper("Hello WORLD!"); -->
+
+                                <td><?= strtoupper ($s['nama_jenis_surat']); ?></td>
                                 <td>
 <button type="button" class="btn btn-info btn-xs" id="btn-edit" data-toggle="modal" data-target=".modaledit" data-id="<?= $s['id_jenis_surat']; ?>" data-nama="<?= $s['nama_jenis_surat']; ?>"><i class="fa fa-edit"></i></button>
-<a href="<?= base_url();?>surat/delete_aksi/<?= $s['id_jenis_surat'];?>" type="button" class="btn btn-danger btn-xs button-hapus"><i class="fa fa-trash"></i></a>
+<a href="<?= base_url();?>surat/delete_aksi/<?= $s['id_jenis_surat'];?>" type="button" id="button-hapus" class="btn btn-danger btn-xs button-hapus"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php $no++; ?>
@@ -67,7 +69,7 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
 						aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="mySmallModalLabel">Tambah Jenis Surat</h4>
+                <h4 class="modal-title" id="mySmallModalLabel">Tambah Jenis Surat</h4>
 			</div>
 			<div class="modal-body">
                 <form action="<?= base_url('surat/tambah_aksi') ?>" method="POST">
@@ -106,7 +108,6 @@
 		</div>
 	</div>
 </div>
-<?php var_dump($_POST); ?>
 
 <script>
 $(document).ready( function () {
