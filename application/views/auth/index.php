@@ -59,8 +59,8 @@
                                     <small class="form-text text-danger"><?= form_error('password') ?></small>
                                     <button type="submit" name="submit" class="btn btn-success btn-block">Login</button>
                                     <a href="forgot.html" class="display-block text-center m-t-md text-sm">Lupa Password</a>
-                                    <p class="text-center m-t-xs text-sm">Apakah belum punya akun ?</p>
-                                    <a href="<?= base_url('auth/registrasi') ?>" class="btn btn-default btn-block m-t-md">Buat Akun</a>
+                                    <!-- <p class="text-center m-t-xs text-sm">Apakah belum punya akun ?</p>
+                                    <a href="<?= base_url('auth/registrasi') ?>" class="btn btn-default btn-block m-t-md">Buat Akun</a> -->
                                 </form>
                                 <p class="text-center m-t-xs text-sm">2020 &copy; Partai Hanura.</p>
                             </div>

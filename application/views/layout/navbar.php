@@ -70,7 +70,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?= base_url('auth/logout'); ?>"><i class="fa fa-sign-out m-r-xs"></i>Log out</a>
+                                    <a href="<?= base_url('auth/login') ?>"><i class="fa fa-sign-out m-r-xs"></i>Log out</a>
                                 </li>   
                             </ul><!-- Nav -->
                         </div><!-- Top Menu -->
