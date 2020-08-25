@@ -5,9 +5,6 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // if($this->session->userdata('status') == 'masuk'){
-		// 	redirect('rekom');
-		// }
         $this->load->model('m_login');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -55,58 +52,3 @@ class Auth extends CI_Controller
 		redirect(base_url('auth'));
 	}
 }
-
-    // private function _login()
-    // {
-    //     $email      =   $this->input->post('email');
-    //     $password   =   $this->input->post('password');
-
-        // $users      =   $this->db->get_where('tb_users_rekom', ['email' => $email])->row_array();
-
-
-        // if ($users) {
-        //     if ($users['is_active'] == 1) {
-        //         if ($password == $users['password']) {
-        //             $data = [
-        //                 'email' => $users['email']
-        //             ];
-        //             $this->session->set_userdata($data);
-        //             redirect ('rekom');
-        //         }else{
-        //             redirect ('auth/index');
-        //         }
-        //     }else{
-        //         redirect ('auth/index');
-        //     }
-        // }else{
-        //     redirect ('auth/index');
-            
-        // }
-
-
-//         if($cek > 0){
-//             $data_session = array(
-//                 'nama' => $username,
-//                 'status' => "login"
-//                 );
-        
-//             $this->session->set_userdata($data_session);
-//             redirect(base_url("admin"));
-//         }else{
-//             echo "Username dan password salah !";
-//         }
-//     }
-
-//     public function registrasi()
-//     {
-//         $data['tittle'] = 'HALAMAN REGISTRASI'; 
-
-//         $this->load->view('auth/registrasi');
-//     }
-
-//     // public function logout()
-//     // {
-//     //     $this->session->sess_destroy();
-//     //     redirect(base_url('auth/login'));
-//     // }
-// }
