@@ -4,6 +4,9 @@ class Surat extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('status') != 'masuk'){
+			redirect('auth');
+		}
         $this->load->model('Surat_model');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -11,6 +14,7 @@ class Surat extends CI_Controller{
 
     public function index()
     {
+
         $data['judul'] = 'Halaman Master Jenis Surat';
         $data['surat'] = $this->Surat_model->getAllDataSurat();
 

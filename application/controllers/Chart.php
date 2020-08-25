@@ -5,6 +5,9 @@ class Chart extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('status') != 'masuk'){
+			redirect('auth');
+		}
         $this->load->model('Chart_model');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -12,6 +15,7 @@ class Chart extends CI_Controller
 
     public function index()
     {
+        
         $data['judul'] = 'Halaman Chart';
         // $data['rekomendasi'] = $this->Rekom_model->getAllDataRekom();
         $data['hanura'] = $this->Chart_model->getAllData();
