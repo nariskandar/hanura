@@ -45,7 +45,6 @@
         <link href="<?= base_url('assets/plugins/metrojs/MetroJs.min.css'); ?>" rel="stylesheet" type="text/css"/>	
         <link href="<?= base_url('assets/plugins/summernote-master/summernote.css') ?>" rel="stylesheet" type="text/css"/>
 
-
         <link href="<?= base_url('assets/js/sweetalert/sweetalert2.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/js/sweetalert/sweetalert2.min.css') ?>" rel="stylesheet">
 

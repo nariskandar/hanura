@@ -79,8 +79,18 @@
 
 <script src="<?= base_url(); ?>assets/plugins/elevatezoom/jquery.elevatezoom-3.0.8.min.js"></script>
 <!-- <script src="<?= base_url(); ?>assets/js/pages/form-image-zoom.js"></script> -->
+<script src="<?= base_url(); ?>assets/js/modern.min.js"></script>
 
 <script src="<?= base_url(); ?>assets/js/myscript.js"></script>
+
+
+
+
+
+
+
+
+
 
 
 </body>
