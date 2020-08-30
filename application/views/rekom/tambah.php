@@ -51,7 +51,7 @@
                                 }
                             ?>
 									</select>
-
+									<small class="form-text text-danger"><?= form_error('prov'); ?></small>
 								</div>
 
 								<div class="col-md-6">
@@ -60,6 +60,7 @@
 										style="display: none; width: 100%">
 										<option value="">-- Pilih Kota/Kabupaten --</option>
 									</select>
+									<small class="form-text text-danger"><?= form_error('kab'); ?></small>
 								</div>
 							</div>
 
@@ -112,6 +113,7 @@
 														tabindex="-1" style="display: none; width: 100%">
 														<option value="">-- Pilih Partai --</option>
 													</select>
+													<small class="form-text text-danger"><?= form_error('partai'); ?></small>
 												</td>
 
 												<td>
@@ -146,7 +148,6 @@
 										</tbody>
 
 									</table>
-									<small class="form-text text-danger"><?= form_error('partai'); ?></small>
 								</div>
 							</div>
 

@@ -19,6 +19,7 @@ class Rekom extends CI_Controller {
         $data['rekomendasi'] = $this->Rekom_model->getAllDataRekom();
         $data['jmlh_hanura'] = $this->Rekom_model->getJumlahHanura();
         $data['alldatacalon'] = $this->Rekom_model->getCountDataCalon();
+        $data['alldatarekom'] = $this->Rekom_model->getCountDataRekom();
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);
@@ -110,15 +111,17 @@ class Rekom extends CI_Controller {
         $data['jenissurat'] = $this->Rekom_model->getDataJenisSurat();
 
         $data['judul'] = 'Halaman Tambah';
-    
+
+        $this->form_validation->set_rules('prov', 'Provinsi', 'required|rtrim');
+        $this->form_validation->set_rules('kab', 'Kabupaten/Kota', 'required|rtrim');
         $this->form_validation->set_rules('calon', 'Calon', 'required|is_unique[tb_calon_rekomendasi.id_calon]');
+        $this->form_validation->set_rules('partai', 'Partai', 'required|rtrim');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('layout/header', $data);
             $this->load->view('layout/navbar', $data);  
             $this->load->view('layout/menubar', $data);
             $this->load->view('rekom/tambah', $data);
             $this->load->view('layout/footer', $data);
-
             
         }else{
             

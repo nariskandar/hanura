@@ -41,6 +41,7 @@ class Rekom_model extends CI_model {
         $this->db->from('tb_rekomendasi');
         $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
         $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        $this->db->join('tb_calon_rekomendasi', 'calon', 'INNER');
         return $this->db->get()->result_array();
 
     }
@@ -61,12 +62,20 @@ class Rekom_model extends CI_model {
     {
         $this->db->select(
             "COUNT(*) AS seluruh_calon");
-            
         $this->db->from('tb_rekomendasi');
         $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
         $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
         return $this->db->get()->result_array();
-
+    }
+    
+    public function getCountDataRekom()
+    {
+        $this->db->select(
+            "COUNT(*) AS seluruh_rekom");
+        $this->db->from('tb_calon_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_calon_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_calon_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        return $this->db->get()->result_array();
     }
 
     public function getAllDataHanura()

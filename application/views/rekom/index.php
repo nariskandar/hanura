@@ -5,7 +5,6 @@
         <div class="col-md-3">
             <h3>Data Rekom</h3>
         </div>
-      
     </div>
 </div>
 
@@ -16,7 +15,7 @@
             <div class="panel info-box panel-white">
                 <div class="panel-body">
                     <div class="info-box-stats">
-                        <p class="counter"><?= $alldatacalon[0]['seluruh_calon'] ?></p>
+                        <p class="counter"><?= $alldatarekom[0]['seluruh_rekom']; ?>  <span style="font-size:20px;"> / <?= $alldatacalon[0]['seluruh_calon'] ?></span style="font-size:11;"></p>
                     <a href="<?= base_url('rekom/seluruhcalon'); ?>">
                         <span class="info-box-title">Jumlah Calon Pasangan</span>
                     </a>
@@ -26,7 +25,8 @@
                     </div>
                     <div class="info-box-progress">
                         <div class="progress progress-xs progress-squared bs-n">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <?php $bar = ($alldatarekom[0]['seluruh_rekom'] * $alldatacalon[0]['seluruh_calon'] / 100) ?>
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?= $bar; ?>%">
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,6 @@
 </div><!-- Main Wrapper -->
       
 <div id="main-wrapper" class="container">
-     
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-white">
@@ -136,7 +135,7 @@
                                 <td>
                                     <div>
                                     <?php foreach ($ico as $key => $value) : ?>
-
+                                    <!-- <?php var_dump($value); ?> -->
     <!-- <img id="zoom_03" src="assets/images/zoom/small/image3.jpg" data-zoom-image="assets/images/zoom/large/image3.jpg" style="width: 100%;"/> -->
     <?php $rand = rand(1,1000000); ?>
     <img id="zoom_<?= $rand; ?>" src="<?= base_url('assets/images/partai_ico/'. $value ); ?>" data-zoom-image="<?= base_url('assets/images/partai_ico/'. $value ); ?>" width="25px"/>
