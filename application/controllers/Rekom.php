@@ -103,11 +103,21 @@ class Rekom extends CI_Controller {
     // TAMBAH
     public function tambah()
     {
-        $this->db->select('*');
-        $this->db->from('m_geo_prov_kpu');
-        $query  = $this->db->get();
+        $this->db->select("m_geo_prov_kpu.geo_prov_nama,
+        m_geo_prov_kpu.geo_prov_id,
+        m_geo_kab_kpu.geo_kab_nama,
+        m_geo_kab_kpu.geo_kab_id");
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'INNER');
+        $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'INNER');
+        $this->db->group_by('m_geo_prov_kpu.geo_prov_nama');  
 
-        $data['provinsi'] = $query->result();
+        $query  = $this->db->get()->result_array();
+        // var_dump($query);die;
+
+        $data['provinsi'] = $query;
         $data['jenissurat'] = $this->Rekom_model->getDataJenisSurat();
 
         $data['judul'] = 'Halaman Tambah';
@@ -174,12 +184,24 @@ class Rekom extends CI_Controller {
 
 	function add_ajax_kab($geo_prov_id)
 	{
-        $query = $this->db->get_where('m_geo_kab_kpu',array('geo_prov_id'=>$geo_prov_id));
+        $this->db->select("m_geo_prov_kpu.geo_prov_nama,
+        m_geo_prov_kpu.geo_prov_id,
+        m_geo_kab_kpu.geo_kab_nama,
+        m_geo_kab_kpu.geo_kab_id");
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'INNER');
+        $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'INNER');
+        $this->db->where('m_geo_prov_kpu.geo_prov_id' , $geo_prov_id);
+        $query  = $this->db->get()->result_array();
         
+        // var_dump($query);die;
+
         $data = "<option value=''>-- Pilih Kota/Kabupaten --</option>";
         
-    	foreach ($query->result() as $value) {
-        	$data .= "<option value='".$value->geo_kab_id."'>".$value->geo_kab_nama."</option>";
+    	foreach ($query as $key => $value) {
+        	$data .= "<option value='".$value['geo_kab_id']."'>".$value['geo_kab_nama']."</option>";
     	}
         echo $data;
     }

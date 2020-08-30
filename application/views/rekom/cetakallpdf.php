@@ -48,7 +48,8 @@
                     <th width="30%"><strong>Nama Calon</strong></th>
                     <th width="30%"><strong>Nama Pasangan</strong></th>
                     <th width="30%"><strong>Partai</strong></th>
-                    <th width="15%"><strong>Total Kursi</strong></th>
+                    <th width="10%"><strong>Syarat</strong></th>
+                    <th width="10%"><strong>Total Kursi</strong></th>
                 </tr>
                 <?php $no=1; ?>
                 <?php foreach ($rekomendasi as $key => $value) : ?>
@@ -59,6 +60,7 @@
                     <td><?= $value['nama_calon']; ?></td>
                     <td><?= $value['nama_pasangan']; ?></td>
                     <td><?= $value['nama_partai']; ?></td>
+                    <td><?= $value['syarat']; ?></td>
                     <td><?= $value['total_kursi']; ?></td>
                 </tr>
                 <?php $no++; ?>

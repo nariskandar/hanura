@@ -1,5 +1,6 @@
 <?php
 
+
 ?>
 
 <style>
@@ -46,8 +47,8 @@
 										style="display: none; width: 100%">
 										<option>-- Pilih Provinsi --</option>
 										<?php
-                                foreach ($provinsi as $prov) {
-                                    echo '<option value="'.$prov->geo_prov_id.'">'.$prov->geo_prov_nama.'</option>';
+                                foreach ($provinsi as $key => $value) {
+                                    echo '<option value="'.$value['geo_prov_id'].'">'.$value['geo_prov_nama'].'</option>';
                                 }
                             ?>
 									</select>

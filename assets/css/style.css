@@ -3,7 +3,13 @@
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
-    
+}
+
+.eksplisit2 {
+    width: 600px; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .title {
