@@ -68,11 +68,12 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/footer', $data);
     }
 
-    public function detail($id_rekom, $geo_prov_id, $geo_kab_id)
+    public function detail($id_rekomendasi, $id_rekom_i = null, $geo_prov_id = null, $geo_kab_id = null)
     {
+        // var_dump($id_rekom_i, $id_rekomendasi, $geo_prov_id, $geo_kab_id);
         $data['judul'] = 'Datail Data Rekom';
-        $data['rekomendasi'] = $this->Rekom_model->getDataRekomById($id_rekom);
-        $data['datakursi'] = $this->Rekom_model->getDataKursi($id_rekom, $geo_prov_id, $geo_kab_id);
+        $data['rekomendasi'] = $this->Rekom_model->getDataRekomById($id_rekomendasi);
+        $data['datakursi'] = $this->Rekom_model->getDataKursi($id_rekom_i, $geo_prov_id, $geo_kab_id);
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);
@@ -122,10 +123,8 @@ class Rekom extends CI_Controller {
 
         $data['judul'] = 'Halaman Tambah';
 
-        $this->form_validation->set_rules('prov', 'Provinsi', 'required|rtrim');
-        $this->form_validation->set_rules('kab', 'Kabupaten/Kota', 'required|rtrim');
         $this->form_validation->set_rules('calon', 'Calon', 'required|is_unique[tb_calon_rekomendasi.id_calon]');
-        $this->form_validation->set_rules('partai', 'Partai', 'required|rtrim');
+        // $this->form_validation->set_rules('partai', 'Partai', 'required|rtrim');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('layout/header', $data);
             $this->load->view('layout/navbar', $data);  
@@ -344,14 +343,14 @@ class Rekom extends CI_Controller {
         redirect('rekom');
     }
 
-    public function editRekom($id_rekom)
+    public function editRekom($id_rekom_i)
     {
         $this->db->select('*');
         $this->db->from('m_geo_prov_kpu');
         $query  = $this->db->get();
 
         $data['provinsi'] = $query->result();
-        $data['rekomendasi'] = $this->Rekom_model->getEditSelected($id_rekom);
+        $data['rekomendasi'] = $this->Rekom_model->getEditSelected($id_rekom_i);
         $data['judul'] = 'Halaman Ubah';
         
         $this->form_validation->set_rules('calon', 'Calon', 'required');
@@ -380,7 +379,7 @@ class Rekom extends CI_Controller {
                 "catatan"             => $catatan
             ];
 
-            $this->db->where('tb_calon_rekomendasi.id_rekom',$id_rekom);
+            $this->db->where('tb_calon_rekomendasi.id_rekom',$id_rekom_i);
             $this->db->update('tb_calon_rekomendasi', $dataRekom);
             
             $this->session->set_flashdata('edit', 'Diedit');
@@ -442,7 +441,7 @@ class Rekom extends CI_Controller {
         return redirect('rekom');
     }
 
-    public function cetakpdf($id_rekom = null, $geo_prov_id = null, $geo_kab_id = null)
+    public function cetakpdf($id_rekomendasi, $id_rekom_i = null, $geo_prov_id = null, $geo_kab_id = null)
     {
         $mpdf = new \Mpdf\Mpdf([]);
 
@@ -452,10 +451,11 @@ class Rekom extends CI_Controller {
         // $pdf->Output();
 
 
-        
         // $data = $this->load->view('layout/header');
-        $rekom['rekomendasi'] = $this->Rekom_model->getDataRekomById($id_rekom);
-        $rekom['datakursi'] = $this->Rekom_model->getDataKursi($id_rekom, $geo_prov_id, $geo_kab_id);
+        // var_dump($id_rekomendasi);die;
+        $rekom['rekomendasi'] = $this->Rekom_model->getDataRekomById($id_rekomendasi);
+        $rekom['datakursi'] = $this->Rekom_model->getDataKursi($id_rekom_i, $geo_prov_id, $geo_kab_id);
+
 
         $data = $this->load->view('rekom/cetak', $rekom , TRUE);
         

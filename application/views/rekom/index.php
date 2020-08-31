@@ -1,9 +1,7 @@
 <?php
 
-// foreach ($rekomendasi as $key => $value) {
-//     var_dump($value);
-// }
 ?>
+
 
 
 <div class="page-inner">
@@ -157,15 +155,31 @@
                                 </td>
                                 <td>
 
-<a href="<?= base_url();?>rekom/detail/<?= $value['id_rekom_i']?>/<?= $value['geo_prov_id'] ?>/<?= $value['geo_kab_id'] ?>" type="button" class="btn btn-warning btn-xs">
+
+
+
+<!-- <input type='submit' <?php if($value['id_rekom_i'] == null) {?> disabled="disabled" <?php } ?> id='submitbtn' name='save' value='SAVE' class='form_btn' > -->
+
+<?php if ($value['id_rekom_i'] != null) : ?>
+
+<div class="btn-rekom">
+
+<a href="<?= base_url();?>rekom/detail/<?= $value['id_rekomendasi']?>/<?= $value['id_rekom_i']; ?>/<?= $value['geo_prov_id']; ?>/<?= $value['geo_kab_id']; ?>" type="button" class="btn btn-warning btn-xs">
 <i class="fa fa-search-plus"></i>
 </a>
 
 <a href="<?= base_url();?>rekom/editrekom/<?= $value['id_rekom_i']; ?>" type="button" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a>
- <a href="<?= base_url();?>rekom/delete/<?= $value['id_rekom_i']; ?>" type="button" class="btn btn-danger btn-xs button-hapus"><i class="fa fa-trash"></i></a>
+
+
+<a href="<?= base_url();?>rekom/delete/<?= $value['id_rekom_i']; ?>" type="button" class="btn btn-danger btn-xs button-hapus"><i class="fa fa-trash"></i></a>
 
 <a href="<?= base_url();?>rekom/editpengusung/<?= $value['id_rekom_i']?>/<?= $value['geo_prov_id'] ?>/<?= $value['geo_kab_id'] ?>" type="button" class="btn btn-info btn-xs"><i class="fa fa-flag"></i></a>
-<!-- data-toggle="modal" data-target="#myModal"  -->
+
+</div>
+
+<?php endif; ?>
+
+
                                 </td>
                         <?php $no++; ?>
                         <?php endforeach; ?>

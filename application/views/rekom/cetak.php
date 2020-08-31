@@ -1,4 +1,7 @@
-
+<?php 
+// var_dump($rekomendasi);
+// var_dump($datakursi);
+?>
 
 <style>    
 </style>
@@ -36,8 +39,8 @@
                     <td width="60%"><strong>KABUPATEN/KOTA</strong></td>
                 </tr>
                 <tr>
-                    <td width="60%"><?= $rekomendasi['geo_prov_nama']; ?></td>
-                    <td width="60%"><?= $rekomendasi['geo_kab_nama']; ?></td>
+                    <td width="60%"><?= $rekomendasi[0]['geo_prov_nama']; ?></td>
+                    <td width="60%"><?= $rekomendasi[0]['geo_kab_nama']; ?></td>
                 </tr>
             </table>
         </li>
@@ -50,8 +53,8 @@
                     <td width="60%"> <strong>NAMA PASANGAN</strong></td>
                 </tr>
                 <tr>
-                    <td width="60%"><?= $rekomendasi['nama_calon']; ?></td>
-                    <td width="60%"><?= $rekomendasi['nama_pasangan']; ?></td>
+                    <td width="60%"><?= $rekomendasi[0]['nama_calon']; ?></td>
+                    <td width="60%"><?= $rekomendasi[0]['nama_pasangan']; ?></td>
                 </tr>
             </table>
         </li>
@@ -62,7 +65,7 @@
                 <tr>
                     <td width="120%"><strong>TOTAL KURSI</strong></td>
                 <tr>
-                    <td width="120%"><?= $rekomendasi['total_kursi']; ?></td>
+                    <td width="120%"><?= $rekomendasi['0']['total_kursi']; ?></td>
                 </tr>
             </table>
         </li>
@@ -78,13 +81,13 @@
                     <th width="10%"><strong>Nomer Surat</strong></th>
                 </tr>
                 <?php $no=1; ?>
-                <?php foreach ($datakursi as $dk) : ?>
+                <?php foreach ($datakursi as $dk => $value) : ?>
                 <tr>
                     <td width="10%"><?= $no; ?></td>
-                    <td width="25%"><?= $dk['partai']; ?></td>
-                    <td width="25%"><?= $dk['total_kursi']; ?></td>
-                    <td width="25%"><?= strtoupper ($dk['nama_jenis_surat']); ?></td>
-                    <td width="25%"><?= $dk['no_surat']; ?></td>
+                    <td width="25%"><?= $value['partai']; ?></td>
+                    <td width="25%"><?= $value['total_kursi']; ?></td>
+                    <td width="25%"><?= strtoupper ($value['nama_jenis_surat']); ?></td>
+                    <td width="25%"><?= $value['no_surat']; ?></td>
                 </tr>
                 <?php $no++; ?>
                 <?php endforeach; ?>
@@ -97,7 +100,7 @@
             <table width="100%" cellspacing="0" cellpadding="1%" border="1">
             
                 <tr>
-                    <td width="10%"><?= $rekomendasi['catatan']; ?></td>
+                    <td width="10%"><?= $rekomendasi['0']['catatan']; ?></td>
                 </tr>
             </table>
         </li>

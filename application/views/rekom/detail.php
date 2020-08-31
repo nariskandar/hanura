@@ -1,3 +1,10 @@
+<?php
+// var_dump($rekomendasi);
+// var_dump($datakursi);
+
+?>
+
+
 <div class="page-inner">
 
 	<div class="page-title">
@@ -13,6 +20,7 @@
 					<div class="panel-body">
 
 						<form action="<?= base_url(); ?>rekom" enctype="multipart/form-data">
+<?php foreach ($rekomendasi as $key => $value ) : ?>
 							<input type="hidden" name="id_rekom" id="id_rekom">
 
 							<div class="row">
@@ -20,13 +28,13 @@
 								<div class="col-md-6">
 									<h4 class="no-m m-b-sm">Provinsi</h4>
 									<input type="text" class="form-control" id="input-readonly"
-										value="<?= $rekomendasi['geo_prov_nama']; ?>" readonly="">
+										value="<?= $value['geo_prov_nama']; ?>" readonly="">
 								</div>
 
 								<div class="col-md-6">
 									<h4 class="no-m m-b-sm">Kota / Kabupaten</h4>
 									<input type="text" class="form-control" id="input-readonly"
-										value="<?= $rekomendasi['geo_kab_nama']; ?>" readonly="">
+										value="<?= $value['geo_kab_nama']; ?>" readonly="">
 								</div>
 							</div>
 
@@ -36,7 +44,7 @@
 								<div class="col-md-12">
 									<h4 class="no-m m-b-sm">Nama Calon</h4>
 									<input type="text" class="form-control" id="input-readonly"
-										value="<?= $rekomendasi['nama_calon']; ?>" readonly="">
+										value="<?= $value['nama_calon']; ?>" readonly="">
 								</div>
 							</div>
 
@@ -46,7 +54,7 @@
 								<div class="col-md-12">
 									<h4 class="no-m m-b-sm">Nama Pasangan Calon</h4>
 									<input type="text" class="form-control" id="input-readonly"
-										value="<?= $rekomendasi['nama_pasangan']; ?>" readonly="">
+										value="<?= $value['nama_pasangan']; ?>" readonly="">
 								</div>
 							</div>
 
@@ -87,7 +95,7 @@
 										<textarea
 											style="resize:none; margin: 0px 16px 0px 0px; height: 207px; width: 1081px;"
 											class="form-control" type="text" row="4" cols="20"
-											readonly=""> <?= $rekomendasi['catatan']; ?> </textarea>
+											readonly=""><?= $value['catatan']; ?> </textarea>
 									</div>
 								</div>
 
@@ -95,14 +103,13 @@
 
 								<div class="row pull-right">
 
-									<div class="col-md-6">
-										<a href="<?= base_url();?>rekom/cetakpdf/<?= $rekomendasi['id_rekom']?>/<?= $rekomendasi['geo_prov_id'] ?>/<?= $rekomendasi['geo_kab_id'] ?>"
-											target="_blank">
-											<button type="button" class="btn btn-warning btn-addon m-b-sm btn-sm"><i
-													class="fa fa-file-pdf-o"></i>Print PDF</button>
-										</a>
-									</div>
-
+							<div class="col-md-6">
+								<a href="<?= base_url();?>rekom/cetakpdf/<?= $rekomendasi['0']['id_rekomendasi'];?>/<?= $rekomendasi['0']['id_rekom_i'];?>/<?= $rekomendasi['0']['geo_prov_id'];?>/<?= $rekomendasi['0']['geo_kab_id'];?>"
+								target="_blank">
+									<button type="button" class="btn btn-warning btn-addon m-b-sm btn-sm"><i
+											class="fa fa-file-pdf-o"></i>Print PDF</button>
+								</a>
+							</div>
 									<div class="col-md-6">
 										<a href="<?= base_url(); ?>">
 											<button type="submit" name="submit"
@@ -112,6 +119,7 @@
 									</div>
 
 								</div>
+								<?php endforeach; ?>
 						</form>
 
 

@@ -52,7 +52,7 @@
                                 }
                             ?>
 									</select>
-									<small class="form-text text-danger"><?= form_error('prov'); ?></small>
+									<!-- <small class="form-text text-danger"><?= form_error('prov'); ?></small> -->
 								</div>
 
 								<div class="col-md-6">
@@ -61,7 +61,7 @@
 										style="display: none; width: 100%">
 										<option value="">-- Pilih Kota/Kabupaten --</option>
 									</select>
-									<small class="form-text text-danger"><?= form_error('kab'); ?></small>
+									<!-- <small class="form-text text-danger"><?= form_error('kab'); ?></small> -->
 								</div>
 							</div>
 
@@ -114,7 +114,7 @@
 														tabindex="-1" style="display: none; width: 100%">
 														<option value="">-- Pilih Partai --</option>
 													</select>
-													<small class="form-text text-danger"><?= form_error('partai'); ?></small>
+													<!-- <small class="form-text text-danger"><?= form_error('partai'); ?></small> -->
 												</td>
 
 												<td>
@@ -194,6 +194,7 @@
 
 							</div>
                         </form>
+						<?php var_dump($_POST); ?>
 					</div>
 				</div>
 			</div>
