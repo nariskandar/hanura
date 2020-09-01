@@ -40,14 +40,14 @@
 									<h4 class="no-m m-b-sm">Provinsi</h4>
 									<select name="provinsi" id="provinsi" class="js-states form-control" tabindex="-1"
 										style="display: none; width: 100%">
-										<option>-- Pilih Provinsi --</option>
+										<option value="<?= set_value('provinsi'); ?>">-- Pilih Provinsi --</option>
 										<?php
                                 foreach ($provinsi as $key => $value) {
                                     echo '<option value="'.$value['geo_prov_id'].'">'.$value['geo_prov_nama'].'</option>';
                                 }
                             ?>
 									</select>
-									<!-- <small class="form-text text-danger"><?= form_error('prov'); ?></small> -->
+									<small class="form-text text-danger"><?= form_error('provinsi'); ?></small>
 								</div>
 
 								<div class="col-md-6">
@@ -56,7 +56,7 @@
 										style="display: none; width: 100%">
 										<option value="">-- Pilih Kota/Kabupaten --</option>
 									</select>
-									<!-- <small class="form-text text-danger"><?= form_error('kab'); ?></small> -->
+									<small class="form-text text-danger"><?= form_error('kab'); ?></small>
 								</div>
 							</div>
 
@@ -107,9 +107,9 @@
 												<td>
 													<select name="partai[]" id="partai" class="js-states form-control"
 														tabindex="-1" style="display: none; width: 100%">
-														<option value="">-- Pilih Partai --</option>
+														<option value="<?= set_value('partai'); ?>">-- Pilih Partai --</option>
 													</select>
-													<!-- <small class="form-text text-danger"><?= form_error('partai'); ?></small> -->
+													<small class="form-text text-danger"><?= form_error('partai'); ?></small>
 												</td>
 
 												<td>
@@ -129,11 +129,14 @@
 															}
 														?>
 														</select>
+														<small class="form-text text-danger"><?= form_error('jenis_surat'); ?></small>
 												</td>
 
 												<td>
-													<input type="text" class="form-control" name="no_surat[]"
-														id="no_surat" value="" placeholder="Nomer Jenis Surat">
+												<div id="no_surat">
+													<input type="text" class="form-control" name="no_surat"
+													 value="" placeholder="Nomer Jenis Surat">
+												</div>
 												</td>
 
 												<td>
@@ -142,10 +145,11 @@
 												</td>
 											</tr>
 										</tbody>
-
 									</table>
 								</div>
 							</div>
+
+
 							
 							<div class="row">
 								<div class="col-md-12">
@@ -180,7 +184,6 @@
 
 							</div>
                         </form>
-						<?php var_dump($_POST); ?>
 					</div>
 				</div>
 			</div>

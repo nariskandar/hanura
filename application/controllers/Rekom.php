@@ -161,6 +161,10 @@ class Rekom extends CI_Controller {
 
         $data['judul'] = 'Halaman Tambah';
 
+        $this->form_validation->set_rules('provinsi', 'Provinsi', 'required');
+        $this->form_validation->set_rules('kab', 'Kabupaten/Kota', 'required');
+        $this->form_validation->set_rules('partai', 'Partai', 'required');
+        $this->form_validation->set_rules('jenis_surat', 'Surat', 'required');
         $this->form_validation->set_rules('calon', 'Calon', 'required|is_unique[tb_calon_rekomendasi.id_calon]');
         // $this->form_validation->set_rules('partai', 'Partai', 'required|rtrim');
         if ($this->form_validation->run() == FALSE) {
@@ -278,7 +282,6 @@ class Rekom extends CI_Controller {
         $this->db->where('kabupaten_kota', $geo_kab_id);
         $this->db->where('id_calon', $id_calon);
         $query  = $this->db->get();
-                            // <input type="text" class="form-control" readonly>
 
         $data = "";
         if($query->result() == null){
@@ -296,7 +299,6 @@ class Rekom extends CI_Controller {
 	{
         $geo_prov_id = $this->input->get('geo_prov_id');
         $geo_kab_id = $this->input->get('geo_kab_id');
-       
 
         $this->db->select('*');
         $this->db->from('tb_kursi');
@@ -340,31 +342,41 @@ class Rekom extends CI_Controller {
     	echo $data;
     }
 
-    // function add_ajax_catatan($geo_prov_id = null, $geo_kab_id = null, $id_partai = null)
-	// {
-    //     $geo_prov_id = $this->input->get('geo_prov_id');
-    //     $geo_kab_id = $this->input->get('geo_kab_id');
-    //     $id_partai = $this->input->get('id_partai');
+    function add_ajax_nomersurat($geo_prov_id = null, $geo_kab_id = null)
+	{
+        $geo_prov_id = $this->input->get('geo_prov_id');
+        $geo_kab_id = $this->input->get('geo_kab_id');
 
-    //     $this->db->select('SUM(total_kursi) as total, tb_kursi.*');
-    //     $this->db->from('tb_kursi');
+        var_dump($geo_prov_id);
+        var_dump($geo_kab_id);
+        
+        $this->db->select(
+        'tb_rekomendasi.no_rekomendasi');
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'INNER');
+        $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'INNER');
 
-    //     $this->db->where('geo_prov_id', $geo_prov_id);
-    //     $this->db->where('geo_kab_id', $geo_kab_id);
-    //     $this->db->where_in('id_partai', $id_partai);
-    //     $query  = $this->db->get();
+        $this->db->where('m_geo_prov_kpu.geo_prov_id', $geo_prov_id);
+        $this->db->where('m_geo_prov_kpu.geo_kab.id', $geo_kab_id);
+        // $this->db->where_in('id_partai', $id_partai);
+        $query  = $this->db->get();
 
-    //     $data = "";
-    //     if ($query->result() == null) {
-    //         $data = "<input type='text' name='total_kursi[]' class='form-control' readonly value='' >";
-    //         return;
-    //     }
+        $data = "";
+        if ($query->result() == null) {
+            $data = "
+            <input type='text' class='form-control' name='no_surat[]'
+            value='' placeholder='nomer_jenis_surat'>
+            ";
+            return;
+        }
 
-    // 	foreach ($query->result() as $value) {
-    //     	$data = "<input type='text' name='total_kursi[]' class='form-control' value='".$value->total."' readonly>";
-    //     }
-    // 	echo $data;
-    // }
+    	foreach ($query->result() as $value) {
+        	$data = "<input type='text' name='no_surat[]' class='form-control' value='".$value->no_rekomendasi."' readonly>";
+        }
+    	echo $data;
+    }
 
     function edit_ajax_kursi($geo_prov_id = null, $geo_kab_id = null, $id_partai = null)
 	{

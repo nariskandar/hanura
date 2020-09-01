@@ -172,6 +172,23 @@
                        })
 	                return false;
                 })
+
+                $("#no_surat").change(function () {
+                	$.ajax({
+                		type: "GET",
+                		url: "<?= site_url('rekom/add_ajax_nomersurat');?>/",
+                		data: {
+                			"geo_prov_id": $("#provinsi").val(),
+                			"geo_kab_id": $("#kab").val()
+                		},
+                		success: function (resp) {
+                			$("#no_surat").html(resp)
+                		},
+                		error: function () {}
+                	})
+                	return false;
+                })
+
                 
                 // script kaupaten ke pas
 	   			$("#total_kursi").change(function (){
@@ -182,7 +199,6 @@
                              "geo_prov_id" : $("#provinsi").val(),
                              "geo_kab_id" : $("#kab").val(),
                              "id_partai" : $(this).val()
-
                            },
                            success:function(resp){
                             $("#total_kursi").html(resp)

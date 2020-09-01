@@ -1,6 +1,6 @@
 <div class="page-footer">
 	<div class="container">
-		<p class="no-s">2020 © Partai Hanura.</p>
+		<p class="no-s">2020 © Partai Hanura. V.2</p>
 	</div>
 </div>
 </div><!-- Page Inner -->
@@ -82,14 +82,6 @@
 <script src="<?= base_url(); ?>assets/js/modern.min.js"></script>
 
 <script src="<?= base_url(); ?>assets/js/myscript.js"></script>
-
-
-
-
-
-
-
-
 
 
 
