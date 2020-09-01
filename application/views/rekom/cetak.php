@@ -30,6 +30,10 @@
     </table>
     
     <hr size="1" noshade="" style="width:100%; color:#000000; background-color:#000000" />
+    <p style="font-size: 11px" style="text-align:right;">
+    Tanggal : 
+    <?= date("F j, Y");?> 
+    </p>
     <p style="font-size: 10px"></span></p>
     <ul type="disc" style="margin:0pt; font-size: 10px; padding-left:0pt">
         <li>
@@ -63,9 +67,11 @@
         <li>
             <table width="100%" cellspacing="0%" cellpadding="1%" border="0">
                 <tr>
-                    <td width="120%"><strong>TOTAL KURSI</strong></td>
+                    <td width="60%"><strong>SYARAT KURSI</strong></td>
+                    <td width="60%"><strong>TOTAL KURSI</strong></td>
                 <tr>
-                    <td width="120%"><?= $rekomendasi['0']['total_kursi']; ?></td>
+                    <td width="60%"><?= $rekomendasi['0']['syarat']; ?></td>
+                    <td width="60%"><?= $rekomendasi['0']['total_kursi']; ?></td>
                 </tr>
             </table>
         </li>

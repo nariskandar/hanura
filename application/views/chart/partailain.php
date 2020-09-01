@@ -41,6 +41,32 @@
                         <?php $value['pengusung']; 
                               $ico = explode(' ', $value['pengusung'] ) ; 
                         ?>
+
+<?php $value['pengusung'];
+
+$ico = explode(' ', $value['pengusung'] ) ;
+
+$first = "";
+$hanura = "";
+$hanuraData = "";
+
+foreach ($ico as $key => $item) {
+    if ($key == 0) {
+        $first = $item;
+    }
+    // var_dump($item);
+
+    if ($item == 'hanura.ico') {
+        $hanura = $key;
+        $hanuraData = $item;
+        }
+    }
+    
+    $ico[$hanura] = $first;
+    $ico[0] = $hanuraData;
+?>
+
+                        
                             <tr>
                                 <td><?= $no; ?></td>
                                 <td><?= $value['geo_prov_nama']; ?></td>
@@ -57,10 +83,13 @@
                                 <td>
                                 <?= $value['total_kursi']; ?>
                                 </td>
-                                <td>
-                                <a href="<?= base_url();?>rekom/detail/<?= $value['id_rekom']?>/<?= $value['geo_prov_id'] ?>/<?= $value['geo_kab_id'] ?>" type="button" class="btn btn-warning btn-xs">
-                                <i class="fa fa-search-plus"></i>
+                                <td>  
+                                
+                                <a href="<?= base_url();?>rekom/detail/<?= $value['id_rekom']; ?>/<?= $value['geo_prov_id']; ?>/<?= $value['geo_kab_id']; ?>"
+                                	type="button" class="btn btn-warning btn-xs">
+                                	<i class="fa fa-search-plus"></i>
                                 </a>
+
                             </tr>
                         <?php $no++; ?>
                         <?php endforeach; ?>

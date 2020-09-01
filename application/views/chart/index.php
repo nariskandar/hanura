@@ -1,5 +1,7 @@
 <?php
 
+
+
 $id_partai      = array_keys($hitung[0]['id_partai']);
 $nama_partai    = array_keys($hitung[0]['nama_partai']);
 $list_id        = $hitung[0]['list_data'];
@@ -100,7 +102,6 @@ $hasil = json_encode($json) ;
                                                 <a href="<?= base_url('chart/partailain/'.$url_encode.'/'.$id_par) ?>">
                                                     <span><?=  $c['1']; ?></span> 
                                                 </a>
-
                                             </td>
                                             <td><?=  $c['2']; ?></td>
                                         </tr>

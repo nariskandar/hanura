@@ -14,6 +14,21 @@ class Chart_model extends CI_model
         return $this->db->get()->result_array();
     }
 
+    public function getDataRekomById()
+    {
+        $this->db->select("tb_rekomendasi.id as id_rekomendasi");
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'left');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'left');
+        $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'left');
+        $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'left');
+        $this->db->join('tb_calon_rekomendasi', 'calon.id = tb_calon_rekomendasi.id_calon', 'left'); 
+        $this->db->group_by('tb_rekomendasi.id');
+        // $this->db->where('tb_rekomendasi.id', $id_rekomendasi);
+        return $this->db->get()->result_array();
+        
+    }
+
     public function getHitung()
     {
         $this->db->select(
@@ -25,9 +40,6 @@ class Chart_model extends CI_model
         $this->db->join('tb_partai', 'tb_pengusung.id_partai = tb_partai.id_partai');
         $pengusung = $this->db->get()->result_array();
         
-        // $this->db->select("tb_partai.id_partai");
-        // $this->db->from("tb_partai");
-        // $master_partai = $this->db->get()->result();
         $master_partai = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
         $hanura          = 13;
@@ -79,7 +91,6 @@ class Chart_model extends CI_model
                 }
             }
             
-
             $result = [
                 [
                     'id_partai'       => $partai_id,
@@ -90,41 +101,6 @@ class Chart_model extends CI_model
                 ];
                 
                 return $result;
-            // return $list_data;
-            // unset($partai_count['id-13']);
-
-            // var_dump($id_rekom_with_hanura);
-
-            // var_dump($result);
-            
-
-            
-            
-            
-            
-
-            
-            // foreach($master_partai as $partai){
-            //     $partai_count["id-$partai"]= [];
-            //     var_dump ($partai_count);die;
-            // }
-
-            // foreach($id_rekom_with_hanura as $value){
-
-            // $partai = $value['id_partai']; 
-            // $partai_count["id-$partai"][] = "ok";
-            
-            // }
-            // var_dump($partai_count);die;
-
-            // $count_result = [
-            //     [
-            //         'nama_partai' = '',
-            //         'id'          = '',
-            //         'count'       = ''
-            //     ],
-            // ]
-            
     }
 
     public function getDataPartaiLain($rekom)

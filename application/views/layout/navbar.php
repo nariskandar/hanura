@@ -58,10 +58,10 @@
 					<li><a href="<?= base_url(); ?>surat"><span class="menu-icon fa fa-envelope"></span>
 							<p>Master Surat</p>
 						</a></li>
-					<li class="droplink"><a href="#"><span class="menu-icon fa fa-user"></span>
+					<!-- <li class="droplink"><a href="#"><span class="menu-icon fa fa-user"></span>
 							<p>Pengguna Manajemen</p><span class="arrow"></span>
 						</a>
-					</li>
+					</li> -->
 				</ul>
 			</div><!-- Page Sidebar Inner -->
 		</div><!-- Page Sidebar -->

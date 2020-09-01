@@ -10,16 +10,18 @@ class Rekom extends CI_Controller {
         $this->load->model('Rekom_model');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
-
     }
 
     public function index()
     {
         $data['judul'] = 'Halaman Data Rekom';
-        $data['rekomendasi'] = $this->Rekom_model->getAllDataRekom();
-        $data['jmlh_hanura'] = $this->Rekom_model->getJumlahHanura();
-        $data['alldatacalon'] = $this->Rekom_model->getCountDataCalon();
-        $data['alldatarekom'] = $this->Rekom_model->getCountDataRekom();
+        $data['filter_provinsi']    = $this->Rekom_model->getDataRekomProvinsi();
+        $data['rekomendasi']        = $this->Rekom_model->getAllDataRekom();
+        $data['jmlh_hanura']        = $this->Rekom_model->getJumlahHanura();
+        $data['alldatacalon']       = $this->Rekom_model->getCountDataCalon();
+        $data['alldatarekom']       = $this->Rekom_model->getCountDataRekom();
+        $data['jmlh_provinsi']      = $this->Rekom_model->getCountProvinsi();
+        $data['jmlh_kab']      = $this->Rekom_model->getCountKab();
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);
@@ -28,6 +30,19 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/footer', $data);
     }
 
+    public function loadprovinsi()
+    {
+        $provinsi     = $_GET['provinsi'];
+        if ($provinsi == 0) {
+            $data['rekomendasi'] = $this->Rekom_model->getAllDataRekom($provinsi);
+            $this->load->view('rekom/loadprovinsi', $data);
+        }else{
+            $data['filter_provinsi']    = $this->Rekom_model->getDataRekomProvinsi();
+            $data['rekomendasi']        = $this->Rekom_model->getFilterByProvinsi($provinsi);
+                
+            $this->load->view('rekom/loadprovinsi', $data);
+        }
+    }
 
     public function diusunghanura()
     {
@@ -55,20 +70,43 @@ class Rekom extends CI_Controller {
         $this->load->view('layout/footer', $data);
     }
 
-    public function seluruhkab()
+    public function allprov()
     {
         $data['judul'] = 'Halaman Seluruh Kabupaten/Kota';
-        $data['alldatakab'] = $this->Rekom_model->getAllDataKab();
-        // $data['jmlh_hanura'] = $this->Rekom_model->getJumlahHanura();
+        $data['alldataprov'] = $this->Rekom_model->getDataRekomProvinsi();
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);
         $this->load->view('layout/menubar', $data);
-        $this->load->view('rekom/seluruhkab', $data);
+        $this->load->view('rekom/allprov', $data);
         $this->load->view('layout/footer', $data);
     }
 
-    public function detail($id_rekomendasi, $id_rekom_i = null, $geo_prov_id = null, $geo_kab_id = null)
+    public function allkab()
+    {
+        $data['judul'] = 'Halaman Seluruh Kabupaten/Kota';
+        $data['alldatakab'] = $this->Rekom_model->getAllDataKab();
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/navbar', $data);
+        $this->load->view('layout/menubar', $data);
+        $this->load->view('rekom/allkab', $data);
+        $this->load->view('layout/footer', $data);
+    }
+
+    public function provtokab($geo_prov_id)
+    {
+        $data['judul'] = 'Halaman Seluruh Kabupaten/Kota';
+        $data['list_kab'] = $this->Rekom_model->getProvToKab($geo_prov_id);
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('layout/navbar', $data);
+        $this->load->view('layout/menubar', $data);
+        $this->load->view('rekom/provtokab', $data);
+        $this->load->view('layout/footer', $data);
+    }
+
+    public function detail($id_rekomendasi = null, $id_rekom_i = null, $geo_prov_id = null, $geo_kab_id = null)
     {
         // var_dump($id_rekom_i, $id_rekomendasi, $geo_prov_id, $geo_kab_id);
         $data['judul'] = 'Datail Data Rekom';
@@ -113,7 +151,7 @@ class Rekom extends CI_Controller {
         $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
         $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'INNER');
         $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'INNER');
-        $this->db->group_by('m_geo_prov_kpu.geo_prov_nama');  
+        $this->db->group_by('m_geo_prov_kpu.geo_prov_nama');
 
         $query  = $this->db->get()->result_array();
         // var_dump($query);die;
@@ -343,14 +381,14 @@ class Rekom extends CI_Controller {
         redirect('rekom');
     }
 
-    public function editRekom($id_rekom_i)
+    public function editRekom($id_rekom)
     {
         $this->db->select('*');
         $this->db->from('m_geo_prov_kpu');
         $query  = $this->db->get();
 
         $data['provinsi'] = $query->result();
-        $data['rekomendasi'] = $this->Rekom_model->getEditSelected($id_rekom_i);
+        $data['rekomendasi'] = $this->Rekom_model->getEditSelected($id_rekom);
         $data['judul'] = 'Halaman Ubah';
         
         $this->form_validation->set_rules('calon', 'Calon', 'required');
@@ -379,7 +417,7 @@ class Rekom extends CI_Controller {
                 "catatan"             => $catatan
             ];
 
-            $this->db->where('tb_calon_rekomendasi.id_rekom',$id_rekom_i);
+            $this->db->where('tb_calon_rekomendasi.id_rekom',$id_rekom);
             $this->db->update('tb_calon_rekomendasi', $dataRekom);
             
             $this->session->set_flashdata('edit', 'Diedit');

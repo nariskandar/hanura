@@ -4,7 +4,7 @@ class Rekom_model extends CI_model {
     public function getAllDataRekom()
     {
         $this->db->select(
-            "tb_calon_rekomendasi_i.id_rekom AS id_rekom_i,
+            "tb_calon_rekomendasi_i.id_rekom,
             pengusung_i.id_pengusung,
             tb_rekomendasi.id as id_rekomendasi,
             m_geo_prov_kpu.geo_prov_id,
@@ -50,30 +50,121 @@ class Rekom_model extends CI_model {
             return $this->db->get()->result_array();
     }
 
+    public function getFilterByProvinsi($provinsi)
+    {
+        $this->db->select(
+            "tb_calon_rekomendasi_i.id_rekom,
+            pengusung_i.id_pengusung,
+            tb_rekomendasi.id as id_rekomendasi,
+            m_geo_prov_kpu.geo_prov_id,
+            m_geo_kab_kpu.geo_kab_id,
+            m_geo_prov_kpu.geo_prov_nama,
+            m_geo_kab_kpu.geo_kab_nama,
+            calon.nama AS nama_calon,
+            pasangan.nama AS nama_pasangan,
+            tb_calon_rekomendasi_i.total_kursi,
+            tb_partai_i.logo_partai,
+            tb_syarat.syarat,
+            GROUP_CONCAT(DISTINCT tb_partai_i.logo_partai SEPARATOR ' ' ) as pengusung_i,
+            GROUP_CONCAT(DISTINCT tb_partai_i.partai SEPARATOR ' , ' ) as nama_partai,
+            SUM(
+                (
+                SELECT
+                    SUM( tks.total_kursi ) 
+                FROM
+                    tb_kursi tks 
+                WHERE
+                    tks.geo_kab_id = tb_calon_rekomendasi_i.geo_kab_id 
+                    AND tks.geo_prov_id = tb_calon_rekomendasi_i.geo_prov_id 
+                    AND tks.id_partai = pengusung_i.id_partai 
+                ) 
+            ) AS hasil_total_kursi_i");
+    
+            $this->db->from('tb_rekomendasi');
+            $this->db->join('tb_calon AS calon', 'tb_rekomendasi.id_calon = calon.id', 'LEFT');
+            $this->db->join('tb_calon AS pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'LEFT');
+            $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'LEFT');
+            $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'LEFT');
+            $this->db->join('tb_calon_rekomendasi AS tb_calon_rekomendasi_i', 'tb_rekomendasi.id_calon = tb_calon_rekomendasi_i.id_calon', 'LEFT');
+            $this->db->join('m_geo_prov_kpu AS m_geo_prov_kpu_i', 'tb_calon_rekomendasi_i.geo_prov_id = m_geo_prov_kpu_i.geo_prov_id', 'LEFT');
+            $this->db->join('m_geo_kab_kpu AS m_geo_kab_kpu_i', 'tb_calon_rekomendasi_i.geo_kab_id = m_geo_kab_kpu_i.geo_kab_id', 'LEFT');
+            $this->db->join('tb_calon AS calon_i', 'tb_calon_rekomendasi_i.id_calon = calon_i.id', 'LEFT');
+            $this->db->join('tb_calon AS pasangan_i', 'tb_calon_rekomendasi_i.id_pasangan = pasangan_i.id', 'LEFT');
+            $this->db->join('tb_pengusung as pengusung_i', 'tb_calon_rekomendasi_i.id_rekom = pengusung_i.id_rekom', 'LEFT');
+            $this->db->join('tb_syarat', 'm_geo_kab_kpu.geo_kab_id = tb_syarat.geo_kab_id', 'LEFT');
+            $this->db->join('tb_partai as tb_partai_i', 'pengusung_i.id_partai = tb_partai_i.id_partai', 'LEFT');
+            $this->db->where('m_geo_prov_kpu.geo_prov_id', $provinsi);
+            $this->db->group_by('tb_rekomendasi.id');
+    
+            // $exist = $this->db->get()->row();
+            return $this->db->get()->result_array();
+    }
+
+    public function getDataRekomProvinsi()
+    {
+        $this->db->select("
+        m_geo_prov_kpu.geo_prov_nama,
+        m_geo_prov_kpu.geo_prov_id,
+        m_geo_kab_kpu.geo_kab_nama,
+        m_geo_kab_kpu.geo_kab_id");
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'INNER');
+        $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'INNER');
+        $this->db->group_by('m_geo_prov_kpu.geo_prov_nama');
+
+        return $this->db->get()->result_array();
+        // var_dump($query);die;
+    }
+
+    public function getAllDataKab()
+    {
+        $this->db->select("
+        m_geo_prov_kpu.geo_prov_nama,
+        m_geo_prov_kpu.geo_prov_id,
+        m_geo_kab_kpu.geo_kab_nama,
+        m_geo_kab_kpu.geo_kab_id");
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'INNER');
+        $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'INNER');
+        $this->db->group_by('m_geo_kab_kpu.geo_kab_nama');
+
+        return $this->db->get()->result_array();
+        // var_dump($query);die;
+    }
+
+    public function getProvToKab($geo_prov_id)
+    {
+        $this->db->select("
+        m_geo_prov_kpu.geo_prov_nama,
+        m_geo_prov_kpu.geo_prov_id,
+        m_geo_kab_kpu.geo_kab_nama,
+        m_geo_kab_kpu.geo_kab_id");
+        $this->db->from('tb_rekomendasi');
+        $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
+        $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+        $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'INNER');
+        $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'INNER');
+        $this->db->where('m_geo_prov_kpu.geo_prov_id', $geo_prov_id);
+        $this->db->group_by('m_geo_kab_kpu.geo_kab_nama');
+
+        return $this->db->get()->result_array();
+        // var_dump($query);die;
+    }
+
     public function getAllDataCalon()
     {
         $this->db->select(
             "calon.nama AS nama_calon,
             pasangan.nama AS nama_pasangan");
-            
         $this->db->from('tb_rekomendasi');
         $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
         $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
-        $this->db->join('tb_calon_rekomendasi', 'calon', 'INNER');
+        // $this->db->join('tb_calon_rekomendasi', 'calon', 'INNER');
         return $this->db->get()->result_array();
-
-    }
-
-    public function getAllDataKab()
-    {
-        $this->db->select(
-            "m_geo_kab_kpu.geo_kab_nama");
-            
-        $this->db->from('m_geo_kab_kpu');
-        // $this->db->join('tb_calon as calon', 'tb_rekomendasi.id_calon = calon.id', 'INNER');
-        // $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'INNER');
-        return $this->db->get()->result_array();
-
     }
 
     public function getCountDataCalon()
@@ -94,6 +185,42 @@ class Rekom_model extends CI_model {
         $this->db->join('tb_calon as calon', 'tb_calon_rekomendasi.id_calon = calon.id', 'INNER');
         $this->db->join('tb_calon as pasangan', 'tb_calon_rekomendasi.id_pasangan = pasangan.id', 'INNER');
         return $this->db->get()->result_array();
+    }
+
+    public function getCountProvinsi()
+    {
+        $query = $this->db->query("
+        select
+        m_geo_prov_kpu.geo_prov_nama,
+        m_geo_prov_kpu.geo_prov_id,
+        m_geo_kab_kpu.geo_kab_nama,
+        m_geo_kab_kpu.geo_kab_id
+        from tb_rekomendasi
+        inner join tb_calon as calon ON tb_rekomendasi.id_calon = calon.id
+        inner join tb_calon as pasangan ON tb_rekomendasi.id_pasangan = pasangan.id
+        inner join m_geo_prov_kpu ON calon.provinsi = m_geo_prov_kpu.geo_prov_id
+        inner join m_geo_kab_kpu ON calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id
+        group by m_geo_prov_kpu.geo_prov_nama");
+
+        return $query->num_rows();
+    }
+
+    public function getCountKab()
+    {
+        $query = $this->db->query("
+        select
+        m_geo_prov_kpu.geo_prov_nama,
+        m_geo_prov_kpu.geo_prov_id,
+        m_geo_kab_kpu.geo_kab_nama,
+        m_geo_kab_kpu.geo_kab_id
+        from tb_rekomendasi
+        inner join tb_calon as calon ON tb_rekomendasi.id_calon = calon.id
+        inner join tb_calon as pasangan ON tb_rekomendasi.id_pasangan = pasangan.id
+        inner join m_geo_prov_kpu ON calon.provinsi = m_geo_prov_kpu.geo_prov_id
+        inner join m_geo_kab_kpu ON calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id
+        group by m_geo_kab_kpu.geo_kab_id");
+
+        return $query->num_rows();
     }
 
     public function getAllDataHanura()
@@ -138,7 +265,6 @@ class Rekom_model extends CI_model {
         $this->db->join('tb_pengusung', 'tb_calon_rekomendasi.id_rekom=tb_pengusung.id_rekom');
         $this->db->where('tb_pengusung.id_partai=13');
         return $this->db->get()->result_array();
-        // return $this->db->get()->row_array();
     }
 
     public function getAllDataTbKursi()
@@ -155,8 +281,6 @@ class Rekom_model extends CI_model {
     {
         return $this->db->get('tb_partai')->result_array();
     }
-    
-    // var_dump($id_rekomendasi,  $id_rekom_i, $geo_prov_id, $geo_kab_id);
     public function getDataRekomById($id_rekomendasi)
     {
         $this->db->select("tb_rekomendasi.id as id_rekomendasi,
@@ -168,6 +292,7 @@ class Rekom_model extends CI_model {
             calon.nama AS nama_calon,
             pasangan.nama AS nama_pasangan,
             tb_calon_rekomendasi.catatan,
+            tb_syarat.syarat,
             tb_calon_rekomendasi.id_rekom as id_rekom_i
             ");
         $this->db->from('tb_rekomendasi');
@@ -175,7 +300,8 @@ class Rekom_model extends CI_model {
         $this->db->join('tb_calon as pasangan', 'tb_rekomendasi.id_pasangan = pasangan.id', 'left');
         $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'left');
         $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'left');
-        $this->db->join('tb_calon_rekomendasi', 'calon.id = tb_calon_rekomendasi.id_calon', 'left'); 
+        $this->db->join('tb_syarat', 'm_geo_kab_kpu.geo_kab_id = tb_syarat.geo_kab_id', 'left');
+        $this->db->join('tb_calon_rekomendasi', 'calon.id = tb_calon_rekomendasi.id_calon', 'left');
         $this->db->where('tb_rekomendasi.id', $id_rekomendasi);
         return $this->db->get()->result_array();
         

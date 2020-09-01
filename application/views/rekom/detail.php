@@ -1,7 +1,5 @@
 <?php
 // var_dump($rekomendasi);
-// var_dump($datakursi);
-
 ?>
 
 
@@ -18,7 +16,6 @@
 			<div class="col-md-12">
 				<div class="panel panel-white">
 					<div class="panel-body">
-
 						<form action="<?= base_url(); ?>rekom" enctype="multipart/form-data">
 <?php foreach ($rekomendasi as $key => $value ) : ?>
 							<input type="hidden" name="id_rekom" id="id_rekom">
@@ -55,6 +52,21 @@
 									<h4 class="no-m m-b-sm">Nama Pasangan Calon</h4>
 									<input type="text" class="form-control" id="input-readonly"
 										value="<?= $value['nama_pasangan']; ?>" readonly="">
+								</div>
+							</div>
+
+							<br>
+
+							<div class="row">
+								<div class="col-md-6">
+									<h4 class="no-m m-b-sm">Syarat Kursi</h4>
+									<input type="text" class="form-control" id="input-readonly"
+										value="<?= $value['syarat']; ?>" readonly="">
+								</div>
+								<div class="col-md-6">
+									<h4 class="no-m m-b-sm">Total Kursi</h4>
+									<input type="text" class="form-control" id="input-readonly"
+										value="<?= $value['total_kursi']; ?>" readonly="">
 								</div>
 							</div>
 
@@ -121,9 +133,6 @@
 								</div>
 								<?php endforeach; ?>
 						</form>
-
-
-
 					</div>
 				</div>
 			</div>
