@@ -340,6 +340,32 @@ class Rekom extends CI_Controller {
     	echo $data;
     }
 
+    // function add_ajax_catatan($geo_prov_id = null, $geo_kab_id = null, $id_partai = null)
+	// {
+    //     $geo_prov_id = $this->input->get('geo_prov_id');
+    //     $geo_kab_id = $this->input->get('geo_kab_id');
+    //     $id_partai = $this->input->get('id_partai');
+
+    //     $this->db->select('SUM(total_kursi) as total, tb_kursi.*');
+    //     $this->db->from('tb_kursi');
+
+    //     $this->db->where('geo_prov_id', $geo_prov_id);
+    //     $this->db->where('geo_kab_id', $geo_kab_id);
+    //     $this->db->where_in('id_partai', $id_partai);
+    //     $query  = $this->db->get();
+
+    //     $data = "";
+    //     if ($query->result() == null) {
+    //         $data = "<input type='text' name='total_kursi[]' class='form-control' readonly value='' >";
+    //         return;
+    //     }
+
+    // 	foreach ($query->result() as $value) {
+    //     	$data = "<input type='text' name='total_kursi[]' class='form-control' value='".$value->total."' readonly>";
+    //     }
+    // 	echo $data;
+    // }
+
     function edit_ajax_kursi($geo_prov_id = null, $geo_kab_id = null, $id_partai = null)
 	{
         // var_dump($this->input->get());

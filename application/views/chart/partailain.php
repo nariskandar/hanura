@@ -1,4 +1,3 @@
-
 <div class="page-inner">
 
 <div class="page-title">
@@ -16,12 +15,18 @@
     <div class="row">
 
         <div class="col-md-12">
-
+            
             <div class="panel panel-white">
-   
-                    <div class="panel-body">
+                <div class="panel-body">
                     <div class="table-responsive">
-                    <table id="table_id" class="display table"">
+                        <div class="pull-right">
+                            <a href="<?= base_url('chart'); ?>">
+                                <button type="submit" name="submit"
+                                class="btn btn-success btn-addon m-b-sm btn-sm"><i
+                                class="fa fa-close"></i>Kembali</button>
+                            </a>
+                        </div>
+                        <table id="table_id" class="display table"">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -30,6 +35,7 @@
                                 <th class="col-md-2">Nama Calon</th>
                                 <th class="col-md-2">Nama Pasangan</th>
                                 <th class="col-md-3">Pengusung</th>
+                                <th>Syarat</th>
                                 <th>Kursi</th>
                                 <th class="col-md-3">Action</th>
                             </tr>
@@ -81,11 +87,14 @@ foreach ($ico as $key => $item) {
                                     </div>
                                 </td>
                                 <td>
+                                <?= $value['syarat']; ?>
+                                </td>
+                                <td>
                                 <?= $value['total_kursi']; ?>
                                 </td>
                                 <td>  
                                 
-                                <a href="<?= base_url();?>rekom/detail/<?= $value['id_rekom']; ?>/<?= $value['geo_prov_id']; ?>/<?= $value['geo_kab_id']; ?>"
+                                <a href="<?= base_url();?>rekom/detail/<?= $value['id_rekomendasi']; ?>/<?= $value['id_rekom']; ?>/<?= $value['geo_prov_id']; ?>/<?= $value['geo_kab_id']; ?>"
                                 	type="button" class="btn btn-warning btn-xs">
                                 	<i class="fa fa-search-plus"></i>
                                 </a>

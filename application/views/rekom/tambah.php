@@ -1,8 +1,3 @@
-<?php
-
-
-?>
-
 <style>
 	#tengah {
 		width: 500px;
@@ -151,16 +146,7 @@
 									</table>
 								</div>
 							</div>
-
-							<!-- <div class="row">
-								<div class="col-md-12">
-									<h4 class="no-m m-b-sm m-t-lg">Jumlah Kursi</h4>
-								</div>
-								<div class="col-md-3" id="total_kursi">
-									<input type="text" name="total_kursi[]" class="form-control" value="" readonly>
-								</div>
-							</div> -->
-
+							
 							<div class="row">
 								<div class="col-md-12">
 									<h4 class="no-m m-b-sm m-t-lg">Catatan</h4>

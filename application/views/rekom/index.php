@@ -1,3 +1,4 @@
+
 <div class="page-inner">
 
 	<div class="page-title">
@@ -15,7 +16,7 @@
 				<div class="panel info-box panel-white">
 					<div class="panel-body">
 						<div class="info-box-stats">
-							<p class="counter"><?= $alldatarekom[0]['seluruh_rekom']; ?> <span style="font-size:20px;">
+							<p class="counter"><?= $alldatarekom[0]['seluruh_rekom']; ?> <span style="font-size:11px;">
 									/ <?= $alldatacalon[0]['seluruh_calon'] ?></span style="font-size:11;"></p>
 							<a href="<?= base_url('rekom/seluruhcalon'); ?>">
 								<span class="info-box-title">Jumlah Calon Pasangan</span>

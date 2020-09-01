@@ -1,7 +1,4 @@
 <?php
-
-
-
 $id_partai      = array_keys($hitung[0]['id_partai']);
 $nama_partai    = array_keys($hitung[0]['nama_partai']);
 $list_id        = $hitung[0]['list_data'];
@@ -54,73 +51,67 @@ $hasil = json_encode($json) ;
 <div class="page-title">
     <div class="container">
         <div class="col-md-12">
-            <h3>Chart Usungan Partai Hanura dengan Partai Lain</h3>
+            <h3>Chart Usungan <strong> Partai Hanura </strong> dengan Partai Lain</h3>
         </div>
     </div>
 </div>
 
 <div id="main-wrapper" class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-white">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-white">
+				<div class="panel-body">
+                <br>
+					<div id="morris4"></div>
+				</div>
+                
+			</div>
+		</div>
+        
+		<div class="col-md-6">
+			<div class="panel panel-white">
                 <div class="panel-body">
-                <div class="col-md-6 order-md-1">
+                		<table class="table">
+                			<thead>
+                				<tr>
+                					<th>No</th>
+                					<th>Nama Parti</th>
+                					<th>Jumlah</th>
+                				</tr>
+                			</thead>
 
-                    <div class="panel-heading">
-                        <h3 class="panel-title"></h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="morris4"></div>
-                    </div>
-                
-                </div>
+                			<?php $no=1; ?>
+                			<?php foreach ($combine as $c) : ?>
+                			<?php $id_par = $c[0]; ?>
+                			<tbody>
+                				<tr>
+                                <?php if ($no == 1) : ?>
+                                    <input type="hidden" value="<?php $no; ?>">
+                					<th scope="row"><img src="<?= base_url('assets/images/number-one.svg') ?>" width="25" alt=""> </th>
+                                    <?php else : ?>
+                					<th scope="row"><?= $no; ?></th>
+                                <?php endif; ?>
+                					<td>
+                						<?php $url_encode = urlencode($c['3']) ;?>
+                						<!-- '.$id_rekom.'/'.$geo_prov_id.'/'.$geo_kab_id -->
+                						<a href="<?= base_url('chart/partailain/'.$url_encode.'/'.$id_par) ?>">
+                							<span><?=  $c['1']; ?></span>
+                						</a>
+                					</td>
+                					<td><?=  $c['2']; ?></td>
+                				</tr>
+                			</tbody>
+                			<?php $no++; ?>
+                			<?php endforeach;  ?>
+                		</table>
+                	</div>
+				</div>
+			</div>
+		</div>
+        
+        
+	</div>
 
-                <div class="col-md-6 order-md-1">
-
-                    <div class="panel-heading">
-                        <h3 class="panel-title"></h3>
-                    </div>
-                    <div class="panel-body">
-                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Parti</th>
-                                                <th>Jumlah</th>
-                                            </tr>
-                                        </thead>
-
-                            <?php $no=1; ?>
-                            <?php foreach ($combine as $c) : ?>
-                            <?php $id_par = $c[0]; ?>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row"><?= $no; ?></th>
-                                            <td>
-                                            <?php $url_encode = urlencode($c['3']) ;?>
-                                            <!-- '.$id_rekom.'/'.$geo_prov_id.'/'.$geo_kab_id -->
-                                                <a href="<?= base_url('chart/partailain/'.$url_encode.'/'.$id_par) ?>">
-                                                    <span><?=  $c['1']; ?></span> 
-                                                </a>
-                                            </td>
-                                            <td><?=  $c['2']; ?></td>
-                                        </tr>
-                                    </tbody>
-                            <?php $no++; ?>
-                            <?php endforeach;  ?>
-                                    </table>
-                    </div>
-                
-                </div>
-
-                <div>
-
-                </div>
-                
-
-            </div>
-        </div>
-    </div>
 </div>
 
 <script>

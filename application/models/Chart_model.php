@@ -116,21 +116,22 @@ class Chart_model extends CI_model
             pasangan.nama AS nama_pasangan,
             pengusung.id_pengusung,
             tb_partai.logo_partai,
-            
+            tb_syarat.syarat,
             tb_calon_rekomendasi.total_kursi,
-
-            
             tb_calon_rekomendasi.catatan,
+            tb_rekomendasi.id as id_rekomendasi,
             GROUP_CONCAT(DISTINCT tb_partai.logo_partai SEPARATOR ' ' ) as pengusung");
     
             $this->db->from('tb_calon_rekomendasi');
             $this->db->join('tb_pengusung', 'tb_calon_rekomendasi.id_rekom = tb_pengusung.id_rekom', 'INNER');
             $this->db->join('m_geo_prov_kpu', 'tb_calon_rekomendasi.geo_prov_id = m_geo_prov_kpu.geo_prov_id', 'INNER');
             $this->db->join('m_geo_kab_kpu', 'tb_calon_rekomendasi.geo_kab_id = m_geo_kab_kpu.geo_kab_id', 'INNER');
+            $this->db->join('tb_syarat', 'm_geo_kab_kpu.geo_kab_id = tb_syarat.geo_kab_id', 'INNER');
             $this->db->join('tb_calon as calon', 'tb_calon_rekomendasi.id_calon = calon.id', 'INNER');
             $this->db->join('tb_calon as pasangan', 'tb_calon_rekomendasi.id_pasangan = pasangan.id', 'INNER');
             $this->db->join('tb_pengusung as pengusung', 'tb_calon_rekomendasi.id_rekom = pengusung.id_rekom', 'INNER');
             $this->db->join('tb_partai', 'pengusung.id_partai = tb_partai.id_partai', 'INNER');
+            $this->db->join('tb_rekomendasi', 'calon.id = tb_rekomendasi.id_calon', 'INNER');
             $this->db->where_in('tb_pengusung.id_rekom', $rekom);
             $this->db->group_by('id_rekom');
     
