@@ -3,7 +3,7 @@
 <div class="page-title">
     <div class="container">
         <div class="col-md-12">
-            <h3>Data Kabupaten/Kota dai Provinsi <strong><?= $list_kab['0']['geo_prov_nama']; ?></strong> </h3>
+            <h3>Data Kabupaten/Kota dari Provinsi <strong><?= $list_kab['0']['geo_prov_nama']; ?></strong> </h3>
         </div>      
     </div>
 </div>

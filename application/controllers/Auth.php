@@ -14,8 +14,8 @@ class Auth extends CI_Controller
     {
         $data['tittle'] = 'HALAMAN LOGIN'; 
 
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
         if($this->form_validation->run() == FALSE){
             $this->load->view('auth/index', $data);
         }else{
@@ -40,10 +40,13 @@ class Auth extends CI_Controller
 				'status' => 'masuk'
 				);
  
-			$this->session->set_userdata($data_session);
+            $this->session->set_userdata($data_session);
+            
 			redirect( base_url('rekom'));
 		}else{
-			redirect('auth');
+            $data['datas'] = "Email/Password salah";
+            $this->load->view('auth/index', $data);
+			// redirect('auth');
 		}
 	}
  

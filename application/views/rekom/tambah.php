@@ -107,9 +107,9 @@
 												<td>
 													<select name="partai[]" id="partai" class="js-states form-control"
 														tabindex="-1" style="display: none; width: 100%">
-														<option value="<?= set_value('partai'); ?>">-- Pilih Partai --</option>
+														<option value="">-- Pilih Partai --</option>
 													</select>
-													<small class="form-text text-danger"><?= form_error('partai'); ?></small>
+												<small class="form-text text-danger"><?= form_error('partai[]'); ?></small>
 												</td>
 
 												<td>
@@ -129,7 +129,7 @@
 															}
 														?>
 														</select>
-														<small class="form-text text-danger"><?= form_error('jenis_surat'); ?></small>
+														<small class="form-text text-danger"><?= form_error('jenis_surat[]'); ?></small>
 												</td>
 
 												<td>
