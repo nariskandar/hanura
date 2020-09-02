@@ -340,10 +340,12 @@ class Rekom extends CI_Controller {
     	echo $data;
     }
 
-    function add_ajax_nomersurat($geo_prov_id = null, $geo_kab_id = null)
+    function add_ajax_nomersurat($geo_prov_id = null, $geo_kab_id = null, $id_calon = null, $id_pasangan = null)
 	{
-        $geo_prov_id = $this->input->get('geo_prov_id');
-        $geo_kab_id = $this->input->get('geo_kab_id');
+        $geo_prov_id    = $this->input->get('geo_prov_id');
+        $geo_kab_id     = $this->input->get('geo_kab_id');
+        $id_calon       = $this->input->get('id_calon');
+        $id_pasangan    = $this->input->get('id_pasangan');
 
         var_dump($geo_prov_id);
         var_dump($geo_kab_id);
