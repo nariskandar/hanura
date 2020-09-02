@@ -117,7 +117,25 @@ class Rekom_model extends CI_model {
         return $this->db->get()->result_array();
         // var_dump($query);die;
     }
-
+    public function getCountKabProv()
+    {
+        $query = $this->db->query("
+        select
+        m_geo_prov_kpu.geo_prov_nama,
+        m_geo_prov_kpu.geo_prov_id,
+        m_geo_kab_kpu.geo_kab_nama,
+        m_geo_kab_kpu.geo_kab_id
+        from tb_rekomendasi
+        inner join tb_calon as calon ON tb_rekomendasi.id_calon = calon.id
+        inner join tb_calon as pasangan ON tb_rekomendasi.id_pasangan = pasangan.id
+        inner join m_geo_prov_kpu ON calon.provinsi = m_geo_prov_kpu.geo_prov_id
+        inner join m_geo_kab_kpu ON calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id
+        group by m_geo_kab_kpu.geo_kab_nama");
+        
+        return $query->num_rows();
+    }
+    // WHERE m_geo_prov_kpu.geo_prov_id = $geo_prov_id
+    
     public function getAllDataKab()
     {
         $this->db->select("

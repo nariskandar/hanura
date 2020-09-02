@@ -74,6 +74,7 @@ class Rekom extends CI_Controller {
     {
         $data['judul'] = 'Halaman Seluruh Kabupaten/Kota';
         $data['alldataprov'] = $this->Rekom_model->getDataRekomProvinsi();
+        // $data['countkab']    = $this->Rekom_model->getCountKabProv($geo_prov_id);
 
         $this->load->view('layout/header', $data);
         $this->load->view('layout/navbar', $data);
@@ -309,16 +310,14 @@ class Rekom extends CI_Controller {
     	foreach ($query->result() as $value) {
         	$data .= "<option value='".$value->id_partai."'>".$value->partai."</option>";
         }
-
     	echo $data;
     }
 
     function add_ajax_kursi($geo_prov_id = null, $geo_kab_id = null, $id_partai = null)
 	{
-        // var_dump($this->input->get());
-        $geo_prov_id = $this->input->get('geo_prov_id');
-        $geo_kab_id = $this->input->get('geo_kab_id');
-        $id_partai = $this->input->get('id_partai');
+        $geo_prov_id    = $this->input->get('geo_prov_id');
+        $geo_kab_id     = $this->input->get('geo_kab_id');
+        $id_partai      = $this->input->get('id_partai');
 
         $this->db->select('SUM(total_kursi) as total, tb_kursi.*');
         $this->db->from('tb_kursi');
@@ -337,19 +336,14 @@ class Rekom extends CI_Controller {
     	foreach ($query->result() as $value) {
         	$data = "<input type='text' name='total_kursi[]' class='form-control' value='".$value->total."' readonly>";
         }
-    	echo $data;
+        echo $data;
+
     }
 
-    function add_ajax_nomersurat($geo_prov_id = null, $geo_kab_id = null, $id_calon = null, $id_pasangan = null)
+    function add_ajax_nomersurat($id_calon)
 	{
-        $geo_prov_id    = $this->input->get('geo_prov_id');
-        $geo_kab_id     = $this->input->get('geo_kab_id');
-        $id_calon       = $this->input->get('id_calon');
-        $id_pasangan    = $this->input->get('id_pasangan');
+        // $id_calon       = $this->input->get('id_calon');
 
-        var_dump($geo_prov_id);
-        var_dump($geo_kab_id);
-        
         $this->db->select(
         'tb_rekomendasi.no_rekomendasi');
         $this->db->from('tb_rekomendasi');
@@ -358,29 +352,30 @@ class Rekom extends CI_Controller {
         $this->db->join('m_geo_prov_kpu', 'calon.provinsi = m_geo_prov_kpu.geo_prov_id', 'INNER');
         $this->db->join('m_geo_kab_kpu', 'calon.kabupaten_kota = m_geo_kab_kpu.geo_kab_id', 'INNER');
 
-        $this->db->where('m_geo_prov_kpu.geo_prov_id', $geo_prov_id);
-        $this->db->where('m_geo_prov_kpu.geo_kab.id', $geo_kab_id);
-        // $this->db->where_in('id_partai', $id_partai);
-        $query  = $this->db->get();
+        $this->db->where('tb_rekomendasi.id_calon', $id_calon);
+        // $this->db->where('tb_rekomendasi.id_pasangan', $id_pasangan);
+        $query1  = $this->db->get();
+        // var_dump($query1);die;
 
-        $data = "";
-        if ($query->result() == null) {
-            $data = "
+
+        $data1 = "";
+        if ($query1->result() == null) {
+            $data1 = "
             <input type='text' class='form-control' name='no_surat[]'
-            value='' placeholder='nomer_jenis_surat'>
+            value='' placeholder='Nomer Jenis Surat'>
             ";
             return;
         }
-
-    	foreach ($query->result() as $value) {
-        	$data = "<input type='text' name='no_surat[]' class='form-control' value='".$value->no_rekomendasi."' readonly>";
+        // $value1->no_rekomendasi
+        foreach ($query1->result() as $value1) {
+        $data1 = "<input type='text' class='form-control' name='no_surat[]' value='".$value1->no_rekomendasi."'>";
         }
-    	echo $data;
+
+        echo $data1;
     }
 
     function edit_ajax_kursi($geo_prov_id = null, $geo_kab_id = null, $id_partai = null)
 	{
-        // var_dump($this->input->get());
         $geo_prov_id = $this->input->get('geo_prov_id');
         $geo_kab_id = $this->input->get('geo_kab_id');
         $id_partai = $this->input->get('id_partai');

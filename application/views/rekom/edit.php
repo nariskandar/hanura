@@ -131,18 +131,8 @@
 
 							<br>
 
-							<div class="row pull-right">
-
-								<div class="col-md-4">
-
-									<a href="">
-										<button type="button" class="btn btn-warning btn-addon m-b-sm btn-sm"><i
-												class="fa fa-file-pdf-o"></i>Cetak PDF</button>
-									</a>
-
-								</div>
-
-								<div class="col-md-4">
+							<div class="row pull-right col-md-12">
+								<div class="col-md-6">
 									<a href="<?= base_url(); ?>rekom">
 										<button type="button" name="kembali"
 											class="btn btn-primary btn-addon m-b-sm btn-sm"><i
@@ -151,7 +141,7 @@
 								</div>
 
 
-								<div class="col-md-4">
+								<div class="col-md-6">
 									<a href="">
 										<button type="submit" name="submit"
 											class="btn btn-success btn-addon m-b-sm btn-sm"><i

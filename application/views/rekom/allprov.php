@@ -25,6 +25,7 @@
                             <tr>
                                 <th class="col-md-1">No</th>
                                 <th class="col-md-5">Nama Provinsi</th>
+                                <!-- <th class="col-md-2">Jumlah Kota</th> -->
                             </tr>
                         </thead>
 
@@ -38,6 +39,7 @@
                                 <?= $prov['geo_prov_nama']; ?>
                                 </a>
                                 </td>
+                                
                             </tr>
                         <?php $no++; ?>
                         <?php endforeach; ?>
