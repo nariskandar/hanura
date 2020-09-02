@@ -97,7 +97,7 @@
 						<div class="pull-right">
 							<a href="<?= base_url(); ?>rekom/tambah">
 								<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah
-									Data</button>
+									Data Rekom</button>
 							</a>
 						</div>
 					</div>

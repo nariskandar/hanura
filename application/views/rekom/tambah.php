@@ -40,7 +40,7 @@
 									<h4 class="no-m m-b-sm">Provinsi</h4>
 									<select name="provinsi" id="provinsi" class="js-states form-control" tabindex="-1"
 										style="display: none; width: 100%">
-										<option value=""><?= set_value('provinsi'); ?>-- Pilih Provinsi --</option>
+										<option value="<?= set_value('provinsi'); ?>">-- Pilih Provinsi --</option>
 										<?php
                                 foreach ($provinsi as $key => $value) {
                                     echo '<option value="'.$value['geo_prov_id'].'">'.$value['geo_prov_nama'].'</option>';

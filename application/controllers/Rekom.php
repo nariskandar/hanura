@@ -163,9 +163,9 @@ class Rekom extends CI_Controller {
         $data['judul'] = 'Halaman Tambah';
 
         $this->form_validation->set_rules('provinsi', 'Provinsi', 'required');
-        $this->form_validation->set_rules('kab', 'Kabupaten/Kota', 'required');
+        $this->form_validation->set_rules('kab', 'Kota/Kabupaten', 'required');
         $this->form_validation->set_rules('partai[]', 'Partai', 'required');
-        $this->form_validation->set_rules('jenis_surat[]', 'Surat', 'required');
+        $this->form_validation->set_rules('jenis_surat[]', 'Jenis Surat', 'required');
         $this->form_validation->set_rules('calon', 'Calon', 'required|is_unique[tb_calon_rekomendasi.id_calon]');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('layout/header', $data);

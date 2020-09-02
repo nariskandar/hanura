@@ -34,7 +34,7 @@
     <hr size="1" noshade="" style="width:100%; color:#000000; background-color:#000000" />
     <p style="font-size: 11px" style="text-align:right;">
     Tanggal : 
-    <?= date("F j, Y");?> 
+    <?= date("j F Y");?> 
     </p>
     <ul type="disc" style="margin:0pt; font-size: 10px; padding-left:0pt">
 
