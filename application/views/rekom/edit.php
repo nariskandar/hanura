@@ -1,10 +1,3 @@
-<?php 
-
-// var_dump($rekomendasi);
-
-?>
-
-
 <div class="page-inner">
 
 	<div class="page-title">
@@ -91,65 +84,39 @@
 								</div>
 							</div>
 
-							<!-- <div class="row"> -->
-								<!-- <div class="col-md-3">
-									<h4 class="no-m m-b-sm">Jenis Surat</h4>
-									<select name="ket" id="ket" class="form-control m-b-sm">
-										<option value="">-- Pilih Jenis Surat --</option>
-										<option id="sk" value="SK" <?php if($rekomendasi[0]['ket'] == 'SK') { ?>
-											selected="selected" <?php } ?>>SK</option>
-										<option id="st" value="ST" <?php if($rekomendasi[0]['ket'] == 'ST') { ?>
-											selected="selected" <?php } ?>>ST</option>
-										<option id="usulan_dpc" value="Usulan DPC"
-											<?php if($rekomendasi[0]['ket'] == 'Usulan DPC') { ?> selected="selected"
-											<?php } ?>>Usulan DPC</option>
-										<option id="usulan_dpd" value="Usulan DPD"
-											<?php if($rekomendasi[0]['ket'] == 'Usulan DPD') { ?> selected="selected"
-											<?php } ?>>Usulan DPD</option>
-										<option id="usulan_dpd" value="Usulan DPD"
-											<?php if($rekomendasi[0]['ket'] == 'Usulan DPD') { ?> selected="selected"
-											<?php } ?>>Usulan DPD</option>
-										<option id="usulan_dpw" value="Usulan DPW"
-											<?php if($rekomendasi[0]['ket'] == 'Usulan DPW') { ?> selected="selected"
-											<?php } ?>>Usulan DPW</option>
-									</select>
-									<br>
-									<br>
-								</div>
-                            </div> -->
-                            
-
 							<div class="row">
 								<div class="col-md-12">
 									<h4 class="no-m m-b-sm m-t-lg">Catatan</h4>
 									<textarea
 										style="resize:none; margin: 0px 16px 0px 0px; height: 207px; width: 1081px;"
 										class="form-control" type="text" name="catatan" id="catatan" row="4"
-										cols="20"><?= $rekomendasi[0]['catatan']; ?> </textarea>
+										cols="20"><?= $rekomendasi[0]['catatan']; ?>
+									</textarea>
 								</div>
 							</div>
 
 							<br>
 
-							<div class="row pull-right col-md-12">
-								<div class="col-md-6">
-									<a href="<?= base_url(); ?>rekom">
+							<div class="row pull-right">
+
+							<div class="col-md-6">
+							<a href="<?= base_url(); ?>rekom">
 										<button type="button" name="kembali"
 											class="btn btn-primary btn-addon m-b-sm btn-sm"><i
 												class="fa fa-arrow-left"></i>Kembali</button>
 									</a>
-								</div>
-
-
-								<div class="col-md-6">
-									<a href="">
-										<button type="submit" name="submit"
-											class="btn btn-success btn-addon m-b-sm btn-sm"><i
-												class="fa fa-arrow-right"></i>Lanjut</button>
-									</a>
-								</div>
 
 							</div>
+									<div class="col-md-6">
+									<a href="">
+										<button type="submit" name="submit"
+										class="btn btn-success btn-addon m-b-sm btn-sm"><i
+										class="fa fa-arrow-right"></i>Lanjut</button>
+									</a>
+									</div>
+
+								</div>
+								</div>
 
 						</form>
 

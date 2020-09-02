@@ -134,7 +134,7 @@
 									</tbody>
 								</table>
 								<!-- <button name="button" id="addRow">+ Add</button> -->
-								<div class="col-md-6">
+								<div class="col-md-12">
 
 									<button type="submit" id="submit" name="submit"
 										class="btn btn-success btn-addon m-b-sm btn-md"><i

@@ -113,7 +113,7 @@
 
 								<br>
 
-								<div class="row pull-right">
+							<div class="row pull-right">
 
 							<div class="col-md-6">
 								<a href="<?= base_url();?>rekom/cetakpdf/<?= $rekomendasi['0']['id_rekomendasi'];?>/<?= $rekomendasi['0']['id_rekom_i'];?>/<?= $rekomendasi['0']['geo_prov_id'];?>/<?= $rekomendasi['0']['geo_kab_id'];?>"
