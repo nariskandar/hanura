@@ -1,6 +1,4 @@
-
 <div class="page-inner">
-
 <div class="page-title">
     <div class="container">
         <div class="col-md-12">
@@ -14,26 +12,6 @@
 <div id="main-wrapper" class="container">
      
     <div class="row">
-
-    <!-- <div class="form-group">
-        <div class="col-sm-3">
-            <label>Partai Pengusung</label>
-            <select class="form-control m-b-sm">
-                <option>-- Pilih Partai --</option>
-                <option>Partai PKB</option>
-                <option>Partai GERINDRA</option>
-                <option>Partai PDIP</option>
-                <option>Partai GOLKAR</option>
-                <option>Partai HANURA</option>
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <label>Partai Pengusung</label>
-            <input class="form-control m-b-sm" value="4" readonly="">
-            </input>
-        </div>
-    </div> -->
-    
     
         <div class="col-md-12">
 

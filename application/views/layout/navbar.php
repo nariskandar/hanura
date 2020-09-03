@@ -1,6 +1,5 @@
 <body class="page-header-fixed compact-menu page-horizontal-bar">
 	<div class="overlay"></div>
-
 	<main class="page-content content-wrap">
 		<div class="navbar">
 			<div class="navbar-inner container">
@@ -9,9 +8,11 @@
 						<i class="fa fa-bars"></i>
 					</a>
 				</div>
-                <div class="logo-box">
-                        <a href="<?= base_url('rekom'); ?>" class="logo-text"><img src="<?= base_url('assets/images/hanura.png'); ?>" width="40" alt="<?= base_url('rekom'); ?>"></a>
-                    </div><!-- Logo Box -->
+				<div class="logo-box">
+					<a href="<?= base_url('rekom'); ?>" class="logo-text"><img
+							src="<?= base_url('assets/images/hanura.png'); ?>" width="40"
+							alt="<?= base_url('rekom'); ?>"></a>
+				</div><!-- Logo Box -->
 				<div class="topmenu-outer">
 					<div class="top-menu">
 						<ul class="nav navbar-nav navbar-left">
@@ -34,12 +35,13 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle waves-effect waves-button waves-classic"
 									data-toggle="dropdown">
-                                    <img class="img-circle avatar" src="<?= base_url('assets/images/admin.jpg'); ?>" width="40" height="40" alt="">
+									<img class="img-circle avatar" src="<?= base_url('assets/images/admin.jpg'); ?>"
+										width="40" height="40" alt="">
 								</a>
 							</li>
-                            <li>
-                                    <a href="<?= base_url('auth') ?>"><i class="fa fa-sign-out m-r-xs"></i>Log out</a>
-                            </li>   
+							<li>
+								<a href="<?= base_url('auth') ?>"><i class="fa fa-sign-out m-r-xs"></i>Log out</a>
+							</li>
 						</ul><!-- Nav -->
 					</div><!-- Top Menu -->
 				</div>

@@ -1,5 +1,24 @@
-<div class="page-inner">
+<div class="div1">
+	<div class="div2"></div>
+</div>
+<!-- <div class="progress">
+	<div class="indeterminate"></div>
+</div> -->
+<script>
+	
+document.querySelector('.container').style.display="none";
+document.querySelector('.div1').classList.add('progress');
+document.querySelector('.div2').classList.add('indeterminate');
 
+setTimeout(function() => {
+	document.querySelector('.div1').classList.remove('progress');
+	document.querySelector('.div2').classList.remove('indeterminate');
+	document.querySelector('.container').style.display="block";
+}, 40000);
+
+</script>
+
+<div class="page-inner">
 	<div class="page-title">
 		<div class="container">
 			<div class="col-md-3">
@@ -134,99 +153,98 @@
 						</thead>
 						<tbody>
 
-							<?php $no=1; ?>
-							<?php foreach ($rekomendasi as $key => $value) : ?>
-							<?php $value['pengusung_i'];
+<?php $no=1;
+?><?php foreach ($rekomendasi as $key=> $value) : ?><?php $value['pengusung_i'];
 
-        $ico = explode(' ', $value['pengusung_i'] ) ;
+$ico=explode(' ', $value['pengusung_i']);
 
-        $first = "";
-        $hanura = "";
-        $hanuraData = "";
+$first="";
+$hanura="";
+$hanuraData="";
 
-        foreach ($ico as $key => $item) {
-            if ($key == 0) {
-                $first = $item;
-            }
-            // var_dump($item);
+foreach ($ico as $key=> $item) {
+	if ($key==0) {
+		$first=$item;
+	}
 
-            if ($item == 'hanura.ico') {
-                $hanura = $key;
-                $hanuraData = $item;
-                }
-            }
-            
-            $ico[$hanura] = $first;
-            $ico[0] = $hanuraData;
+	// var_dump($item);
 
-        ?>
+	if ($item=='hanura.ico') {
+		$hanura=$key;
+		$hanuraData=$item;
+	}
+}
 
+$ico[$hanura]=$first;
+$ico[0]=$hanuraData;
 
-							<tr>
-								<td><?= $no; ?></td>
-								<td><?= $value['geo_prov_nama']; ?></td>
-								<td><?= $value['geo_kab_nama']; ?></td>
-								<td>
-									<div class="eksplisit">
-										<?= $value['nama_calon']; ?>
-									</div>
-								</td>
-								<td>
-									<div class="eksplisit">
-										<?= $value['nama_pasangan']; ?>
-									</div>
-								</td>
-								<td>
-									<?php foreach ( $ico as $key) : ?>
-                                    <!-- <a href="#" title="Hello from speech bubble!" class="tooltip"> -->
-									<img src="<?= base_url('assets/images/partai_ico/'.$key); ?>" width="25px" alt=""
-										srcset="">
-                                    <!-- </a> -->
-									<?php endforeach; ?>
-								</td>
-								<td>
-									<?= $value['syarat']; ?>
-								</td>
-								<td>
-									<?= $value['total_kursi']; ?>
-								</td>
-								<td>
-									<div class="btn-rekom">
-
-										<a href="<?= base_url();?>rekom/detail/<?= $value['id_rekomendasi']?>/<?= $value['id_rekom']; ?>/<?= $value['geo_prov_id']; ?>/<?= $value['geo_kab_id']; ?>"
-											type="button" class="btn btn-warning btn-xs">
-											<i class="fa fa-search-plus"></i>
-										</a>
-
-										<?php if ($value['id_rekom'] != null) : ?>
-
-										<a href="<?= base_url();?>rekom/editrekom/<?= $value['id_rekom']; ?>" type="button"
-											class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a>
-
-										<a href="<?= base_url();?>rekom/delete/<?= $value['id_rekom']; ?>" type="button"
-											class="btn btn-danger btn-xs button-hapus"><i class="fa fa-trash"></i></a>
-
-										<a href="<?= base_url();?>rekom/editpengusung/<?= $value['id_rekom']?>/<?= $value['geo_prov_id'] ?>/<?= $value['geo_kab_id'] ?>"
-											type="button" class="btn btn-info btn-xs"><i class="fa fa-flag"></i></a>
-
-									</div>
-
-									<?php endif; ?>
+?>
 
 
-								</td>
-								<?php $no++; ?>
-								<?php endforeach; ?>
-							</tr>
-						</tbody>
-						</table>
+			<tr>
+				<td><?= $no; ?></td>
+				<td><?= $value['geo_prov_nama']; ?></td>
+				<td><?= $value['geo_kab_nama']; ?></td>
+				<td>
+					<div class="eksplisit">
+						<?= $value['nama_calon']; ?>
 					</div>
-				</div>
-			</div>
-		</div><!-- Row -->
-	</div><!-- Main Wrapper -->
+				</td>
+				<td>
+					<div class="eksplisit">
+						<?= $value['nama_pasangan']; ?>
+					</div>
+				</td>
+				<td>
+					<?php foreach ( $ico as $key) : ?>
+					<!-- <a href="#" title="Hello from speech bubble!" class="tooltip"> -->
+					<img src="<?= base_url('assets/images/partai_ico/'.$key); ?>" width="25px" alt="" srcset="">
+					<!-- </a> -->
+					<?php endforeach; ?>
+				</td>
+				<td>
+					<?= $value['syarat']; ?>
+				</td>
+				<td>
+					<?= $value['total_kursi']; ?>
+				</td>
+				<td>
+					<div class="btn-rekom">
 
-<script>
+						<a href="<?= base_url();?>rekom/detail/<?= $value['id_rekomendasi']?>/<?= $value['id_rekom']; ?>/<?= $value['geo_prov_id']; ?>/<?= $value['geo_kab_id']; ?>"
+							type="button" class="btn btn-warning btn-xs">
+							<i class="fa fa-search-plus"></i>
+						</a>
+
+						<?php if ($value['id_rekom'] != null) : ?>
+
+						<a href="<?= base_url();?>rekom/editrekom/<?= $value['id_rekom']; ?>" type="button"
+							class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a>
+
+						<a href="<?= base_url();?>rekom/delete/<?= $value['id_rekom']; ?>/<?= $value['id_rekomendasi']?>" type="button"
+							class="btn btn-danger btn-xs button-hapus"><i class="fa fa-trash"></i></a>
+
+						<a href="<?= base_url();?>rekom/editpengusung/<?= $value['id_rekom']?>/<?= $value['geo_prov_id'] ?>/<?= $value['geo_kab_id'] ?>"
+							type="button" class="btn btn-info btn-xs"><i class="fa fa-flag"></i></a>
+
+					</div>
+
+					<?php endif; ?>
+
+
+				</td>
+				<?php $no++; ?>
+				<?php endforeach; ?>
+			</tr>
+			</tbody>
+			</table>
+			</div>
+			</div>
+			</div>
+			</div><!-- Row -->
+			</div><!-- Main Wrapper -->
+
+							<script>
 
 $(document).ready(function () {
 	$('#table_id').DataTable();
@@ -251,7 +269,3 @@ function sortprovinsi() {
 }
 
 </script>
-<!-- 
-</div>
-</div>
-</div> -->

@@ -474,6 +474,18 @@ class Rekom_model extends CI_model {
         // var_dump($dataPengusung);
     }
 
+    public function addDataStatus($id_calon, $id_pasangan)
+    {
+        $data = [
+            'status' => '1'
+        ];
+
+        $this->db->where('id_calon', $id_calon);
+        $this->db->where('id_pasangan', $id_pasangan);
+        $this->db->update('tb_rekomendasi', $data);
+        // return $this->db->update();
+    }
+
     public function deleteDataRekom($id_rekom)
     {
         $this->db->where('id_rekom', $id_rekom);
@@ -484,6 +496,16 @@ class Rekom_model extends CI_model {
     {
         $this->db->where('id_rekom', $id_rekom);
         $this->db->delete('tb_pengusung');
+    }
+
+    public function deleteDataStatus($id_rekomendasi)
+    {
+        $data = [
+            'status' => '0'
+        ];
+
+        $this->db->where('id', $id_rekomendasi);
+        $this->db->update('tb_rekomendasi', $data);
     }
 
     public function removePengusung($id_pengusung)

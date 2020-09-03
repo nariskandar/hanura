@@ -1,4 +1,3 @@
-
 <style>
    #tengah {
    	width: 500px;
@@ -125,7 +124,6 @@
                                  </td>
 
 											<td>
-
 												<button type="button" name="remove" id="remove" data-id="<?= $s['id_pengusung']; ?>"
 													class="remove">-</button>
 											</td>

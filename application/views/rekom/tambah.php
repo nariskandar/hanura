@@ -109,7 +109,8 @@
 														tabindex="-1" style="display: none; width: 100%">
 														<option value="">-- Pilih Partai --</option>
 													</select>
-												<small class="form-text text-danger"><?= form_error('partai[]'); ?></small>
+													<small
+														class="form-text text-danger"><?= form_error('partai[]'); ?></small>
 												</td>
 
 												<td>
@@ -128,12 +129,13 @@
 																echo '<option value="'.$js['id_jenis_surat'].'">'.strtoupper ($js['nama_jenis_surat']).'</option>';
 															}
 														?>
-														</select>
-														<small class="form-text text-danger"><?= form_error('jenis_surat[]'); ?></small>
+													</select>
+													<small
+														class="form-text text-danger"><?= form_error('jenis_surat[]'); ?></small>
 												</td>
 
 												<td>
-													 <div id="no_surat">
+													<div id="no_surat">
 														<input type="text" name="no_surat[]" class="form-control"
 															value="" placeholder="Nomer Jenis Surat">
 													</div>
@@ -149,7 +151,6 @@
 								</div>
 							</div>
 
-							
 							<div class="row">
 								<div class="col-md-12">
 									<h4 class="no-m m-b-sm m-t-lg">Catatan</h4>
@@ -168,7 +169,8 @@
 									<a href="<?= base_url(); ?>rekom">
 										<button type="button" name="kembali"
 											class="btn btn-primary btn-addon m-b-sm btn-sm"><i
-												class="fa fa-arrow-left"></i>Kembali</button>
+												class="fa fa-arrow-left"></i>Kembali
+										</button>
 									</a>
 								</div>
 
@@ -180,9 +182,10 @@
 										</button>
 									</a>
 								</div>
-
 							</div>
-                        </form>
+						</form>
+						
+						<?php var_dump($_POST); ?>
 					</div>
 				</div>
 			</div>
