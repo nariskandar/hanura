@@ -503,23 +503,15 @@ class Rekom extends CI_Controller {
     {
         $mpdf = new \Mpdf\Mpdf([]);
 
-        // $stylesheet = file_get_contents(base_url('assets/bootstrap-3.4.1/dist\css'));
-        // $pdf->WriteHTML($stylesheet, 1); // CSS Script goes here.
-        // $pdf->WriteHTML($html, 2); //HTML Content goes here.
-        // $pdf->Output();
-
-
-        // $data = $this->load->view('layout/header');
-        // var_dump($id_rekomendasi);die;
         $rekom['rekomendasi'] = $this->Rekom_model->getDataRekomById($id_rekomendasi);
         $rekom['datakursi'] = $this->Rekom_model->getDataKursi($id_rekom_i, $geo_prov_id, $geo_kab_id);
 
-
         $data = $this->load->view('rekom/cetak', $rekom , TRUE);
         
+        $nama_calon     = $rekom['rekomendasi']['0']['nama_calon'];
         
         $mpdf->WriteHTML($data);
-        $mpdf->Output('mpdf.pdf', \Mpdf\Output\Destination::INLINE);
+        $mpdf->Output($nama_calon.'.pdf', \Mpdf\Output\Destination::INLINE);
     }
 
     public function cetakallpdf()
@@ -533,7 +525,7 @@ class Rekom extends CI_Controller {
         
         
         $mpdf->WriteHTML($data);
-        $mpdf->Output('mpdf.pdf', \Mpdf\Output\Destination::INLINE);
+        $mpdf->Output('SELURUH DATA REKOMENDASI.pdf', \Mpdf\Output\Destination::INLINE);
     }
 
 }
