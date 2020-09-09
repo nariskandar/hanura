@@ -23,15 +23,6 @@ foreach ($data as $key => $value) {
     }  
 }
 
-// if ($data == $id_partai ) {
-//     var_dump($id_partai);
-//         // echo $partai_name["$nama_partai"][] = "getName";
-// }
-
-
-// var_dump($json = json_encode($combine)) ;
-
-// echo "<div id='combine';>" . $json . "</div>";
 
 foreach ($combine as $key => $value) {
     $json[] = [
@@ -75,7 +66,7 @@ $hasil = json_encode($json) ;
                 			<thead>
                 				<tr>
                 					<th>No</th>
-                					<th>Nama Parti</th>
+                					<th>Nama Partai</th>
                 					<th>Jumlah</th>
                 				</tr>
                 			</thead>

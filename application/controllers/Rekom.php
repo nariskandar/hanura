@@ -258,7 +258,6 @@ class Rekom extends CI_Controller {
         }
     	echo $data;
     }
-
     
     function add_ajax_pasangan($geo_prov_id = null, $geo_kab_id = null, $id_calon = null)
 	{
@@ -519,7 +518,7 @@ class Rekom extends CI_Controller {
         $mpdf = new \Mpdf\Mpdf([]);        
 
         // $data = $this->load->view('layout/header');
-        $rekom['rekomendasi'] = $this->Rekom_model->getAllDataRekom();
+        $rekom['rekomendasi'] = $this->Rekom_model->getInputDataRekom();
 
         $data = $this->load->view('rekom/cetakallpdf', $rekom , TRUE);
         

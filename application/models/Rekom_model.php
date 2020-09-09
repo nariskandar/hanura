@@ -50,6 +50,38 @@ class Rekom_model extends CI_model {
             return $this->db->get()->result_array();
     }
 
+    public function getInputDataRekom()
+    {
+        $this->db->select(
+            "SUM((SELECT SUM(tks.total_kursi) from tb_kursi tks where tks.geo_kab_id = tb_calon_rekomendasi.geo_kab_id and tks.geo_prov_id = tb_calon_rekomendasi.geo_prov_id AND tks.id_partai = pengusung.id_partai)) as hasil_total_kursi,
+            tb_calon_rekomendasi.id_rekom,
+            m_geo_prov_kpu.geo_prov_nama,
+            m_geo_kab_kpu.geo_kab_nama,
+            calon.nama AS nama_calon,
+            pasangan.nama AS nama_pasangan,
+            pengusung.id_pengusung,
+            tb_partai.partai,
+            tb_syarat.syarat,
+            tb_calon_rekomendasi.total_kursi,
+            tb_calon_rekomendasi.catatan,
+            GROUP_CONCAT(DISTINCT tb_partai.partai SEPARATOR ' , ' ) as nama_partai");
+    
+            $this->db->from('tb_calon_rekomendasi');
+            $this->db->join('m_geo_prov_kpu', 'tb_calon_rekomendasi.geo_prov_id = m_geo_prov_kpu.geo_prov_id', 'INNER');
+            $this->db->join('m_geo_kab_kpu', 'tb_calon_rekomendasi.geo_kab_id = m_geo_kab_kpu.geo_kab_id', 'INNER');
+            $this->db->join('tb_calon as calon', 'tb_calon_rekomendasi.id_calon = calon.id', 'INNER');
+            $this->db->join('tb_calon as pasangan', 'tb_calon_rekomendasi.id_pasangan = pasangan.id', 'INNER');
+            $this->db->join('tb_pengusung as pengusung', 'tb_calon_rekomendasi.id_rekom = pengusung.id_rekom', 'INNER');
+            $this->db->join('tb_syarat', 'm_geo_kab_kpu.geo_kab_id = tb_syarat.geo_kab_id', 'INNER');
+            $this->db->join('tb_partai', 'pengusung.id_partai = tb_partai.id_partai', 'INNER');
+            $this->db->group_by('id_rekom');
+            $this->db->order_by('m_geo_prov_kpu.geo_prov_nama');
+
+    
+            // $exist = $this->db->get()->row();
+            return $this->db->get()->result_array();
+    }
+
     public function getFilterByProvinsi($provinsi)
     {
         $this->db->select(

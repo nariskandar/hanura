@@ -1,4 +1,5 @@
 <?php
+// var_dump($rekomendasi);die;
 // foreach ($rekomendasi as $key => $value) {
 //     var_dump($value['nama_partai']);die;
 // }
