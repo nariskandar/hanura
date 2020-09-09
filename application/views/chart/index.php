@@ -1,4 +1,24 @@
 <?php
+
+$arr_color = [
+    array("name" => "NOT_FOUND", "color" => "#EFEFEF"),
+    array("name" => "PDIP", "color" => "#D71921"),
+    array("name" => "NASDEM", "color" => "#263883"),
+    array("name" => "GOLKAR", "color" => "#CEC700"),
+    array("name" => "DEMOKRAT", "color" => "#060695"),
+    array("name" => "GERINDRA", "color" => "#C1151C"),
+    array("name" => "PAN", "color" => "#050380"),
+    array("name" => "PKS", "color" => "#F6CC1E"),
+    array("name" => "PKB", "color" => "#089241"),
+    array("name" => "PPP", "color" => "#007834"),
+    array("name" => "PERINDO", "color" => "#31328B"),
+    array("name" => "PKPI", "color" => "#E30016"),
+    array("name" => "BERKARYA", "color" => "#E3E40D"),
+    array("name" => "PSI", "color" => "#E6222C"),
+    array("name" => "GARUDA", "color" => "#AA3235"),
+    array("name" => "PBB", "color" => "#2E6046"),
+];
+
 $id_partai      = array_keys($hitung[0]['id_partai']);
 $nama_partai    = array_keys($hitung[0]['nama_partai']);
 $list_id        = $hitung[0]['list_data'];
@@ -13,21 +33,20 @@ $result = array_column($combine, '2');
 array_multisort($result, SORT_DESC, $combine);
 
 foreach ($hitung as $key => $value) {
-    
     $data = $value['list_data'];
 }
 
-
-foreach ($data as $key => $value) {
-    if ($key == $id_partai) {
-    }  
-}
-
-
 foreach ($combine as $key => $value) {
+    $color = array_search($value[1], array_column($arr_color, "name"));
+    if($color === false){
+        $color = 0;
+    }
     $json[] = [
-        'label'  => $value[1],
-        'value'  => $value[2]
+        'name'  => $value[1],
+        'value'  => $value[2],
+        'itemStyle' => [
+            'color' => $arr_color[$color]['color']
+        ]
     ];
 }
 
@@ -53,7 +72,7 @@ $hasil = json_encode($json) ;
 			<div class="panel panel-white">
 				<div class="panel-body">
                 <br>
-					<div id="morris4"></div>
+					<div id="morris4" style="width: 100%; height : 450px"></div>
 				</div>
                 
 			</div>
@@ -118,26 +137,34 @@ $hasil = json_encode($json) ;
 
 
 $( document ).ready(function() {
-    Morris.Donut({
+    var mychart = echarts.init(document.getElementById('morris4'));
+
+    var option = {
+        series : [{
+            name : "APEM JAHE",
+            type : "pie",
+            radius : ['50%', '65%'],
+            label : {
+                show : true,
+                position : 'outside',
+                formatter : '{b} - {c}',
+            },
+            labelLine : {
+                show : true
+            },
+            data : <?php echo $hasil; ?>
+        }]
+    }
+    mychart.setOption(option);
+    /*Morris.Donut({
         element: 'morris4',            
         data: <?= $hasil ?>,
-        
-        // [
-        //     {label: 'PDIP', value: 4 },
-        //     {label: 'GERINDRA', value: 2 },
-        //     {label: 'NASDEM', value: 2 },
-        //     {label: 'PKS', value: 1 },
-        //     {label: 'PSI', value: 1 },
-        //     {label: 'PAN', value: 1 },
-        //     {label: 'DEMOKRAT', value: 1 },
-        //     {label: 'PBB', value: 1 }
-        // ],
         resize: true,
         colors: ['#fcba03', '#fc6f03', '#fc3d03','#fc0f03',
         '#fcfc03', '#90fc03', '#03fc52','#03f8fc',
         '#0398fc', '#034efc', '#2403fc','#6b03fc',
         '#fc038c', '#fc0331', '#fc0303','#f55151' ],
-    });
+    });*/
 });
 
 

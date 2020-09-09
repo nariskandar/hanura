@@ -107,18 +107,24 @@ setTimeout(function() => {
 			<div class="col-md-12">
 				<div class="panel panel-white">
 					<div class="row">
-						<div class="col-md-10">
-							<a href="<?= base_url('rekom/cetakallpdf'); ?>" target="_blank">
-								<button type="button" class="btn btn-warning" style="float: right;"><i
-										class="fa fa-file-pdf-o"></i> Cetak Selurh Data ke PDF</button>
-							</a>
-						</div>
-						<div class="pull-right">
-							<a href="<?= base_url(); ?>rekom/tambah">
-								<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah
-									Data Rekom</button>
-							</a>
-						</div>
+						<?php
+						if($this->session->userdata('status') == 'masuk'){
+							?>
+							<div class="col-md-10">
+								<a href="<?= base_url('rekom/cetakallpdf'); ?>" target="_blank">
+									<button type="button" class="btn btn-warning" style="float: right;"><i
+											class="fa fa-file-pdf-o"></i> Cetak Selurh Data ke PDF</button>
+								</a>
+							</div>
+							<div class="pull-right">
+								<a href="<?= base_url(); ?>rekom/tambah">
+									<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah
+										Data Rekom</button>
+								</a>
+							</div>
+							<?php
+						}
+						?>
 					</div>
 
 					<div class="panel-body">
@@ -148,7 +154,13 @@ setTimeout(function() => {
 								<th class="col-md-3">Pengusung</th>
 								<th>Syarat</th>
 								<th>Kursi</th>
+								<?php
+								if($this->session->userdata('status') == 'masuk'){
+									?>
 								<th class="col-md-3">Action</th>
+								<?php
+								}
+								?>
 							</tr>
 						</thead>
 						<tbody>
@@ -208,6 +220,9 @@ $ico[0]=$hanuraData;
 				<td>
 					<?= $value['total_kursi']; ?>
 				</td>
+				<?php
+				if($this->session->userdata('status') == 'masuk'){
+					?>
 				<td>
 					<div class="btn-rekom">
 
@@ -230,10 +245,12 @@ $ico[0]=$hanuraData;
 					</div>
 
 					<?php endif; ?>
-
-
 				</td>
-				<?php $no++; ?>
+
+				<?php 
+				}
+				$no++; 
+				?>
 				<?php endforeach; ?>
 			</tr>
 			</tbody>
