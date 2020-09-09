@@ -39,9 +39,21 @@
 										width="40" height="40" alt="">
 								</a>
 							</li>
+							<?php
+							if($this->session->userdata('status') == 'masuk'){
+								?>
 							<li>
-								<a href="<?= base_url('auth') ?>"><i class="fa fa-sign-out m-r-xs"></i>Log out</a>
+								<a href="<?= base_url('auth/logout') ?>"><i class="fa fa-sign-out m-r-xs"></i>Log out</a>
 							</li>
+							<?php
+							}else{
+								?>
+							<li>
+								<a href="<?= base_url('auth') ?>"><i class="fa fa-sign-in m-r-xs"></i>Log in</a>
+							</li>
+								<?php
+							}
+							?>
 						</ul><!-- Nav -->
 					</div><!-- Top Menu -->
 				</div>
@@ -57,9 +69,15 @@
 					<li><a href="<?= base_url(); ?>chart"><span class="menu-icon fa fa-pie-chart"></span>
 							<p>Chart</p>
 						</a></li>
+					<?php
+					if($this->session->userdata('status') == 'masuk'){
+						?>
 					<li><a href="<?= base_url(); ?>surat"><span class="menu-icon fa fa-envelope"></span>
 							<p>Master Surat</p>
 						</a></li>
+					<?php
+					}
+					?>
 					<!-- <li class="droplink"><a href="#"><span class="menu-icon fa fa-user"></span>
 							<p>Pengguna Manajemen</p><span class="arrow"></span>
 						</a>

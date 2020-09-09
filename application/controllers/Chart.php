@@ -5,9 +5,9 @@ class Chart extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if($this->session->userdata('status') != 'masuk'){
+        /*if($this->session->userdata('status') != 'masuk'){
 			redirect('auth');
-		}
+		}*/
         $this->load->model('Chart_model');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
