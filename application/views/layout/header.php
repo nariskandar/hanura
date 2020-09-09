@@ -90,7 +90,6 @@
   			data: {
   				"geo_prov_id": $("#provinsi").val(),
   				"geo_kab_id": $(this).val()
-
   			},
   			success: function (resp) {
   				$("#calon").html(resp)
@@ -138,8 +137,6 @@
   		})
   		return false;
   	})
-
-
 
   	function getNomerSurat() {
   		if ($("#calon").val() != '') {

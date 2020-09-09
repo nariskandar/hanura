@@ -1,9 +1,7 @@
 <div class="div1">
 	<div class="div2"></div>
 </div>
-<!-- <div class="progress">
-	<div class="indeterminate"></div>
-</div> -->
+
 <script>
 	
 document.querySelector('.container').style.display="none";
@@ -107,12 +105,6 @@ setTimeout(function() => {
 			<div class="col-md-12">
 				<div class="panel panel-white">
 					<div class="row">
-						<div class="col-md-10">
-							<a href="<?= base_url('rekom/cetakallpdf'); ?>" target="_blank">
-								<button type="button" class="btn btn-warning" style="float: right;"><i
-										class="fa fa-file-pdf-o"></i> Cetak Selurh Data ke PDF</button>
-							</a>
-						</div>
 						<div class="pull-right">
 							<a href="<?= base_url(); ?>rekom/tambah">
 								<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah
@@ -126,17 +118,19 @@ setTimeout(function() => {
 						<table id="table_id" class="display table"">
                     <div>
                     	<span>Filter</span>
-                    	<select class=" col-md-3 pull-right" name="provinsi" id="provinsi">
-							<option value="0">-- SEMUA PROVINSI --</option>
+                    	<select class="col-md-3 pull-right" name="provinsi" id="provinsi">
+							<option value="">-- SEMUA PROVINSI --</option>
 							<?php foreach ($filter_provinsi as $key => $value) : ?>
-							<option value="<?= $value['geo_prov_id'] ?>"><?= $value['geo_prov_nama']; ?></option>
-							<?php endforeach;  ?>
-							</select>
+							<option value="<?= $value['geo_prov_id']; ?>"><?= $value['geo_prov_nama']; ?></option>
+						<?php endforeach;  ?>
+						</select>
+							<button type="button" id="cetakbyprov" name="cetakbyprov" class="btn btn-warning">
+							<i class="fa fa-file-pdf-o"></i> Cetak</button>
 					</div>
-
+					
 					<br>
-					<div class="table-responsive">
 
+					<div class="table-responsive">
 						<thead>
 
 							<tr>
@@ -230,8 +224,6 @@ $ico[0]=$hanuraData;
 					</div>
 
 					<?php endif; ?>
-
-
 				</td>
 				<?php $no++; ?>
 				<?php endforeach; ?>
@@ -244,7 +236,7 @@ $ico[0]=$hanuraData;
 			</div><!-- Row -->
 			</div><!-- Main Wrapper -->
 
-							<script>
+<script>
 
 $(document).ready(function () {
 	$('#table_id').DataTable();
@@ -253,6 +245,7 @@ $(document).ready(function () {
 		$('#table_id').DataTable();
 
 		sortprovinsi();
+		// cetakbyprov();
 	});
 
 });
@@ -263,9 +256,30 @@ function sortprovinsi() {
 		url: "<?= base_url('rekom/loadprovinsi'); ?>",
 		data: "provinsi=" + provinsi,
 		success: function (data) {
-			$("#table_id tbody").html(data);
+			$("#table_id tbody").html(data)
+			cetakbyprov();
 		}
 	});
 }
+
+$("#cetakbyprov").click(function(){
+	var provinsi = $('#provinsi').val();
+	if (provinsi == '') {
+		window.open('rekom/cetakallpdf/', '_blank') || window.location.replace('rekom/cetakallpdf/')
+	}else{
+		window.open('rekom/cetakbyprov/'+ provinsi, "_blank") || window.location.replace('rekom/cetakbyprov/'+ provinsi)
+	}
+
+})
+
+// function cetakbyprov() {
+// 	$.ajax({
+// 		url: "<?= base_url('rekom/cetakbyprov'); ?>",
+// 		data: "provinsi=" + provinsi,
+// 		success: function (data) {
+// 			$("#filterbyprov").html(data)
+// 		}
+// 	});
+// }
 
 </script>

@@ -39,7 +39,7 @@ class Rekom extends CI_Controller {
         }else{
             $data['filter_provinsi']  = $this->Rekom_model->getDataRekomProvinsi();
             $data['rekomendasi']      = $this->Rekom_model->getFilterByProvinsi($provinsi);
-                
+
             $this->load->view('rekom/loadprovinsi', $data);
         }
     }
@@ -334,7 +334,6 @@ class Rekom extends CI_Controller {
 
     function add_ajax_nomersurat($id_calon)
 	{
-
         $this->db->select(
         'tb_rekomendasi.no_rekomendasi');
         $this->db->from('tb_rekomendasi');
@@ -521,6 +520,19 @@ class Rekom extends CI_Controller {
         $rekom['rekomendasi'] = $this->Rekom_model->getInputDataRekom();
 
         $data = $this->load->view('rekom/cetakallpdf', $rekom , TRUE);
+        
+        
+        $mpdf->WriteHTML($data);
+        $mpdf->Output('SELURUH DATA REKOMENDASI.pdf', \Mpdf\Output\Destination::INLINE);
+    }
+
+    public function cetakbyprov($geo_prov_id = null)
+    {
+
+        $mpdf = new \Mpdf\Mpdf([]);
+        
+        $rekom['rekomendasi'] = $this->Rekom_model->getPrintDataRekomByprov($geo_prov_id);
+        $data = $this->load->view('rekom/printbyprov', $rekom , TRUE);
         
         
         $mpdf->WriteHTML($data);
