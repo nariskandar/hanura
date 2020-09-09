@@ -134,7 +134,6 @@ class Rekom extends CI_Controller {
             $id_partai = $partai[$index]['id_partai'];
             echo $id_partai . '<br>';
         }
-
     }
 
     public function tambah()
@@ -534,9 +533,10 @@ class Rekom extends CI_Controller {
         $rekom['rekomendasi'] = $this->Rekom_model->getPrintDataRekomByprov($geo_prov_id);
         $data = $this->load->view('rekom/printbyprov', $rekom , TRUE);
         
+        $geo_prov_nama = $rekom['rekomendasi']['0']['geo_prov_nama'];
         
         $mpdf->WriteHTML($data);
-        $mpdf->Output('SELURUH DATA REKOMENDASI.pdf', \Mpdf\Output\Destination::INLINE);
+        $mpdf->Output('SELURUH DATA REKOMENDASI PROVINSI '.$geo_prov_nama.'.pdf', \Mpdf\Output\Destination::INLINE);
     }
 
 }
